@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class PlanetGravity : MonoBehaviour
 {
-    public float gravityStrength = 10f;
+    private Planet planet;
+    private float gravityStrength;
+
+    void Start()
+    {
+        planet = GetComponent<Planet>();
+        if (planet != null && planet.planetData != null)
+        {
+            gravityStrength = planet.planetData.gravityStrength;
+        }
+    }
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -12,14 +22,8 @@ public class PlanetGravity : MonoBehaviour
 
         if (rb != null)
         {
-            // Calculate direction to the planet
             Vector2 direction = (transform.position - other.transform.position).normalized;
-
-            // Apply force towards the planet
             rb.AddForce(direction * gravityStrength);
-
-            // Debugging info
-            Debug.Log($"Applying gravity to {other.name} with force {direction * gravityStrength}");
         }
     }
 }
