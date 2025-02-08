@@ -1,0 +1,99 @@
+using UnityEngine;
+
+public class EnemyRoaming : MonoBehaviour
+{
+    [SerializeField]
+    Vector2 minBounds; // Bottom left corner of the area
+    [SerializeField]
+    Vector2 maxBounds; // Top right corner of the area
+    [SerializeField]
+    float speed;
+    [SerializeField]
+    float range;
+    [SerializeField]
+    float maxDistance;
+    [SerializeField]
+    float rotationSpeed;
+
+    Vector2 wayPoint;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        SetNewDestination();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, wayPoint, speed * Time.deltaTime);
+
+        if (Vector2.Distance(transform.position, wayPoint) < range)
+        {
+            SetNewDestination();
+        }
+
+        if (wayPoint != Vector2.zero)
+        {
+            SetRotationDirection();
+        }
+
+    }
+
+    private void SetNewDestination()
+    {
+        float randomX = Random.Range(minBounds.x, maxBounds.x);
+        float randomY = Random.Range(minBounds.y, maxBounds.y);
+
+        wayPoint = new Vector2(randomX, randomY);
+        Debug.Log($"New WayPoint Set: {wayPoint}");
+        //wayPoint = new Vector2(Random.Range(-maxDistance, maxDistance), Random.Range(-maxDistance, maxDistance));
+    }
+
+    private void SetRotationDirection()
+    {
+        // Calculate the direction vector from the current position to the waypoint
+        Vector2 direction = wayPoint - (Vector2)transform.position;
+
+        // Calculate the angle in radians and then converts to degrees (Mathf.Rad2Deg)
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Create a target rotation based on the angle
+        Quaternion toRotation = Quaternion.Euler(0, 0, angle);
+
+        // Smoothly rotate toward the target rotation
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Vector3 bottomLeft = new Vector3(minBounds.x, minBounds.y, 0);
+        Vector3 topRight = new Vector3(maxBounds.x, maxBounds.y, 0);
+        Vector3 topLeft = new Vector3(minBounds.x, maxBounds.y, 0);
+        Vector3 bottomRight = new Vector3(maxBounds.x, minBounds.y, 0);
+
+       
+        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomRight, bottomLeft);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Boundary"))
+        {
+            // Reverse direction and set a new destination
+            Vector2 collisionNormal = (Vector2)transform.position - collision.ClosestPoint(transform.position);
+            wayPoint = (Vector2)transform.position + collisionNormal.normalized * range;
+
+           
+            wayPoint = new Vector2(
+                Mathf.Clamp(wayPoint.x, minBounds.x + 0.1f, maxBounds.x - 0.1f),
+                Mathf.Clamp(wayPoint.y, minBounds.y + 0.1f, maxBounds.y - 0.1f)
+            );
+        }
+    }
+
+}
