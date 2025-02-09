@@ -2,14 +2,19 @@ using UnityEngine;
 
 public class EnemyRoaming : MonoBehaviour
 {
+    [Header("Bottom left corner of the area")]
     [SerializeField]
-    Vector2 minBounds; // Bottom left corner of the area
+    Vector2 minBounds; 
     [SerializeField]
-    Vector2 maxBounds; // Top right corner of the area
+    [Header("Top right corner of the area")]
+    Vector2 maxBounds; 
     [SerializeField]
     float speed;
+    [Header("How close the enemy needs to be to the waipoint " +
+            "to set new destinatio to new point")]
     [SerializeField]
     float range;
+    [Header("How far the enemy can roam")]
     [SerializeField]
     float maxDistance;
     [SerializeField]
@@ -46,8 +51,7 @@ public class EnemyRoaming : MonoBehaviour
         float randomY = Random.Range(minBounds.y, maxBounds.y);
 
         wayPoint = new Vector2(randomX, randomY);
-        Debug.Log($"New WayPoint Set: {wayPoint}");
-        //wayPoint = new Vector2(Random.Range(-maxDistance, maxDistance), Random.Range(-maxDistance, maxDistance));
+        //Debug.Log($"New WayPoint Set: {wayPoint}");
     }
 
     private void SetRotationDirection()

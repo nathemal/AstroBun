@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy_AI : MonoBehaviour
+public class EnemyChase : MonoBehaviour
 {
 
     //public WeaponBehaviour enemyGun;
