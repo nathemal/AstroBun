@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class EnemyChase : MonoBehaviour
 {
-
-    //public WeaponBehaviour enemyGun;
     //public EnemyFOV enemyFOVScript;
     private GameObject player;
     public float speed;
     private float distance;
     public float distanceToNoticePlayer;
+    
+    public EnemyShooting enemyShootingScript;
+    public float fireRate;
+    private float nextFireTime;
 
     //public LayerMask targetLayer;
     //public LayerMask interferenceLayer;
@@ -38,6 +40,13 @@ public class EnemyChase : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
 
+            if(nextFireTime < Time.time)
+            {
+                //shoot at the player
+                enemyShootingScript.Fire();
+                nextFireTime = Time.time + fireRate;
+            }
+            
         }
 
         //------------
@@ -96,11 +105,10 @@ public class EnemyChase : MonoBehaviour
         //}
     }
 
-    //issue - when the player movement is fixed, the movement of the enemies needs to be fixed, because there are instances when they collide overlap each other
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distanceToNoticePlayer);
     }
+    //issue - when the player movement is fixed, the movement of the enemies needs to be fixed, because there are instances when they collide overlap each other
 }
