@@ -42,7 +42,6 @@ public class EnemyRoaming : MonoBehaviour
         {
             SetRotationDirection();
         }
-
     }
 
     private void SetNewDestination()
@@ -68,6 +67,10 @@ public class EnemyRoaming : MonoBehaviour
         // Smoothly rotate toward the target rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
+
+
+
+
 
     void OnDrawGizmos()
     {
