@@ -8,10 +8,8 @@ public class EnemyChase : MonoBehaviour
     private float distance;
     public float distanceToNoticePlayer;
     
-    public EnemyShooting enemyShootingScript;
-    public float fireRate;
-    private float nextFireTime;
-
+    public EnemyAttack enemyAttackScript;
+   
     //public LayerMask targetLayer;
     //public LayerMask interferenceLayer;
 
@@ -40,13 +38,7 @@ public class EnemyChase : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
 
-            if(nextFireTime < Time.time)
-            {
-                //shoot at the player
-                enemyShootingScript.Fire();
-                nextFireTime = Time.time + fireRate;
-            }
-            
+            enemyAttackScript.Fire();
         }
 
         //------------
