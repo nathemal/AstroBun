@@ -57,19 +57,12 @@ public class EnemyRoaming : MonoBehaviour
     {
         // Calculate the direction vector from the current position to the waypoint
         Vector2 direction = wayPoint - (Vector2)transform.position;
-
-        // Calculate the angle in radians and then converts to degrees (Mathf.Rad2Deg)
+        
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        // Create a target rotation based on the angle
         Quaternion toRotation = Quaternion.Euler(0, 0, angle);
 
-        // Smoothly rotate toward the target rotation
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
-
-
-
 
 
     void OnDrawGizmos()
