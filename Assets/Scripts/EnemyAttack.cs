@@ -20,7 +20,8 @@ public class EnemyAttack : MonoBehaviour
        Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         
         //bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse); //ForceMode2D.Impulse: Apply the impulse force instantly.
-                                                                                                    //This mode depends on the mass of rigidbody                                                                                           //so more force must be applied to move higher-mass objects the same amount
+                                                                                                    //This mode depends on the mass of rigidbody  
+                                                                                                    //so more force must be applied to move higher-mass objects the same amount
                                                                                                     //as lower-mass objects.
     }
     
