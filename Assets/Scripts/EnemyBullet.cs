@@ -25,6 +25,4 @@ public class EnemyBullet : MonoBehaviour
             bullet.linearVelocity = new Vector2(directionToPlayer.x, directionToPlayer.y);
         }
     }
-
-  
 }
