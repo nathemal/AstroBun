@@ -2,14 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerMovement : MonoBehaviour
+public class OldPlayerMovement : MonoBehaviour
 {
-    public float thrustForce = 10f;  
-    public float maxSpeed = 5f;      
-    public float rotationSpeed = 200f; 
-    public bool useFuel = true;      
-    public float fuel = 100f;       
-    public float fuelConsumptionRate = 10f; 
+    public float thrustForce = 10f;
+    public float maxSpeed = 5f;
+    public float rotationSpeed = 200f;
+    public bool useFuel = true;
+    public float fuel = 100f;
+    public float fuelConsumptionRate = 10f;
 
     private Rigidbody2D rb;
     private Vector2 movementInput;
@@ -44,14 +44,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (fuel > 0 || !useFuel) // Only move if fuel is available or fuel usage is off
         {
-
             rb.AddForce(movementInput.normalized * thrustForce);
             rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
 
             if (useFuel && movementInput.sqrMagnitude > 0.1f)
             {
                 fuel -= fuelConsumptionRate * Time.deltaTime;
-                fuel = Mathf.Max(fuel, 0); 
+                fuel = Mathf.Max(fuel, 0);
             }
         }
     }
@@ -63,5 +62,3 @@ public class PlayerMovement : MonoBehaviour
         fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
     }
 }
-
-

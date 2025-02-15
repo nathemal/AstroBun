@@ -41,8 +41,6 @@ public class OrbitController : MonoBehaviour
             orbitSpeed = 3f; // Reset orbit speed to default
             rb.linearVelocity = tangent * orbitSpeed;
 
-
-
             Debug.Log($"Player entered orbit around {currentPlanet.name}");
         }
     }
@@ -51,11 +49,9 @@ public class OrbitController : MonoBehaviour
     {
         if (isOrbiting && currentPlanet != null)
         {
-
             Vector2 direction = (transform.position - currentPlanet.position).normalized;
             Vector2 targetPosition = (Vector2)currentPlanet.position + direction * orbitRadius;
             transform.position = targetPosition;
-
 
             // Reverse direction if p is pressed
             if (Input.GetKeyDown(KeyCode.P))
@@ -65,11 +61,8 @@ public class OrbitController : MonoBehaviour
             }
             Vector2 tangent = reverseOrbit ? new Vector2(direction.y, -direction.x) : new Vector2(-direction.y, direction.x);
 
-
             // Apply orbital velocity
             rb.linearVelocity = tangent * orbitSpeed;
-
-
 
             // Boost orbit speed while holding space
             if (Input.GetKey(KeyCode.Space))
@@ -89,14 +82,10 @@ public class OrbitController : MonoBehaviour
                 rb.linearVelocity = launchDirection * launchForce;
                 StartCoroutine(DecaySpeed());
                 Debug.Log($"Player launched from {currentPlanet.name} with velocity {rb.linearVelocity}");
-                
-
             }
 
             // Debug to check if speed cap is working
             if (orbitSpeed >= maxOrbitSpeed) { Debug.Log("Max orbit speed reached!"); }
-
-
         }
     }
 
@@ -112,8 +101,6 @@ public class OrbitController : MonoBehaviour
         isDecaying = false;
         Debug.Log("Speed decay complete");
     }
-
-
 
     void OnTriggerExit2D(Collider2D other)
     {

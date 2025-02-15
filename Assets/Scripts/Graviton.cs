@@ -4,6 +4,9 @@ using UnityEngine;
 public class Graviton : MonoBehaviour
 {
     Rigidbody2D rb;
+    Vector3 startPosition;
+    Vector2 movementInput;
+    public float rotationSpeed = 200f;
 
     public bool IsAttractee
     {
@@ -41,6 +44,7 @@ public class Graviton : MonoBehaviour
                 GravityHandler.attractors.Remove(rb);
 
             isAttractor = value;
+            startPosition = GetComponent<Transform>().position;
         }
     }
 
@@ -64,12 +68,12 @@ public class Graviton : MonoBehaviour
     void Start()
     {
         if (applyInitialVelocityOnStart)
-            ApplyVelocity(initialVelocity);
+            rb.AddForce(initialVelocity, ForceMode2D.Impulse);
     }
 
-    // Update is called once per frame
-    void ApplyVelocity(Vector3 velocity)
+    void Update()
     {
-        rb.AddForce(initialVelocity, ForceMode2D.Impulse);
+        if (isAttractor)
+            GetComponent<Transform>().position = startPosition; // TODO: This might not be needed anymore
     }
 }

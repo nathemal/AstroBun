@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 1363550969}
   - component: {fileID: 1363550971}
   - component: {fileID: 1363550972}
+  - component: {fileID: 1363550973}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -461,6 +462,26 @@ MonoBehaviour:
   maxSpeed: 7
   rotationSpeed: 200
   useFuel: 0
+  fuel: 100
+  fuelConsumptionRate: 10
+  rb: {fileID: 0}
+  movementInput: {x: 0, y: 0}
+--- !u!114 &1363550973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363550967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf3ae1443822614283a7d0b8245d67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrustForce: 5
+  maxSpeed: 7
+  rotationSpeed: 200
+  useFuel: 1
   fuel: 100
   fuelConsumptionRate: 10
 --- !u!1 &1476749194
