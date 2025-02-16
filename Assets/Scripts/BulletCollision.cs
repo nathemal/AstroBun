@@ -8,7 +8,7 @@ public class BulletCollision : MonoBehaviour
         //for the enemy bullets
         if (collision.gameObject.tag == "Player")
         {
-            //Destroy(collision.gameObject);
+            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }

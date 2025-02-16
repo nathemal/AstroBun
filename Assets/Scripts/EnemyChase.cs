@@ -17,7 +17,11 @@ public class EnemyChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChasePlayer();
+        if( player != null )
+        {
+            ChasePlayer();
+        }
+        
     }
 
 
@@ -33,7 +37,7 @@ public class EnemyChase : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
 
-            enemyAttackScript.Fire();
+            //enemyAttackScript.Fire(player);
         }
     }
 

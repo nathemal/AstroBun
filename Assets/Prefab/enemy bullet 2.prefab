@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 355273745501227356}
-  - component: {fileID: 7186013426311679735}
-  m_Layer: 0
+  - component: {fileID: 307645104862341401}
+  m_Layer: 8
   m_Name: enemy bullet 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 6619858416101835730}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7186013426311679735
+--- !u!114 &307645104862341401
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,13 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4211795601580036690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 381aaa34c7a5f2b408d955c9b8195883, type: 3}
+  m_Script: {fileID: 11500000, guid: 44c25c82cc7beab4ebce2bc075d228ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  lifeSpan: 1
-  damage: 1
-  fireRate: 2
+  speed: 0
+  lifeSpan: 0
+  damage: 0
+  fireRate: 0
   rbs:
   - {fileID: 3743820231114872176}
   - {fileID: 3447701481772429889}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 8808914206576439178}
   - component: {fileID: 978858959568186022}
   - component: {fileID: 2061114598225292776}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: enemy bullet (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   - component: {fileID: 3447701481772429889}
   - component: {fileID: 5995830026018236159}
   - component: {fileID: 6364434960779182737}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: enemy bullet (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 3743820231114872176}
   - component: {fileID: 5505165944535639930}
   - component: {fileID: 574344339282473508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: enemy bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
