@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Planet : MonoBehaviour
 {
     public PlanetSO planetData;
@@ -32,5 +31,3 @@ public class Planet : MonoBehaviour
     }
 
 }
-
-

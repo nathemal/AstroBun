@@ -1,8 +1,5 @@
-using NUnit.Framework;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PoissonDiscSampling
 {
@@ -27,6 +24,7 @@ public class PoissonDiscSampling
                 float angle = Random.value * Mathf.PI * 2;
                 Vector2 dir = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle));
                 Vector2 candidate = spawnCentre + dir * Random.Range(radius, 2 * radius);
+                
                 if (IsValid(candidate, sampleRegionSize, cellSize, radius, points, grid))
                 {
                     points.Add(candidate);
@@ -36,17 +34,20 @@ public class PoissonDiscSampling
                     break;
                 }
             }
+
             if (!candidateAccepted)
             {
                 spawnPoints.RemoveAt(spawnIndex);
             }
         }
+
         return points;
     }
 
-     static bool IsValid(Vector2 candidate, Vector2 sampleRegionSize, float cellSize, float radius, List<Vector2> points, int[,] grid)
+    static bool IsValid(Vector2 candidate, Vector2 sampleRegionSize, float cellSize, float radius, List<Vector2> points, int[,] grid)
     {
-        if (candidate.x >= 0 && candidate.x < sampleRegionSize.x && candidate.y >= 0 && candidate.y < sampleRegionSize.y) {
+        if (candidate.x >= 0 && candidate.x < sampleRegionSize.x && candidate.y >= 0 && candidate.y < sampleRegionSize.y) 
+        {
             int cellX = (int)(candidate.x / cellSize);
             int cellY = (int)(candidate.y / cellSize);
             int searchStartX = Mathf.Max(0, cellX - 2);
@@ -65,11 +66,11 @@ public class PoissonDiscSampling
                             if (sqrDst < radius*radius) { return false; }
                         }
                     }
-                }
-                return true;
             }
-        return false;
+
+            return true;
         }
+
+        return false;
     }
-
-
+}

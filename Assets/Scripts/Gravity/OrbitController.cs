@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class OrbitController : MonoBehaviour
 {
@@ -57,6 +55,7 @@ public class OrbitController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.P))
             {
                 reverseOrbit = !reverseOrbit;
+
                 Debug.Log($"Orbit direction reversed: {reverseOrbit}");
             }
             Vector2 tangent = reverseOrbit ? new Vector2(direction.y, -direction.x) : new Vector2(-direction.y, direction.x);
@@ -81,11 +80,13 @@ public class OrbitController : MonoBehaviour
                 float launchForce = Mathf.Max(orbitSpeed * launchMultiplier);
                 rb.linearVelocity = launchDirection * launchForce;
                 StartCoroutine(DecaySpeed());
+
                 Debug.Log($"Player launched from {currentPlanet.name} with velocity {rb.linearVelocity}");
             }
 
             // Debug to check if speed cap is working
-            if (orbitSpeed >= maxOrbitSpeed) { Debug.Log("Max orbit speed reached!"); }
+            if (orbitSpeed >= maxOrbitSpeed) 
+                Debug.Log("Max orbit speed reached!");
         }
     }
 
@@ -112,6 +113,3 @@ public class OrbitController : MonoBehaviour
         }
     }
 }
-
-
-

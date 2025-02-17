@@ -1,8 +1,6 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
-public class OldPlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float thrustForce = 10f;
     public float maxSpeed = 5f;
