@@ -6,10 +6,10 @@ public class StopCollision : MonoBehaviour
 
     void Start()
     {
-        Collider2D parentCollider = GetComponentInParent<Collider2D>();
-        Collider2D childCollider = GetComponentInChildren<Collider2D>();
+        //Collider2D parentCollider = GetComponentInParent<Collider2D>();
+        //Collider2D childCollider = GetComponentInChildren<Collider2D>();
         //Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"));
-        Physics2D.IgnoreCollision(parentCollider, childCollider);
+        //Physics2D.IgnoreCollision(parentCollider, childCollider);
     }
 
     //private void OnEnable()
