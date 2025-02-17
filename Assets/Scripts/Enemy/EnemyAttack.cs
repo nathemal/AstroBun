@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    //This script handles the attacks of the enemy
     public GameObject projectilePrefab;
+    public GameObject target;
     public Transform firePoint;
+
     private BulletSettings bulletScript;
     private float firePointRadiusForVisualization = 0.08f;
     private float nextFireTime;
-    public GameObject target;
+
     private void Start()
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
@@ -24,8 +25,6 @@ public class EnemyAttack : MonoBehaviour
         {
             bulletInfo.SetTarget(target);
         }
-
-
     }
     
     public void Fire(GameObject target)
@@ -36,7 +35,6 @@ public class EnemyAttack : MonoBehaviour
             CreateBullets(target);
             nextFireTime = Time.time + bulletScript.fireRate;
         }
-
     }
 
     private void OnDrawGizmos()
@@ -44,5 +42,4 @@ public class EnemyAttack : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(firePoint.transform.position, firePointRadiusForVisualization);
     }
-   
 }

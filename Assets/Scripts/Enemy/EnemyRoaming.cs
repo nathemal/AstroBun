@@ -22,7 +22,6 @@ public class EnemyRoaming : MonoBehaviour
 
     Vector2 wayPoint;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SetNewDestination();
@@ -50,7 +49,7 @@ public class EnemyRoaming : MonoBehaviour
         float randomY = Random.Range(minBounds.y, maxBounds.y);
 
         wayPoint = new Vector2(randomX, randomY);
-        //Debug.Log($"New WayPoint Set: {wayPoint}");
+        // Debug.Log($"New WayPoint Set: {wayPoint}");
     }
 
     private void SetRotationDirection()
@@ -64,7 +63,6 @@ public class EnemyRoaming : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }
 
-
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -72,7 +70,6 @@ public class EnemyRoaming : MonoBehaviour
         Vector3 topRight = new Vector3(maxBounds.x, maxBounds.y, 0);
         Vector3 topLeft = new Vector3(minBounds.x, maxBounds.y, 0);
         Vector3 bottomRight = new Vector3(maxBounds.x, minBounds.y, 0);
-
        
         Gizmos.DrawLine(bottomLeft, topLeft);
         Gizmos.DrawLine(topLeft, topRight);
@@ -88,12 +85,10 @@ public class EnemyRoaming : MonoBehaviour
             Vector2 collisionNormal = (Vector2)transform.position - collision.ClosestPoint(transform.position);
             wayPoint = (Vector2)transform.position + collisionNormal.normalized * range;
 
-           
             wayPoint = new Vector2(
                 Mathf.Clamp(wayPoint.x, minBounds.x + 0.1f, maxBounds.x - 0.1f),
                 Mathf.Clamp(wayPoint.y, minBounds.y + 0.1f, maxBounds.y - 0.1f)
             );
         }
     }
-
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BulletSettings : MonoBehaviour
 {
-    //This script handles the info about bullet
     public float speed;
     public float lifeSpan;
     public float damage;
@@ -43,5 +42,4 @@ public class BulletSettings : MonoBehaviour
             }
         }
     }
-
 }

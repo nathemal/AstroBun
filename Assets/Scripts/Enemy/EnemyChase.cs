@@ -3,27 +3,24 @@ using UnityEngine;
 public class EnemyChase : MonoBehaviour
 {
     private GameObject player;
-    public float speed;
     private float distance;
-    public float distanceToNoticePlayer;
     
     public EnemyAttack enemyAttackScript;
-
+    public float distanceToNoticePlayer;
+    public float speed;
+    
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
         if( player != null )
         {
             ChasePlayer();
         }
-        
     }
-
 
     public void ChasePlayer()
     {
@@ -46,5 +43,6 @@ public class EnemyChase : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distanceToNoticePlayer);
     }
-    //issue - when the player movement is fixed, the movement of the enemies needs to be fixed, because there are instances when they collide overlap each other
+    
+    // TODO: when the player movement is fixed, the movement of the enemies needs to be fixed, because there are instances when they collide overlap each other
 }

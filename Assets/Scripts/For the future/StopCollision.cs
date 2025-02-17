@@ -17,5 +17,4 @@ public class StopCollision : MonoBehaviour
     //    Collider2D thisObjectCollider = GetComponent<Collider2D>();
     //    Physics2D.IgnoreCollision(thisObjectCollider, otherCollision);
     //}
-
 }
