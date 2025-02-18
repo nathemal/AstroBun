@@ -4,7 +4,7 @@ public class WeaponBehaviour : MonoBehaviour
 {
     public GameObject ProjectilePrefab;
     public Transform firePoint;
-    public float fireForce;
+    //public float fireForce;
 
     public void Fire()
     {

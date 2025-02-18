@@ -559,7 +559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &2044425048
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -608,9 +608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247649f298931a44bcc1785d52d8757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   rb: {fileID: 2044425053}
   weapon: {fileID: 2070720793}
+  moveSpeed: 5
 --- !u!212 &2044425051
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -742,7 +742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 5082342164471458856, guid: 562adc820ea7dde4ab94d842d0373ebe, type: 3}
   firePoint: {fileID: 1577181308}
-  fireForce: 5
 --- !u!4 &2070720794
 Transform:
   m_ObjectHideFlags: 0
@@ -879,7 +878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5780860223835516403, guid: 98b0e5589773bbd409cfa2f3f106dc8b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5780860223835516403, guid: 98b0e5589773bbd409cfa2f3f106dc8b, type: 3}
       propertyPath: m_TagString

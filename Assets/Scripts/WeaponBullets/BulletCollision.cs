@@ -27,12 +27,11 @@ public class BulletCollision : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
-        /*
         else if (collision.gameObject.tag == "Enemy")
         {
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
-        */
+
     }
 }
