@@ -32,39 +32,49 @@ public class BulletCollision : MonoBehaviour
         //for reusability
         if (bullet == null) { return; }
 
-        bool isPlayer = collision.gameObject.tag == "Player";
-
-        if (isPlayer)
+        if (collision.gameObject.tag == "Player")
         {
-            HandleCollision(collision.gameObject, isPlayer);
+            HandlePlayerCollision(collision.gameObject);
 
         }
-        else if (!isPlayer && collision.gameObject.tag == "Enemy")
+        else if (collision.gameObject.tag == "Enemy")
         {
-            HandleCollision(collision.gameObject, !isPlayer);
+            HandleEnemyCollision(collision.gameObject);
         }
 
     }
 
-    private void HandleCollision(GameObject entity, bool isPlayer)
+    private void HandlePlayerCollision(GameObject entity)
     {
-        var healthController = entity.gameObject.GetComponent<HealthController>();
+        var playerHealth = entity.GetComponent<PlayerHealthController>();
 
-        if( healthController == null ) { return; }
-
-        if(isPlayer)
+        if (playerHealth != null)
         {
-            healthController.PlayerTakeDamage(bullet.damage);
+            playerHealth.TakeDamage(bullet.damage);
+
+            if (!playerHealth.CheckIfEntityIsAlive())
+            {
+                Destroy(entity);
+            }
         }
-        else
-        {
-            healthController.EnemyTakeDamage(bullet.damage);
-        }
-        
+       
+        //Destroy(gameObject); //destroy bullet
+        gameObject.SetActive(false); //TO DO: ASK SOMEONE FOR HELP TO FIX THIS. WHEN I ISE SETACTIVE(FALSE) I DON'T HAVE ERROR, BUT ONCE I WANT TO DESTROY BULLET I HAVE ERROR IN BULLET SETTINGS BECAUSE OF MOVETOTARGET()
+    }
 
-        if (healthController.CheckIfEntityIsAlive() == false)
+
+    private void HandleEnemyCollision(GameObject entity)
+    {
+        var enemyHealth = entity.GetComponent<EnemyHealthController>(); //W hy IT IS SEPARATE? BECAUSE THIS CONTROLLER DOESN'T HAVE HEALTH BAR ELEMENT IN IT
+
+        if (enemyHealth != null)
         {
-            Destroy(entity);
+            enemyHealth.TakeDamage(bullet.damage);
+
+            if (!enemyHealth.CheckIfEntityIsAlive())
+            {
+                Destroy(entity); // Destroy enemy if dead
+            }
         }
 
         //Destroy(gameObject); //destroy bullet

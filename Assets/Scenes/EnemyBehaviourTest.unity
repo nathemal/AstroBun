@@ -1091,6 +1091,10 @@ PrefabInstance:
       value: health bar UI
       objectReference: {fileID: 0}
     - target: {fileID: 903977560027683904, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
+      propertyPath: m_Value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 903977560027683904, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
