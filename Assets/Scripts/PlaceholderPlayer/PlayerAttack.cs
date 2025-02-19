@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+//Handles the player attacks
+public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectilePrefab;
-    public GameObject target;
     public Transform firePoint;
-
     private BulletSettings bulletScript;
     private float firePointRadiusForVisualization = 0.08f;
     private float nextFireTime;
@@ -15,29 +14,28 @@ public class EnemyAttack : MonoBehaviour
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
     }
 
-    public void CreateBullets(GameObject target)
+    public void CreateBullets()
     {
         GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
-        //Set direction where to go for the bullets
         BulletSettings bulletInfo = bullet.GetComponent<BulletSettings>();
+
         if (bulletInfo != null)
         {
-            //bulletInfo.SetTarget(target);
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 directionToTarget = (mouseWorldPosition - firePoint.position).normalized;
 
-            Vector2 directionToTarget = (target.transform.position - firePoint.position).normalized;
             bulletInfo.SetDirection(directionToTarget);
         }
-
-
     }
-    
-    public void Fire(GameObject target)
+
+
+    public void Fire()
     {
         //fire according the fire rate
-        if(nextFireTime < Time.time)
+        if (nextFireTime < Time.time)
         {
-            CreateBullets(target);
+            CreateBullets();
             nextFireTime = Time.time + bulletScript.fireRate;
         }
     }

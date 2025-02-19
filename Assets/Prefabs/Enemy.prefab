@@ -306,9 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f409379bd5d5af843881c2b51371e8cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
-  distanceToNoticePlayer: 6.84
   enemyAttackScript: {fileID: -7054073743433179072}
+  distanceToNoticePlayer: 6.84
+  speed: 3.5
 --- !u!114 &-7054073743433179072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,8 +322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4211795601580036690, guid: 2472360040857884b9499a00db3913fe, type: 3}
+  target: {fileID: 4588143520461653735, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
   firePoint: {fileID: 7030781659933962759}
-  target: {fileID: 5780860223835516403, guid: 98b0e5589773bbd409cfa2f3f106dc8b, type: 3}
 --- !u!1 &5372938006926956254
 GameObject:
   m_ObjectHideFlags: 0
