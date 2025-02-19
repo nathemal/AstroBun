@@ -19,6 +19,8 @@ public class PlayerControl : MonoBehaviour
         //float moveX = Input.GetAxisRaw("Horizontal");
         //float moveY = Input.GetAxisRaw("Vertical");
 
+        if(this == null || weapon == null) { return; }
+
         if (Input.GetMouseButtonDown(0)) // left click\
         {
             weapon.Fire();

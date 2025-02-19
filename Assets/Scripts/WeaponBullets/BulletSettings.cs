@@ -22,12 +22,13 @@ public class BulletSettings : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        Destroy(gameObject, lifeSpan);
+        Destroy(gameObject, lifeSpan); //do not forget to implement life span
+        //once the player/enemy is killed destroy the bullets
     }
 
     private void Update()
     {
-        if(hasDirectionToTarget)
+        if(hasDirectionToTarget && directionToTarget != Vector2.zero)
         {
             MoveToTarget();
         }
@@ -57,7 +58,9 @@ public class BulletSettings : MonoBehaviour
         //    }
         //}
 
-        if(hasDirectionToTarget && rbs != null)
+        if (!hasDirectionToTarget || rbs == null) { return; }
+
+        if (hasDirectionToTarget && rbs != null)
         {
             foreach (var bullet in rbs)
             {
@@ -68,5 +71,5 @@ public class BulletSettings : MonoBehaviour
 
     }
 
-    //TO DO: if the player deletes the enemy, you have error
+    
 }

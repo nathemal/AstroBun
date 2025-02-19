@@ -17,6 +17,9 @@ public class EnemyAttack : MonoBehaviour
 
     public void CreateBullets(GameObject target)
     {
+
+        if (target == null || this.gameObject == null) { return; }
+
         GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
         //Set direction where to go for the bullets
@@ -34,8 +37,10 @@ public class EnemyAttack : MonoBehaviour
     
     public void Fire(GameObject target)
     {
+        if (target == null || this.gameObject == null) { return; }
+
         //fire according the fire rate
-        if(nextFireTime < Time.time)
+        if (nextFireTime < Time.time && this.gameObject != null)
         {
             CreateBullets(target);
             nextFireTime = Time.time + bulletScript.fireRate;

@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 4062918155251617115}
   - component: {fileID: 6073240009910876780}
   - component: {fileID: 8267088069758471158}
+  - component: {fileID: 7581807370788533872}
   m_Layer: 6
   m_Name: PlaceHolder Player
   m_TagString: Player
@@ -240,7 +241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6073240009910876780}
   weapon: {fileID: 4806238340366439156}
-  target: {fileID: 5293202144255024865, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
 --- !u!58 &4062918155251617115
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -322,3 +322,17 @@ MonoBehaviour:
   useFuel: 1
   fuel: 100
   fuelConsumptionRate: 10
+--- !u!114 &7581807370788533872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588143520461653735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc2c2f362ee6994d863b4f90d723d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  Healthbar: {fileID: 1157568227791994180, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
