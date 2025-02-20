@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &988753880693045163
 Transform:
   m_ObjectHideFlags: 0
@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 6073240009910876780}
   - component: {fileID: 8267088069758471158}
   - component: {fileID: 7581807370788533872}
+  - component: {fileID: 117549714485997888}
   m_Layer: 6
   m_Name: PlaceHolder Player
   m_TagString: Player
@@ -168,8 +169,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 988753880693045163}
   - {fileID: 6075529247003743142}
+  - {fileID: 988753880693045163}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4174720279336430493
@@ -240,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6073240009910876780}
-  weapon: {fileID: 4806238340366439156}
+  weapon: {fileID: 117549714485997888}
 --- !u!58 &4062918155251617115
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -337,3 +338,17 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 20
   Healthbar: {fileID: 1157568227791994180, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
+--- !u!114 &117549714485997888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588143520461653735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 269e5bcdbc709ce46b74aa2f6a9b25fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4211795601580036690, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
+  firePoint: {fileID: 6075529247003743142}

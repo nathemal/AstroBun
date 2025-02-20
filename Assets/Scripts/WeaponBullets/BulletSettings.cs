@@ -22,8 +22,7 @@ public class BulletSettings : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        Destroy(gameObject, lifeSpan); //do not forget to implement life span
-        //once the player/enemy is killed destroy the bullets
+        Destroy(gameObject, lifeSpan); 
     }
 
     private void Update()
@@ -64,7 +63,11 @@ public class BulletSettings : MonoBehaviour
         {
             foreach (var bullet in rbs)
             {
-                bullet.linearVelocity = directionToTarget * speed;
+                if (bullet != null)
+                {
+                    bullet.linearVelocity = directionToTarget * speed;
+
+                }
             }
         }
 

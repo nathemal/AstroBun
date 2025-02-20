@@ -13,8 +13,8 @@ public class PlayerHealthController: MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       Healthbar.SetMaxHealth(maxHealth);
        currentHealth = maxHealth;
+       Healthbar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -34,6 +34,16 @@ public class PlayerHealthController: MonoBehaviour
         Healthbar.UpdateHealthBar(currentHealth);
 
     }
+
+    //if we want to have powerup as heal
+    public void AddHealth(float healAmount)
+    {
+        if (currentHealth <= 0) { return; }
+
+        currentHealth += healAmount;
+        Healthbar.UpdateHealthBar(currentHealth);
+    }
+
 
     public bool CheckIfEntityIsAlive()
     {

@@ -4,11 +4,12 @@ public class EnemyHealthController : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
+    private ChangeEnemyColor enemyColor;
 
     private void Start()
     {
         currentHealth = maxHealth;
-
+        enemyColor = GetComponent<ChangeEnemyColor>();
     }
 
     private void Update()
@@ -22,6 +23,11 @@ public class EnemyHealthController : MonoBehaviour
 
         currentHealth -= damage;
 
+        if(enemyColor != null)
+        {
+            enemyColor.ChangeSpriteColor();
+        }
+
     }
 
     public bool CheckIfEntityIsAlive()
@@ -29,28 +35,14 @@ public class EnemyHealthController : MonoBehaviour
         return currentHealth > 0;
     }
 
-    private void ChangeSpriteColor()
+    public float CalculatehealthProcentage()
     {
-        if(currentHealth == maxHealth)
-        {
-            //color this ?
-        }
-
-        if(currentHealth < 0) //equal to 50 procent
-        {
-
-        }
-
-        if (currentHealth < 0) //less than 30 procent
-        {
-
-        }
-    }
-
-    private float CalculatehealthProcentage()
-    {
-        float procentage =  currentHealth /  maxHealth;
+        float procentage =  (currentHealth /  maxHealth) * 100.0f;
         
         return procentage;
     }
+   
 }
+
+
+

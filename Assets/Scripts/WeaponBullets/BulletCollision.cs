@@ -58,8 +58,7 @@ public class BulletCollision : MonoBehaviour
             }
         }
        
-        //Destroy(gameObject); //destroy bullet
-        gameObject.SetActive(false); //TO DO: ASK SOMEONE FOR HELP TO FIX THIS. WHEN I ISE SETACTIVE(FALSE) I DON'T HAVE ERROR, BUT ONCE I WANT TO DESTROY BULLET I HAVE ERROR IN BULLET SETTINGS BECAUSE OF MOVETOTARGET()
+        Destroy(gameObject);
     }
 
 
@@ -77,7 +76,6 @@ public class BulletCollision : MonoBehaviour
             }
         }
 
-        //Destroy(gameObject); //destroy bullet
-        gameObject.SetActive(false); //TO DO: ASK SOMEONE FOR HELP TO FIX THIS. WHEN I ISE SETACTIVE(FALSE) I DON'T HAVE ERROR, BUT ONCE I WANT TO DESTROY BULLET I HAVE ERROR IN BULLET SETTINGS BECAUSE OF MOVETOTARGET()
+        Destroy(gameObject);
     }
 }

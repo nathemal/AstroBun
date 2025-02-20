@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
             //I tried to add additional rigid body to gun, but when I playtested, it detached from the main body. I don't know if you want to rotate the main body differenty from the gun 'body' 
 
             //Tried to work on different values for the player movemnt but it is really unresponsive, feels like you skate on ice, it is really annoying.
-           
+
             //float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
 
@@ -72,10 +73,10 @@ public class PlayerMovement : MonoBehaviour
     //Kamile added this
     private void AimDirectionRotation()
     {
-        //rotate the player/gun with the mouse
+        //rotate the player / gun with the mouse
         Vector3 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
-       
+
     }
 }

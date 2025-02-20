@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletInfo != null)
         {
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //check these lines
             Vector2 directionToTarget = (mouseWorldPosition - firePoint.position).normalized;
 
             bulletInfo.SetDirection(directionToTarget);
