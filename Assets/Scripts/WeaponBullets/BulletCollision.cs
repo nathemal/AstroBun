@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class BulletCollision : MonoBehaviour
 {
-    private BulletSettings bullet; 
+    private BulletSettings bullet;
+    //public bool isDestroyed;
 
     /*
     private void OnCollisionEnter2D(Collision2D collision) 
@@ -65,6 +66,7 @@ public class BulletCollision : MonoBehaviour
     private void HandleEnemyCollision(GameObject entity)
     {
         var enemyHealth = entity.GetComponent<EnemyHealthController>(); //W hy IT IS SEPARATE? BECAUSE THIS CONTROLLER DOESN'T HAVE HEALTH BAR ELEMENT IN IT
+        //isDestroyed = false;
 
         if (enemyHealth != null)
         {
@@ -73,6 +75,8 @@ public class BulletCollision : MonoBehaviour
             if (!enemyHealth.CheckIfEntityIsAlive())
             {
                 Destroy(entity); // Destroy enemy if dead
+                //earn money
+                //isDestroyed = true;
             }
         }
 

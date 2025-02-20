@@ -340,6 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 80
   currentHealth: 0
+  worthMoney: 10
 --- !u!114 &124251646895732294
 MonoBehaviour:
   m_ObjectHideFlags: 0

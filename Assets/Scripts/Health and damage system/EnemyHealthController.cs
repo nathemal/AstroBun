@@ -5,6 +5,7 @@ public class EnemyHealthController : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     private ChangeEnemyColor enemyColor;
+    public int worthMoney;
 
     private void Start()
     {
