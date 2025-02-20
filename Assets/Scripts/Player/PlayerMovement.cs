@@ -31,15 +31,20 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (movementInput.sqrMagnitude > 0.1f)
-        {
-            float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
-        }
+        // TODO: Add a way to toggle useFuel in game here
     }
 
     void ApplyMovement()
     {
+        if (fuel <= 0) 
+            useFuel = false;
+
+        if (movementInput.sqrMagnitude > 0.1f) // Moved this function here from Update to avoid tying any of the physics to fps
+        {
+            float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
+        }
+
         if (fuel > 0 || !useFuel) // Only move if fuel is available or fuel usage is off
         {
             rb.AddForce(movementInput.normalized * thrustForce);
