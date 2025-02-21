@@ -11,9 +11,6 @@ public class EarnMoney : MonoBehaviour
 
     void Start()
     {
-       
-        
-        
         //UpdateText();
     }
 

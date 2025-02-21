@@ -1,3 +1,4 @@
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,10 +14,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 movementInput;
     Vector2 mousePosition;
+    public Fuelbar fuelTank;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        fuelTank.SetMaxFuelTank(fuel);
     }
 
     void Update()
@@ -58,6 +62,9 @@ public class PlayerMovement : MonoBehaviour
             if (useFuel && movementInput.sqrMagnitude > 0.1f)
             {
                 fuel -= fuelConsumptionRate * Time.deltaTime;
+
+                fuelTank.UpdateFuelTank(fuel);
+                
                 fuel = Mathf.Max(fuel, 0);
             }
         }
@@ -66,7 +73,13 @@ public class PlayerMovement : MonoBehaviour
     // Call this function to refuel the spaceship
     public void Refuel(float amount)
     {
+        //Debug.Log("Current fuel amount before addition: " + fuel);
+        //Debug.Log("Added amount is " + amount);
+
         fuel += amount;
+
+        //Debug.Log("fuel amount AFTER: " + fuel);
+
         fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
     }
 
