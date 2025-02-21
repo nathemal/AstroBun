@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyHealthController : MonoBehaviour
 {
@@ -6,11 +7,18 @@ public class EnemyHealthController : MonoBehaviour
     public float currentHealth;
     private ChangeEnemyColor enemyColor;
     public int worthMoney;
+    public UnityEvent<int> onDeath;
 
     private void Start()
     {
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
+
+        EarnMoney currencyManager = FindAnyObjectByType<EarnMoney>();
+        if (currencyManager != null)
+        {
+            onDeath.AddListener(currencyManager.AddMoney);
+        }
     }
 
     private void Update()
@@ -27,6 +35,12 @@ public class EnemyHealthController : MonoBehaviour
         if(enemyColor != null)
         {
             enemyColor.ChangeSpriteColor();
+        }
+
+        if (currentHealth <= 0)
+        {
+            onDeath.Invoke(worthMoney); // Notify listeners that the enemy is dead
+            Destroy(gameObject);
         }
 
     }

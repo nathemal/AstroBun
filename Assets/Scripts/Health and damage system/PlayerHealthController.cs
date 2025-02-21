@@ -8,8 +8,8 @@ public class PlayerHealthController: MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     public Healthbar Healthbar;
-    //public UnityEvent OnDie; <- when is dead, stop moving, stop shooting (do I need this?)
-   
+    public UnityEvent onDeath;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +32,12 @@ public class PlayerHealthController: MonoBehaviour
 
         currentHealth -= damage;
         Healthbar.UpdateHealthBar(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            onDeath.Invoke();
+            Destroy(gameObject);
+        }
 
     }
 

@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttackScript: {fileID: -7054073743433179072}
-  distanceToNoticePlayer: 1.65
+  distanceToNoticePlayer: 3.46
   speed: 1.62
 --- !u!114 &-7054073743433179072
 MonoBehaviour:
@@ -341,6 +341,33 @@ MonoBehaviour:
   maxHealth: 80
   currentHealth: 0
   worthMoney: 10
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2407957162718211872}
+        m_TargetAssemblyTypeName: EnemyHealthController, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6921243405211160657, guid: 39d5bd1e0edc5da45816f0664c604915, type: 3}
+        m_TargetAssemblyTypeName: EarnMoney, Assembly-CSharp
+        m_MethodName: AddMoney
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &124251646895732294
 MonoBehaviour:
   m_ObjectHideFlags: 0

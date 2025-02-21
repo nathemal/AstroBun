@@ -5,35 +5,23 @@ using UnityEngine.UI;
 
 public class EarnMoney : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public EnemyHealthController enemy;
-    //private BulletCollision collidedEnemy;
-    public int moneyCount;
+    public int moneyCount = 0;
+    [Header("Currency HUD is prefab. Add the text of currency HUD from the scene, not from prefab folder")]
     public TextMeshProUGUI coinText;
 
     void Start()
     {
-        //enemy = GetComponent<EnemyHealthController>();
-        //collidedEnemy = GetComponent<BulletCollision>();
-        moneyCount = 0;
+       
+        
+        
+        //UpdateText();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddMoney(int amount)
     {
-        EarnCurrency();
+        moneyCount += amount;
+        UpdateText();
     }
-
-    private void EarnCurrency()
-    {
-        if(enemy.CheckIfEntityIsAlive()) //TO DO: fix this after the observer pattern is added for managing destruction of the player and the enemy
-        {
-            moneyCount += enemy.worthMoney;
-            UpdateText();
-        }
-    }
-
-
 
     private void UpdateText()
     {

@@ -53,10 +53,10 @@ public class BulletCollision : MonoBehaviour
         {
             playerHealth.TakeDamage(bullet.damage);
 
-            if (!playerHealth.CheckIfEntityIsAlive())
-            {
-                Destroy(entity);
-            }
+            //if (!playerHealth.CheckIfEntityIsAlive())
+            //{
+            //    Destroy(entity);
+            //}
         }
        
         Destroy(gameObject);
@@ -72,12 +72,10 @@ public class BulletCollision : MonoBehaviour
         {
             enemyHealth.TakeDamage(bullet.damage);
 
-            if (!enemyHealth.CheckIfEntityIsAlive())
-            {
-                Destroy(entity); // Destroy enemy if dead
-                //earn money
-                //isDestroyed = true;
-            }
+            //if (!enemyHealth.CheckIfEntityIsAlive())
+            //{
+            //    Destroy(entity); 
+            //}
         }
 
         Destroy(gameObject);
