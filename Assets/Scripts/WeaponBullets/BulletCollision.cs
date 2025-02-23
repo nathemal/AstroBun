@@ -2,36 +2,52 @@ using UnityEngine;
 
 public class BulletCollision : MonoBehaviour
 {
-    /*
-    private void OnCollisionEnter2D(Collision2D collision) 
+    private BulletSettings bullet;
+
+    private void Start()
     {
-        //for reusability
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.tag == "Enemy")
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
+        bullet = GetComponentInParent<BulletSettings>();
     }
-    */
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //for reusability
+        if (bullet == null) 
+            return;
+
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            HandlePlayerCollision(collision.gameObject);
+
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            HandleEnemyCollision(collision.gameObject);
+        }
+    }
+
+    private void HandlePlayerCollision(GameObject entity)
+    {
+        var playerHealth = entity.GetComponent<PlayerHealthController>();
+
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(bullet.damage);
+        }
+       
+        Destroy(gameObject);
+    }
+
+
+    private void HandleEnemyCollision(GameObject entity)
+    {
+        var enemyHealth = entity.GetComponent<EnemyHealthController>(); //W hy IT IS SEPARATE? BECAUSE THIS CONTROLLER DOESN'T HAVE HEALTH BAR ELEMENT IN IT
+
+        if (enemyHealth != null)
+        {
+            enemyHealth.TakeDamage(bullet.damage);
         }
 
+        Destroy(gameObject);
     }
 }

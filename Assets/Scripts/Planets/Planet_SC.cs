@@ -29,5 +29,4 @@ public class Planet : MonoBehaviour
             spriteRenderer.color = planetData.color; // Change color if needed
         }
     }
-
 }
