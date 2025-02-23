@@ -12,10 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movementInput;
+    private OrbitController orbitController;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        orbitController = GetComponent<OrbitController>();
     }
 
     void Update()
@@ -34,8 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
             useFuel = !useFuel;
-        
-        // TODO: Add a way to toggle useFuel in game here
     }
 
     void ApplyMovement()
@@ -49,18 +49,21 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
         }
 
-        if (useFuel) // If fuel 
+        if (!orbitController.isOrbiting)
         {
-            rb.AddForce(movementInput.normalized * thrustForceWithFuel);
-
-            if (movementInput.sqrMagnitude > 0.1f)
+            if (useFuel) 
             {
-                fuel -= fuelConsumptionRate * Time.deltaTime;
-                fuel = Mathf.Max(fuel, 0);
+                rb.AddForce(movementInput.normalized * thrustForceWithFuel);
+
+                if (movementInput.sqrMagnitude > 0.1f)
+                {
+                    fuel -= fuelConsumptionRate * Time.deltaTime;
+                    fuel = Mathf.Max(fuel, 0);
+                }
+            } else if (!useFuel)
+            {
+                rb.AddForce(movementInput.normalized * thrustForceWithoutFuel);
             }
-        } else if (!useFuel)
-        {
-            rb.AddForce(movementInput.normalized * thrustForceWithoutFuel);
         }
 
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);

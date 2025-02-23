@@ -13,7 +13,7 @@ public class OrbitController : MonoBehaviour
     public float launchDecayRate = 2f; 
 
     private Rigidbody2D rb;
-    private bool isOrbiting = false;
+    public bool isOrbiting = false;
     private bool isDecaying = false;
 
     void Start()
