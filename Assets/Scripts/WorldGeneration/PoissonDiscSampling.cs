@@ -6,6 +6,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PoissonDiscSampling
 {
+    public struct PoissonPoint
+    {
+        public Vector2 position;
+        public float radius;
+    }
 
     public static List<Vector2> GeneratePoints(float radius, Vector2 sampleRegionSize, int numSampleBeforeRejection = 30)
     {

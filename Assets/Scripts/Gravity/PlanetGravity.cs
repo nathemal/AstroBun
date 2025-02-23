@@ -16,6 +16,12 @@ public class PlanetGravity : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log($"Ignoring collision with {other.name} (Enemy)");
+            return;
+        }
+
         Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
 
         if (rb != null)

@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &988753880693045163
 Transform:
   m_ObjectHideFlags: 0
@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 7581807370788533872}
   - component: {fileID: 117549714485997888}
   - component: {fileID: 7902972935622938603}
+  - component: {fileID: -4530304411956145218}
   m_Layer: 6
   m_Name: PlaceHolder Player
   m_TagString: Player
@@ -318,13 +319,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee58b55559a4e645a23d50d3fcbc046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 5
+  thrustForceWithFuel: 5
+  thrustForceWithoutFuel: 2
   maxSpeed: 3
   rotationSpeed: 80
   useFuel: 1
   fuel: 100
   fuelConsumptionRate: 10
-  fuelTank: {fileID: 4724182988233900124, guid: 501792d856b190c498583edb6d4b5055, type: 3}
+  fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
 --- !u!114 &7581807370788533872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 20
-  Healthbar: {fileID: 1157568227791994180, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
+  Healthbar: {fileID: 2215150977744439884, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -382,3 +384,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuelPoerUp: {fileID: 7479508409902853415, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
+--- !u!114 &-4530304411956145218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588143520461653735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6610e3efcb6fe08458286e32b2de0686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orbitSpeed: 3
+  boostMultiplier: 1
+  launchMultiplier: 5
+  maxOrbitSpeed: 10
+  orbitRadius: 1.5
+  launchDecayRate: 2
+  isOrbiting: 0

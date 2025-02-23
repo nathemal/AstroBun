@@ -23,6 +23,12 @@ public class OrbitController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Ignore anything tagged as "Enemy"
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log($"Ignoring collision with {other.name} (Enemy)");
+            return;
+        }
 
         if (other.CompareTag("Planet"))
         {
