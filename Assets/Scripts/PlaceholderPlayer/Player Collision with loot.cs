@@ -9,9 +9,9 @@ public class PlayerCollisionwithloot : MonoBehaviour
         fuelTank = GetComponent<PlayerMovement>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) // This method deals with collisions with colliders that are set to trigger
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "FuelPickup") // Weapon pickup collision
+        if (collision.tag == "FuelPickup")
         {
             fuelTank.Refuel(fuelPoerUp.additionalFuelAmount);
 

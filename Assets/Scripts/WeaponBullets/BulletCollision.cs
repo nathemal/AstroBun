@@ -3,24 +3,6 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour
 {
     private BulletSettings bullet;
-    //public bool isDestroyed;
-
-    /*
-    private void OnCollisionEnter2D(Collision2D collision) 
-    {
-        //for reusability
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-        else if (collision.gameObject.tag == "Enemy")
-        {
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-        }
-    }
-    */
 
     private void Start()
     {
@@ -30,8 +12,8 @@ public class BulletCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //for reusability
-        if (bullet == null) { return; }
+        if (bullet == null) 
+            return;
 
         if (collision.gameObject.tag == "Player")
         {
@@ -42,7 +24,6 @@ public class BulletCollision : MonoBehaviour
         {
             HandleEnemyCollision(collision.gameObject);
         }
-
     }
 
     private void HandlePlayerCollision(GameObject entity)
@@ -52,11 +33,6 @@ public class BulletCollision : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.TakeDamage(bullet.damage);
-
-            //if (!playerHealth.CheckIfEntityIsAlive())
-            //{
-            //    Destroy(entity);
-            //}
         }
        
         Destroy(gameObject);
@@ -66,16 +42,10 @@ public class BulletCollision : MonoBehaviour
     private void HandleEnemyCollision(GameObject entity)
     {
         var enemyHealth = entity.GetComponent<EnemyHealthController>(); //W hy IT IS SEPARATE? BECAUSE THIS CONTROLLER DOESN'T HAVE HEALTH BAR ELEMENT IN IT
-        //isDestroyed = false;
 
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(bullet.damage);
-
-            //if (!enemyHealth.CheckIfEntityIsAlive())
-            //{
-            //    Destroy(entity); 
-            //}
         }
 
         Destroy(gameObject);

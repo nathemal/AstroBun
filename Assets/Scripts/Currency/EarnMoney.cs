@@ -9,11 +9,6 @@ public class EarnMoney : MonoBehaviour
     [Header("Currency HUD is prefab. Add the text of currency HUD from the scene, not from prefab folder")]
     public TextMeshProUGUI coinText;
 
-    void Start()
-    {
-        //UpdateText();
-    }
-
     public void AddMoney(int amount)
     {
         moneyCount += amount;

@@ -20,13 +20,6 @@ public class EnemyHealthController : MonoBehaviour
         {
             onDeath.AddListener(currencyManager.AddMoney);
         }
-
-        
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void TakeDamage(float damage)

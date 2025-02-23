@@ -28,7 +28,8 @@ public class PlayerHealthController: MonoBehaviour
 
     public void TakeDamage(float damage) 
     {
-        if (currentHealth <= 0) { return; }
+        if (currentHealth <= 0)
+            return;
 
         currentHealth -= damage;
         Healthbar.UpdateHealthBar(currentHealth);
@@ -44,7 +45,8 @@ public class PlayerHealthController: MonoBehaviour
     //if we want to have powerup as heal
     public void AddHealth(float healAmount)
     {
-        if (currentHealth <= 0) { return; }
+        if (currentHealth <= 0)
+            return;
 
         currentHealth += healAmount;
         Healthbar.UpdateHealthBar(currentHealth);
