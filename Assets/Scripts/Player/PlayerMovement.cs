@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float thrustForce = 10f;
-    public float maxSpeed = 5f;
+    public float thrustForceWithFuel = 5f;
+    public float thrustForceWithoutFuel = 2f;
+    public float maxSpeed = 7f;
     public float rotationSpeed = 200f;
     public bool useFuel = true;
     public float fuel = 100f;
@@ -45,17 +46,21 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
         }
 
-        if (fuel > 0 || !useFuel) // Only move if fuel is available or fuel usage is off
+        if (useFuel) // If fuel 
         {
-            rb.AddForce(movementInput.normalized * thrustForce);
-            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
+            rb.AddForce(movementInput.normalized * thrustForceWithFuel);
 
-            if (useFuel && movementInput.sqrMagnitude > 0.1f)
+            if (movementInput.sqrMagnitude > 0.1f)
             {
                 fuel -= fuelConsumptionRate * Time.deltaTime;
                 fuel = Mathf.Max(fuel, 0);
             }
+        } else if (!useFuel)
+        {
+            rb.AddForce(movementInput.normalized * thrustForceWithoutFuel);
         }
+
+        rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
     }
 
     // Call this function to refuel the spaceship
