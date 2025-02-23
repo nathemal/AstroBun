@@ -1,5 +1,8 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PoissonDiscSampling
 {
@@ -24,7 +27,6 @@ public class PoissonDiscSampling
                 float angle = Random.value * Mathf.PI * 2;
                 Vector2 dir = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle));
                 Vector2 candidate = spawnCentre + dir * Random.Range(radius, 2 * radius);
-                
                 if (IsValid(candidate, sampleRegionSize, cellSize, radius, points, grid))
                 {
                     points.Add(candidate);
@@ -34,19 +36,17 @@ public class PoissonDiscSampling
                     break;
                 }
             }
-
             if (!candidateAccepted)
             {
                 spawnPoints.RemoveAt(spawnIndex);
             }
         }
-
         return points;
     }
 
     static bool IsValid(Vector2 candidate, Vector2 sampleRegionSize, float cellSize, float radius, List<Vector2> points, int[,] grid)
     {
-        if (candidate.x >= 0 && candidate.x < sampleRegionSize.x && candidate.y >= 0 && candidate.y < sampleRegionSize.y) 
+        if (candidate.x >= 0 && candidate.x < sampleRegionSize.x && candidate.y >= 0 && candidate.y < sampleRegionSize.y)
         {
             int cellX = (int)(candidate.x / cellSize);
             int cellY = (int)(candidate.y / cellSize);
@@ -55,22 +55,20 @@ public class PoissonDiscSampling
             int searchStartY = Mathf.Max(0, cellY - 2);
             int searchEndY = Mathf.Min(cellY + 2, grid.GetLength(1) - 1);
 
-            for (int x = searchStartX; x <= searchEndX; x++) 
+            for (int x = searchStartX; x <= searchEndX; x++)
             {
-                    for (int y = searchStartY; y <= searchEndY; y++)
+                for (int y = searchStartY; y <= searchEndY; y++)
+                {
+                    int pointIndex = grid[x, y] - 1;
+                    if (pointIndex != -1)
                     {
-                        int pointIndex = grid[x, y] - 1;
-                        if (pointIndex != -1)
-                        {
-                            float sqrDst = (candidate - points[pointIndex]).sqrMagnitude;
-                            if (sqrDst < radius*radius) { return false; }
-                        }
+                        float sqrDst = (candidate - points[pointIndex]).sqrMagnitude;
+                        if (sqrDst < radius * radius) { return false; }
                     }
+                }
             }
-
             return true;
         }
-
         return false;
     }
 }
