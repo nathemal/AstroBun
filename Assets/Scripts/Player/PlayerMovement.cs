@@ -4,8 +4,9 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float thrustForce = 10f;
-    public float maxSpeed = 5f;
+    public float thrustForceWithFuel = 5f;
+    public float thrustForceWithoutFuel = 2f;
+    public float maxSpeed = 7f;
     public float rotationSpeed = 200f;
     public bool useFuel = true;
     public float fuel = 100f;
@@ -15,12 +16,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movementInput;
     Vector2 mousePosition;
     public Fuelbar fuelTank;
+    private OrbitController orbitController;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        fuelTank.SetMaxFuelTank(fuel);
+		orbitController = GetComponent<OrbitController>();
+        
+		fuelTank.SetMaxFuelTank(fuel);
     }
 
     void Update()
@@ -39,7 +42,16 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (movementInput.sqrMagnitude > 0.1f)
+		if (Input.GetKeyDown(KeyCode.F))
+            useFuel = !useFuel;
+    }
+
+    void ApplyMovement()
+    {
+        if (fuel <= 0) 
+            useFuel = false;
+
+        if (movementInput.sqrMagnitude > 0.1f) // Moved this function here from Update to avoid tying any of the physics to fps
         {
             //REASON: I commented this out because the program is confused - doesnt understand in which way the rigid body needs to rotate,  because I use same rigid body for aiming.
             //I tried to add additional rigid body to gun, but when I playtested, it detached from the main body. I don't know if you want to rotate the main body differenty from the gun 'body' 
@@ -48,26 +60,30 @@ public class PlayerMovement : MonoBehaviour
 
             //float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
             //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
-
         }
-    }
 
-    void ApplyMovement()
-    {
-        if (fuel > 0 || !useFuel) // Only move if fuel is available or fuel usage is off
+        if (!orbitController.isOrbiting)
         {
-            rb.AddForce(movementInput.normalized * thrustForce);
-            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
-
-            if (useFuel && movementInput.sqrMagnitude > 0.1f)
+            if (useFuel) 
             {
                 fuel -= fuelConsumptionRate * Time.deltaTime;
-
                 fuelTank.UpdateFuelTank(fuel);
-                
                 fuel = Mathf.Max(fuel, 0);
+				
+                rb.AddForce(movementInput.normalized * thrustForceWithFuel);
+
+                /*if (movementInput.sqrMagnitude > 0.1f)
+                {
+                    fuel -= fuelConsumptionRate * Time.deltaTime;
+                    fuel = Mathf.Max(fuel, 0);
+                }*/
+            } else if (!useFuel)
+            {
+                rb.AddForce(movementInput.normalized * thrustForceWithoutFuel);
             }
         }
+		
+        rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
     }
 
     // Call this function to refuel the spaceship
