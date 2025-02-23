@@ -18,6 +18,4 @@ public class PlayerCollisionwithloot : MonoBehaviour
             Destroy(collision.gameObject); // Destroy the weapon pickup
         }
     }
-
-
 }

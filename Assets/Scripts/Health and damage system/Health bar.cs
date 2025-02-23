@@ -5,10 +5,8 @@ public class Healthbar : MonoBehaviour
 {
     public Slider healthSlider;
 
-
     public void UpdateHealthBar(float health)
-    {
-        
+    {        
         healthSlider.value = health;
     }
 

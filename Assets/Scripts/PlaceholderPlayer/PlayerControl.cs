@@ -25,6 +25,4 @@ public class PlayerControl : MonoBehaviour
         }
         */
     }
-
-    
 }

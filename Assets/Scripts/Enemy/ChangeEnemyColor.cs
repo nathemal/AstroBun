@@ -7,7 +7,6 @@ public class ChangeEnemyColor : MonoBehaviour
     public Color LowHealthColor; 
     private EnemyHealthController enemyHealth;
  
-
     private void Start()
     {
         enemyBody = GetComponent<SpriteRenderer>();

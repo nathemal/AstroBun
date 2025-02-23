@@ -1,7 +1,6 @@
 using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EarnMoney : MonoBehaviour
 {
@@ -19,5 +18,4 @@ public class EarnMoney : MonoBehaviour
     {
         coinText.text = " : " + moneyCount.ToString();
     }
-
 }

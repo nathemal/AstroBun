@@ -24,7 +24,8 @@ public class EnemyHealthController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (currentHealth <= 0) { return; }
+        if (currentHealth <= 0) 
+            return;
 
         currentHealth -= damage;
 
@@ -42,12 +43,10 @@ public class EnemyHealthController : MonoBehaviour
             {
                 fuelLoot.SetActiveFuelPowerUp();
             }
+
             onDeath.Invoke(worthMoney); // Notify listeners that the enemy is dead
-
             Destroy(gameObject);
-
         }
-
     }
 
     public bool CheckIfEntityIsAlive()
@@ -61,21 +60,19 @@ public class EnemyHealthController : MonoBehaviour
         
         return procentage;
     }
-   
 
     public bool CanLootbeDroped()
     {
         float dropChance = 30f;
         float roll = Random.Range(0f, 100f);
         Debug.Log("Chance was " + roll);
+
         if (roll < dropChance)
         {
             Debug.Log("Loot was dropped");
             return true;
         }
+
         return false;
     }
 }
-
-
-

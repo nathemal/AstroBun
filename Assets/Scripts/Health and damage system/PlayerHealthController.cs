@@ -1,7 +1,5 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-
 
 public class PlayerHealthController: MonoBehaviour
 {
@@ -39,7 +37,6 @@ public class PlayerHealthController: MonoBehaviour
             onDeath.Invoke();
             Destroy(gameObject);
         }
-
     }
 
     //if we want to have powerup as heal
@@ -51,7 +48,6 @@ public class PlayerHealthController: MonoBehaviour
         currentHealth += healAmount;
         Healthbar.UpdateHealthBar(currentHealth);
     }
-
 
     public bool CheckIfEntityIsAlive()
     {

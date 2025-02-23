@@ -29,7 +29,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-
     public void Fire()
     {
         //fire according the fire rate

@@ -17,7 +17,6 @@ public class EnemyAttack : MonoBehaviour
 
     public void CreateBullets(GameObject target)
     {
-
         if (target == null || this.gameObject == null) { return; }
 
         GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -26,13 +25,9 @@ public class EnemyAttack : MonoBehaviour
         BulletSettings bulletInfo = bullet.GetComponent<BulletSettings>();
         if (bulletInfo != null)
         {
-            //bulletInfo.SetTarget(target);
-
             Vector2 directionToTarget = (target.transform.position - firePoint.position).normalized;
             bulletInfo.SetDirection(directionToTarget);
         }
-
-
     }
     
     public void Fire(GameObject target)
