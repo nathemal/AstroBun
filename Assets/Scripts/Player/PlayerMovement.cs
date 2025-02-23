@@ -1,6 +1,4 @@
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -51,33 +49,27 @@ public class PlayerMovement : MonoBehaviour
         if (fuel <= 0) 
             useFuel = false;
 
-        if (movementInput.sqrMagnitude > 0.1f) // Moved this function here from Update to avoid tying any of the physics to fps
+        /* if (movementInput.sqrMagnitude > 0.1f) // Moved this function here from Update to avoid tying any of the physics to fps
         {
-            //REASON: I commented this out because the program is confused - doesnt understand in which way the rigid body needs to rotate,  because I use same rigid body for aiming.
-            //I tried to add additional rigid body to gun, but when I playtested, it detached from the main body. I don't know if you want to rotate the main body differenty from the gun 'body' 
+            REASON: I commented this out because the program is confused - doesnt understand in which way the rigid body needs to rotate,  because I use same rigid body for aiming.
+            I tried to add additional rigid body to gun, but when I playtested, it detached from the main body. I don't know if you want to rotate the main body differenty from the gun 'body' 
 
-            //Tried to work on different values for the player movemnt but it is really unresponsive, feels like you skate on ice, it is really annoying.
+            Tried to work on different values for the player movemnt but it is really unresponsive, feels like you skate on ice, it is really annoying.
 
-            //float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
-            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
-        }
+            float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
+        } */
 
         if (!orbitController.isOrbiting)
         {
-            if (useFuel) 
+            if (useFuel && movementInput.sqrMagnitude > 0.1f) 
             {
+                rb.AddForce(movementInput.normalized * thrustForceWithFuel);
+                
                 fuel -= fuelConsumptionRate * Time.deltaTime;
                 fuelTank.UpdateFuelTank(fuel);
                 fuel = Mathf.Max(fuel, 0);
-				
-                rb.AddForce(movementInput.normalized * thrustForceWithFuel);
-
-                /*if (movementInput.sqrMagnitude > 0.1f)
-                {
-                    fuel -= fuelConsumptionRate * Time.deltaTime;
-                    fuel = Mathf.Max(fuel, 0);
-                }*/
-            } else if (!useFuel)
+            } else if (!useFuel && movementInput.sqrMagnitude > 0.1f)
             {
                 rb.AddForce(movementInput.normalized * thrustForceWithoutFuel);
             }
@@ -106,6 +98,5 @@ public class PlayerMovement : MonoBehaviour
         Vector3 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
-
     }
 }
