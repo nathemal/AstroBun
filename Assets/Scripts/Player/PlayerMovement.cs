@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
+        if (Input.GetKeyDown(KeyCode.F))
+            useFuel = !useFuel;
+        
         // TODO: Add a way to toggle useFuel in game here
     }
 
