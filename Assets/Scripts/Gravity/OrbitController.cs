@@ -7,7 +7,7 @@ public class OrbitController : MonoBehaviour
     public float boostMultiplier = 1f; // Speed increase per second when orbiting (on spance press)
     public float launchMultiplier = 5f; 
     public float maxOrbitSpeed = 10f; 
-    public float orbitRadius = 1.5f; // Distance from planet center of gravity
+    public float orbitRadius = 3f; // Distance from planet center of gravity
     private bool reverseOrbit = false; 
     private Transform currentPlanet;
     public float launchDecayRate = 2f; 

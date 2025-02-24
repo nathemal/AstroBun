@@ -7,7 +7,7 @@ public abstract class PlanetSO: ScriptableObject
     public Sprite Sprite => _sprite;
 
     public string planetName;
-    public float size = 1f;
+    public float size = 3f;
     public Color color;
-    public float gravityStrength = 1f;
+    public float gravityStrength = 0.2f;
 }

@@ -23,7 +23,7 @@ public class ChangeEnemyColor : MonoBehaviour
             enemyBody.color = HalfHealthColor;
         }
 
-        if (healthPRoc <= 30 && healthPRoc != 0)
+        if (healthPRoc <= 15 && healthPRoc != 0)
         {
             enemyBody.color = LowHealthColor;
         }
