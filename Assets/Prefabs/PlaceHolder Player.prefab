@@ -143,10 +143,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6769203205638144219}
   - component: {fileID: 4174720279336430493}
-  - component: {fileID: 7133857609658359953}
   - component: {fileID: 4062918155251617115}
+  - component: {fileID: 4562679898632507081}
   - component: {fileID: 6073240009910876780}
-  - component: {fileID: 8267088069758471158}
   - component: {fileID: 7581807370788533872}
   - component: {fileID: 117549714485997888}
   - component: {fileID: 7902972935622938603}
@@ -230,20 +229,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7133857609658359953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4588143520461653735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d247649f298931a44bcc1785d52d8757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 6073240009910876780}
-  weapon: {fileID: 117549714485997888}
 --- !u!58 &4062918155251617115
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -280,6 +265,27 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.0026189089}
   m_Radius: 0.5235704
+--- !u!114 &4562679898632507081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588143520461653735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156346d25926b5945abbf12802defd3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrustForceWithFuel: 5
+  thrustForceWithoutFuel: 2
+  maxSpeed: 15
+  rotationSpeed: 80
+  useFuel: 1
+  fuel: 100
+  fuelConsumptionRate: 10
+  weapon: {fileID: 117549714485997888}
+  fuelTank: {fileID: 0}
 --- !u!50 &6073240009910876780
 Rigidbody2D:
   serializedVersion: 5
@@ -307,26 +313,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8267088069758471158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4588143520461653735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ee58b55559a4e645a23d50d3fcbc046, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrustForceWithFuel: 5
-  thrustForceWithoutFuel: 2
-  maxSpeed: 3
-  rotationSpeed: 80
-  useFuel: 1
-  fuel: 100
-  fuelConsumptionRate: 10
-  fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
 --- !u!114 &7581807370788533872
 MonoBehaviour:
   m_ObjectHideFlags: 0

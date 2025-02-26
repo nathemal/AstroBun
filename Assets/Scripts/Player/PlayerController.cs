@@ -1,27 +1,29 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float thrustForceWithFuel = 5f;
     public float thrustForceWithoutFuel = 2f;
-    public float maxSpeed = 7f;
-    public float rotationSpeed = 200f;
+    public float maxSpeed = 15f;
+    public float rotationSpeed = 80f;
     public bool useFuel = true;
     public float fuel = 100f;
     public float fuelConsumptionRate = 10f;
-
-    private Rigidbody2D rb;
-    private Vector2 movementInput;
-    Vector2 mousePosition;
+    
+    public PlayerAttack weapon;
     public Fuelbar fuelTank;
-    private OrbitController orbitController;
+
+    OrbitController orbitController;
+    Rigidbody2D rb;
+    Vector2 movementInput;
+    Vector2 mousePosition;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-		orbitController = GetComponent<OrbitController>();
-        
-		fuelTank.SetMaxFuelTank(fuel);
+        orbitController = GetComponent<OrbitController>();
+
+        fuelTank.SetMaxFuelTank(fuel);
     }
 
     void Update()
@@ -40,13 +42,25 @@ public class PlayerMovement : MonoBehaviour
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-		if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetMouseButtonDown(0)) // left click\
+        {
+            weapon.Fire();
+        }
+        
+        /*
+        if (Input.GetMouseButtonDown(1)) // right click
+        {
+            // TODO: Add switching between shield and weapon here
+        }
+        */
+
+        if (Input.GetKeyDown(KeyCode.F))
             useFuel = !useFuel;
     }
 
     void ApplyMovement()
     {
-        if (fuel <= 0) 
+        if (fuel <= 0)
             useFuel = false;
 
         /* if (movementInput.sqrMagnitude > 0.1f) // Moved this function here from Update to avoid tying any of the physics to fps
@@ -59,23 +73,25 @@ public class PlayerMovement : MonoBehaviour
             float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
         } */
+
         Debug.Log("In applying movement");
 
         if (!orbitController.isOrbiting)
         {
-            if (useFuel && movementInput.sqrMagnitude > 0.1f) 
+            if (useFuel && movementInput.sqrMagnitude > 0.1f)
             {
                 rb.AddForce(movementInput.normalized * thrustForceWithFuel);
-                
+
                 fuel -= fuelConsumptionRate * Time.deltaTime;
                 fuelTank.UpdateFuelTank(fuel);
                 fuel = Mathf.Max(fuel, 0);
-            } else if (!useFuel && movementInput.sqrMagnitude > 0.1f)
+            }
+            else if (!useFuel && movementInput.sqrMagnitude > 0.1f)
             {
                 rb.AddForce(movementInput.normalized * thrustForceWithoutFuel);
             }
         }
-		
+
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
     }
 
