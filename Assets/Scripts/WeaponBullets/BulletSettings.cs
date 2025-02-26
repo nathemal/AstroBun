@@ -45,8 +45,7 @@ public class BulletSettings : MonoBehaviour
             {
                 if (bullet != null)
                 {
-                    bullet.linearVelocity = directionToTarget * speed;
-
+                    bullet.linearVelocity = directionToTarget.normalized * speed;
                 }
             }
         }
