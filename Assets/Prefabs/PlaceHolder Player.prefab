@@ -285,7 +285,7 @@ MonoBehaviour:
   fuel: 100
   fuelConsumptionRate: 10
   weapon: {fileID: 117549714485997888}
-  fuelTank: {fileID: 0}
+  fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
 --- !u!50 &6073240009910876780
 Rigidbody2D:
   serializedVersion: 5
