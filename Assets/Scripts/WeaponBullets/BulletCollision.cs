@@ -9,7 +9,6 @@ public class BulletCollision : MonoBehaviour
         bullet = GetComponentInParent<BulletSettings>();
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (bullet == null) 
@@ -17,16 +16,19 @@ public class BulletCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            HandlePlayerCollision(collision.gameObject);
-
+            handlePlayerCollision(collision.gameObject);
         }
-        else if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
-            HandleEnemyCollision(collision.gameObject);
+            handleEnemyCollision(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Shield")
+        {
+            handleShieldCollision();
         }
     }
 
-    private void HandlePlayerCollision(GameObject entity)
+    private void handlePlayerCollision(GameObject entity)
     {
         var playerHealth = entity.GetComponent<PlayerHealthController>();
 
@@ -38,8 +40,7 @@ public class BulletCollision : MonoBehaviour
         Destroy(gameObject);
     }
 
-
-    private void HandleEnemyCollision(GameObject entity)
+    private void handleEnemyCollision(GameObject entity)
     {
         var enemyHealth = entity.GetComponent<EnemyHealthController>(); //W hy IT IS SEPARATE? BECAUSE THIS CONTROLLER DOESN'T HAVE HEALTH BAR ELEMENT IN IT
 
@@ -48,6 +49,11 @@ public class BulletCollision : MonoBehaviour
             enemyHealth.TakeDamage(bullet.damage);
         }
 
+        Destroy(gameObject);
+    }
+
+    private void handleShieldCollision()
+    {
         Destroy(gameObject);
     }
 }

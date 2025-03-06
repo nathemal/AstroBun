@@ -8,6 +8,7 @@ TagManager:
   - Boundary
   - Planet
   - FuelPickup
+  - Shield
   layers:
   - Default
   - TransparentFX
