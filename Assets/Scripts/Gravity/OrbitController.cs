@@ -7,7 +7,7 @@ public class OrbitController : MonoBehaviour
     public float boostMultiplier = 1f; // Speed increase per second when orbiting (on spance press)
     public float launchMultiplier = 5f; 
     public float maxOrbitSpeed = 10f; 
-    public float orbitRadius = 1.5f; // Distance from planet center of gravity
+    public float orbitRadius = 3f; // Distance from planet center of gravity
     private bool reverseOrbit = false; 
     private Transform currentPlanet;
     public float launchDecayRate = 2f; 
@@ -23,6 +23,12 @@ public class OrbitController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Ignore anything tagged as "Enemy"
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log($"Ignoring collision with {other.name} (Enemy)");
+            return;
+        }
 
         if (other.CompareTag("Planet"))
         {

@@ -3,10 +3,10 @@ using UnityEngine;
 public class PlayerCollisionwithloot : MonoBehaviour
 {
     public FuelPowerUpSettings fuelPoerUp;
-    private PlayerMovement fuelTank;
+    private PlayerController fuelTank;
     void Start()
     {
-        fuelTank = GetComponent<PlayerMovement>();
+        fuelTank = GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

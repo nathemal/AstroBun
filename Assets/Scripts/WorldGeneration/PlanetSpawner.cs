@@ -69,11 +69,16 @@ public class PlanetSpawner : MonoBehaviour
 
         if (points != null)
         {
-            Gizmos.color = Color.cyan; 
+            Gizmos.color = Color.cyan;
             foreach (Vector2 point in points)
             {
                 Gizmos.DrawSphere(point, 0.2f);
             }
         }
     }
+
+
+
 }
+
+
