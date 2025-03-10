@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetMouseButtonDown(0)) // left click\
+        if (Input.GetMouseButtonDown(0)) // left click
         {
             weapon.Fire();
         }
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
         } */
 
-        Debug.Log("In applying movement");
+        //Debug.Log("In applying movement");
 
         if (!orbitController.isOrbiting)
         {

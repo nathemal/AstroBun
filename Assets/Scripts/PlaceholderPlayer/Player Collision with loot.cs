@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class PlayerCollisionwithloot : MonoBehaviour
+public class PlayerCollisionWithLoot : MonoBehaviour
 {
-    public FuelPowerUpSettings fuelPoerUp;
     private PlayerController fuelTank;
     void Start()
     {
@@ -13,9 +12,18 @@ public class PlayerCollisionwithloot : MonoBehaviour
     {
         if (collision.tag == "FuelPickup")
         {
-            fuelTank.Refuel(fuelPoerUp.additionalFuelAmount);
+            FuelPickUp fuelObject = collision.GetComponent<FuelPickUp>(); //search for fuelPickUp script
+                                                                          //that is attached to the collided object
+                                                                          //GetComponent would search for the script
+                                                                          //that is attached to the player
+
+            if(fuelObject != null && fuelObject.fuelLootData != null)
+            {
+                fuelTank.Refuel(fuelObject.fuelLootData.additionalFuelAmount);
+            }
 
             Destroy(collision.gameObject); // Destroy the weapon pickup
         }
+
     }
 }
