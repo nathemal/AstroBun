@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6618909838791483807}
   - component: {fileID: 3488378105068736635}
   - component: {fileID: 125053133313606488}
-  - component: {fileID: 8939324838660147174}
   - component: {fileID: 7479508409902853415}
+  - component: {fileID: 8721742010814687947}
+  - component: {fileID: -7802291101884051610}
   m_Layer: 0
   m_Name: Fuel drop
   m_TagString: FuelPickup
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1537134886148360166}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 181.1345, y: 67.8348, z: 0}
+  m_LocalPosition: {x: 5.0765376, y: 3.1373637, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -140,19 +141,6 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
---- !u!114 &8939324838660147174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537134886148360166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95717afb5f8491146b5b439fa87ea042, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 1537134886148360166}
 --- !u!114 &7479508409902853415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,4 +154,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   additionalFuelAmount: 90
-  fuelTank: {fileID: 0}
+--- !u!114 &8721742010814687947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537134886148360166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95717afb5f8491146b5b439fa87ea042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuelLootData: {fileID: 7479508409902853415}
+  fuelMovement: {fileID: -7802291101884051610}
+--- !u!114 &-7802291101884051610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537134886148360166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277a15bd023b1434ca29f6d9610fdbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetToMoveTowards: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+  lootMovementSpeed: 15

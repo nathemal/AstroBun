@@ -356,7 +356,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  fuelLoot: {fileID: 7479508409902853415, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
+  fuelLootPrefab: {fileID: 1537134886148360166, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
+  playerPosition: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
 --- !u!114 &124251646895732294
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ public class BulletCollision : MonoBehaviour
 
     private void handleEnemyCollision(GameObject entity)
     {
-        var enemyHealth = entity.GetComponent<EnemyHealthController>(); //W hy IT IS SEPARATE? BECAUSE THIS CONTROLLER DOESN'T HAVE HEALTH BAR ELEMENT IN IT
+        var enemyHealth = entity.GetComponent<EnemyHealthController>(); //Why IT IS SEPARATE? BECAUSE THIS CONTROLLER DOESN'T HAVE HEALTH BAR ELEMENT IN IT
 
         if (enemyHealth != null)
         {

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3910391469204283566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4244087428441676109}
+  - component: {fileID: 4405605591640091435}
+  m_Layer: 0
+  m_Name: Shop Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4244087428441676109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910391469204283566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0514357, y: -0.5095914, z: 607.46954}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4405605591640091435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910391469204283566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a0a163e0eb5bb4fbec48d8c02b86f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: {fileID: 5332551000509181047, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
+  PoweUpList:
+  - powerUpName: Fire Rate
+    description: Increase fire rate of your weapon by %
+    upgradeStat: 50
+    cost: 10
+    itemRef: {fileID: 0}
+  - powerUpName: Fire Damage
+    description: Increase fire damage of your weapon by points
+    upgradeStat: 5
+    cost: 25
+    itemRef: {fileID: 0}
+  totalCoinCount: {fileID: 0}
+  shopUI: {fileID: 5724371413195830985, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
+  shopContent: {fileID: 4682592446032812275, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
+  shopItemPefab: {fileID: 8023984699695924902, guid: bf79bebeb4cf838439b981eac7cee566, type: 3}

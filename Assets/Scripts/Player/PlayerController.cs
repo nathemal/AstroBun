@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     public bool useFuel = true;
     public float fuel = 100f;
     public float fuelConsumptionRate = 10f;
-    
+
+    private bool canPlayerShoot = true;
+
     public PlayerAttack weapon;
     public GameObject gun;
     public GameObject shield;
@@ -41,18 +43,18 @@ public class PlayerController : MonoBehaviour
         AimDirectionRotation();
     }
 
-    void HandleInput()
+    private void HandleInput()
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetMouseButtonDown(0)) // left click
+        if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
         {
             if (shieldActive)
                 return;
 
             weapon.Fire();
         }
-        
+		
         if (Input.GetMouseButtonDown(1)) // right click
         {
             gun.SetActive(!gun.activeInHierarchy);
@@ -81,7 +83,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
         } */
 
-        Debug.Log("In applying movement");
+        //Debug.Log("In applying movement");
 
         if (!orbitController.isOrbiting)
         {
@@ -122,5 +124,15 @@ public class PlayerController : MonoBehaviour
         Vector3 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
+    }
+
+    public void DisableShooting()
+    {
+        canPlayerShoot = false;
+    }
+
+    public void EnableShooting()
+    {
+        canPlayerShoot = true;
     }
 }

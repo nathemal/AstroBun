@@ -7,8 +7,12 @@ public class EnemyHealthController : MonoBehaviour
     public float currentHealth;
     private ChangeEnemyColor enemyColor;
     public int worthMoney;
+    [Header("To destroy enemy")]
     public UnityEvent<int> onDeath;
-    public FuelPowerUpSettings fuelLoot;
+
+    [Header("For Fuel Loot")]
+    public GameObject fuelLootPrefab;
+    //private Transform playerPosition;
 
     private void Start()
     {
@@ -36,22 +40,11 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            //calculate probability if that enemy can leave fuel loot
-            fuelLoot.transform.position = transform.position;
-            
-            if(CanLootbeDroped())
-            {
-                fuelLoot.SetActiveFuelPowerUp();
-            }
+            DropTheLoot();
 
             onDeath.Invoke(worthMoney); // Notify listeners that the enemy is dead
             Destroy(gameObject);
         }
-    }
-
-    public bool CheckIfEntityIsAlive()
-    {
-        return currentHealth > 0;
     }
 
     public float CalculatehealthProcentage()
@@ -61,7 +54,26 @@ public class EnemyHealthController : MonoBehaviour
         return procentage;
     }
 
-    public bool CanLootbeDroped()
+    private void DropTheLoot()
+    {
+        Vector3 enemyPosition = transform.position;
+
+        //------------FOR TESTING 100 PROC DROP CHANCE----------
+        //GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
+
+        //FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
+        //loot.DropLoot(enemyPosition);
+
+        if (CanLootbeDroped())
+        {
+            GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
+
+            FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
+            loot.DropLoot(enemyPosition);
+        }
+    }
+
+    private bool CanLootbeDroped()
     {
         float dropChance = 30f;
         float roll = Random.Range(0f, 100f);
@@ -75,4 +87,5 @@ public class EnemyHealthController : MonoBehaviour
 
         return false;
     }
+
 }

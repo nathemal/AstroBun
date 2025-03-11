@@ -151,12 +151,12 @@ GameObject:
   - component: {fileID: 7902972935622938603}
   - component: {fileID: -4530304411956145218}
   m_Layer: 6
-  m_Name: PlaceHolder Player
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6769203205638144219
 Transform:
   m_ObjectHideFlags: 0
@@ -369,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174598ba311dd1b40adc0ce9227c7ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelPoerUp: {fileID: 7479508409902853415, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
 --- !u!114 &-4530304411956145218
 MonoBehaviour:
   m_ObjectHideFlags: 0

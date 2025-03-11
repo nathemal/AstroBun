@@ -18,10 +18,7 @@ public class PlayerHealthController: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.K))//for testing
-        {
-            TakeDamage(10); 
-        }
+       
     }
 
     public void TakeDamage(float damage) 
@@ -47,11 +44,6 @@ public class PlayerHealthController: MonoBehaviour
 
         currentHealth += healAmount;
         Healthbar.UpdateHealthBar(currentHealth);
-    }
-
-    public bool CheckIfEntityIsAlive()
-    {
-        return currentHealth > 0;
     }
 
 }
