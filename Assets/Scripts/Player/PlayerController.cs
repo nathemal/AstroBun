@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     public bool useFuel = true;
     public float fuel = 100f;
     public float fuelConsumptionRate = 10f;
-    
+
+    private bool canPlayerShoot = true;
+
     public PlayerAttack weapon;
     public Fuelbar fuelTank;
 
@@ -38,15 +40,15 @@ public class PlayerController : MonoBehaviour
         AimDirectionRotation();
     }
 
-    void HandleInput()
+    private void HandleInput()
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetMouseButtonDown(0)) // left click
+        if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
         {
             weapon.Fire();
         }
-        
+
         /*
         if (Input.GetMouseButtonDown(1)) // right click
         {
@@ -115,5 +117,15 @@ public class PlayerController : MonoBehaviour
         Vector3 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
+    }
+
+    public void DisableShooting()
+    {
+        canPlayerShoot = false;
+    }
+
+    public void EnableShooting()
+    {
+        canPlayerShoot = true;
     }
 }
