@@ -181,4 +181,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetToMoveTowards: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
-  lootMovementSpeed: 5
+  lootMovementSpeed: 15

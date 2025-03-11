@@ -12,7 +12,7 @@ public class EnemyHealthController : MonoBehaviour
 
     [Header("For Fuel Loot")]
     public GameObject fuelLootPrefab;
-    public Transform playerPosition;
+    //private Transform playerPosition;
 
     private void Start()
     {
@@ -58,15 +58,18 @@ public class EnemyHealthController : MonoBehaviour
     {
         Vector3 enemyPosition = transform.position;
 
-        GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
+        //------------FOR TESTING 100 PROC DROP CHANCE----------
+        //GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
 
-        FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
-
-        //loot.DropLoot(enemyPosition, playerPosition); //for testing, 100 proc chance to drop the loot
+        //FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
+        //loot.DropLoot(enemyPosition);
 
         if (CanLootbeDroped())
         {
-            loot.DropLoot(enemyPosition, playerPosition);
+            GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
+
+            FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
+            loot.DropLoot(enemyPosition);
         }
     }
 

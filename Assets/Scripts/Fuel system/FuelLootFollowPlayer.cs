@@ -2,8 +2,20 @@ using UnityEngine;
 
 public class FuelLootFollowPlayer : MonoBehaviour
 {
-    public Transform targetToMoveTowards;
+    [HideInInspector] public Transform targetToMoveTowards;
     public int lootMovementSpeed;
+
+
+    private void Start()
+    {
+        GameObject actualPlayer = GameObject.FindGameObjectWithTag("Player");
+
+        if (actualPlayer != null)
+        {
+            targetToMoveTowards = actualPlayer.transform;
+        }
+
+    }
 
     private void Update()
     {
