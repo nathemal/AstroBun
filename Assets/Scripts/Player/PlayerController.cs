@@ -6,11 +6,14 @@ public class PlayerController : MonoBehaviour
     public float thrustForceWithoutFuel = 2f;
     public float maxSpeed = 15f;
     public float rotationSpeed = 80f;
+    public bool shieldActive = false;
     public bool useFuel = true;
     public float fuel = 100f;
     public float fuelConsumptionRate = 10f;
     
     public PlayerAttack weapon;
+    public GameObject gun;
+    public GameObject shield;
     public Fuelbar fuelTank;
 
     OrbitController orbitController;
@@ -42,17 +45,21 @@ public class PlayerController : MonoBehaviour
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetMouseButtonDown(0)) // left click\
+        if (Input.GetMouseButtonDown(0)) // left click
         {
+            if (shieldActive)
+                return;
+
             weapon.Fire();
         }
         
-        /*
         if (Input.GetMouseButtonDown(1)) // right click
         {
-            // TODO: Add switching between shield and weapon here
+            gun.SetActive(!gun.activeInHierarchy);
+            shield.SetActive(!shield.activeInHierarchy);
+
+            shieldActive = !shieldActive;
         }
-        */
 
         if (Input.GetKeyDown(KeyCode.F))
             useFuel = !useFuel;
