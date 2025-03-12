@@ -541,6 +541,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4588143520461653735, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.26
@@ -763,6 +767,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyCount: 0
   coinText: {fileID: 1666394841}
+  OnBuy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1825179545
 Transform:
   m_ObjectHideFlags: 0

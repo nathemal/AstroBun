@@ -445,7 +445,7 @@ PrefabInstance:
     - target: {fileID: -2407957162718211872, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
       propertyPath: fuelLoot
       value: 
-      objectReference: {fileID: 504941701}
+      objectReference: {fileID: 0}
     - target: {fileID: -416595285380299799, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -516,82 +516,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
---- !u!114 &504941701 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7479508409902853415, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-  m_PrefabInstance: {fileID: 528315785}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed572fe6142fea044a53fa0640b5bc16, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1001 &528315785
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1537134886148360166, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_Name
-      value: Fuel drop
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488378105068736635, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6618909838791483807, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7479508409902853415, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-      propertyPath: fuelTank
-      value: 
-      objectReference: {fileID: 47421105}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
 --- !u!1001 &920094027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -818,6 +742,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyCount: 0
   coinText: {fileID: 1666394841}
+  OnBuy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1825179545
 Transform:
   m_ObjectHideFlags: 0
@@ -1155,4 +1082,3 @@ SceneRoots:
   - {fileID: 55203777}
   - {fileID: 1719202969}
   - {fileID: 1825179545}
-  - {fileID: 528315785}
