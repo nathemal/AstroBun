@@ -59,18 +59,18 @@ public class EnemyHealthController : MonoBehaviour
         Vector3 enemyPosition = transform.position;
 
         //------------FOR TESTING 100 PROC DROP CHANCE----------
-        //GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
+        GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
 
-        //FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
-        //loot.DropLoot(enemyPosition);
+        FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
+        loot.DropLoot(enemyPosition);
 
-        if (CanLootbeDroped())
-        {
-            GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
+        //if (CanLootbeDroped())
+        //{
+        //    GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
 
-            FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
-            loot.DropLoot(enemyPosition);
-        }
+        //    FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
+        //    loot.DropLoot(enemyPosition);
+        //}
     }
 
     private bool CanLootbeDroped()

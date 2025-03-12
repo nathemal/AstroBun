@@ -20,6 +20,7 @@ public class PlayerCollisionWithLoot : MonoBehaviour
             if(fuelObject != null && fuelObject.fuelLootData != null)
             {
                 fuelTank.Refuel(fuelObject.fuelLootData.additionalFuelAmount);
+                
             }
 
             Destroy(collision.gameObject); // Destroy the weapon pickup

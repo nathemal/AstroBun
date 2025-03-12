@@ -34,6 +34,10 @@ public class ShopManager : MonoBehaviour
 
     private GameObject shopItemParent;
 
+    public EnemyHealthController enemy;
+    public Fuelbar fuelTank;
+    public PlayerController playerFuel;
+
     private void Awake()
     {
         if (instance == null)
@@ -155,6 +159,21 @@ public class ShopManager : MonoBehaviour
             case "Range":
                 currentWeapon.lifeSpan = CalculateProcOfIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
                 break;
+            case "Fuel tank":
+                 CalculateNewFuelTankCapacity(powerUp.upgradeStat); //increase capacity of fuel tank
+                break;
+            case "Fuel consumption":
+                playerFuel.fuelConsumptionRate = CalculateFuelConsumptionPowerupStat(powerUp.upgradeStat); //decrease fuel consumption rate
+                break;
+            //case "Dash fuel consumption":
+            //    //code in here
+            //    break;
+            //case "Currency drop":
+                
+            //    break;
+            //case "Fuel loot drop":
+
+            //    break;
         }
     }
 
@@ -168,6 +187,28 @@ public class ShopManager : MonoBehaviour
     {
         return currentWeaponStat * (1 + (percentageIncrease / 100.0f));
     }
+
+    private float CalculateFuelConsumptionPowerupStat(float percentageIncrease)
+    {
+
+        if(playerFuel.fuelConsumptionRate >= 0)
+        {
+            return playerFuel.fuelConsumptionRate * (1 - (percentageIncrease / 100.0f));
+        }
+        Debug.Log("Fuel consumption cannot be negative");
+        return 0;
+    }
+
+    private void CalculateNewFuelTankCapacity(float percentageIncrease)
+    {
+        //Debug.Log("Fuel amount before: " + playerFuel.fuel + "fuel amount max value " + fuelTank.fuelBar.maxValue + "Real Fuel tank value " + fuelTank.fuelBar.value);
+
+        fuelTank.fuelBar.maxValue *= (1 + (percentageIncrease / 100.0f));
+        //Debug.Log("Fuel amount after buying: " + playerFuel.fuel + "fuel amount max value " + fuelTank.fuelBar.maxValue + "Real Fuel tank value " + fuelTank.fuelBar.value);
+        fuelTank.UpdateFuelText((int)fuelTank.fuelBar.maxValue, playerFuel.fuel);
+       
+    }
+
 
     public void OpenShop()
     {

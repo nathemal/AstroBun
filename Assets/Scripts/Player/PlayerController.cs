@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public bool shieldActive = false;
     public bool useFuel = true;
     public float fuel = 100f;
+    public float currentFuelAmount;
     public float fuelConsumptionRate = 10f;
 
     private bool canPlayerShoot = true;
@@ -94,6 +95,7 @@ public class PlayerController : MonoBehaviour
                 fuel -= fuelConsumptionRate * Time.deltaTime;
                 fuelTank.UpdateFuelTank(fuel);
                 fuel = Mathf.Max(fuel, 0);
+
             }
             else if (!useFuel && movementInput.sqrMagnitude > 0.1f)
             {
@@ -107,14 +109,16 @@ public class PlayerController : MonoBehaviour
     // Call this function to refuel the spaceship
     public void Refuel(float amount)
     {
-        //Debug.Log("Current fuel amount before addition: " + fuel);
-        //Debug.Log("Added amount is " + amount);
+        Debug.Log("Current fuel amount before addition: " + fuel);
+        Debug.Log("Added amount is " + amount);
 
         fuel += amount;
+        //Debug.Log("fuel amount AFTER without cap limit: " + fuel);
 
-        //Debug.Log("fuel amount AFTER: " + fuel);
+        //fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
+        fuel = Mathf.Min(fuel, fuelTank.fuelBar.maxValue); //cap fuel according the fuel tank capacity
 
-        fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
+        fuelTank.UpdateFuelTank(fuel);
     }
 
     //Kamile added this
