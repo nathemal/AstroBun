@@ -147,14 +147,14 @@ public class ShopManager : MonoBehaviour
                 currentWeapon.fireRate = CalculateFireRateUpdate(powerUp.upgradeStat);
                 break;
             case "Fire Damage":
-                currentWeapon.damage += powerUp.upgradeStat;
+                currentWeapon.damage = CalculateProcOfIncreaseStat(currentWeapon.damage, powerUp.upgradeStat);
                 break;
-            //case "Speed": //speed of bullet
-            //    currentWeapon.speed += powerUp.upgradeStat;
-            //    break;
-            //case "Shooting range":
-            //    currentWeapon.lifeSpan += powerUp.upgradeStat;
-            //    break;
+            case "Speed": //speed of bullet
+                currentWeapon.speed = CalculateProcOfIncreaseStat(currentWeapon.speed, powerUp.upgradeStat);
+                break;
+            case "Shooting range":
+                currentWeapon.lifeSpan = CalculateProcOfIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
+                break;
         }
     }
 
@@ -164,7 +164,10 @@ public class ShopManager : MonoBehaviour
         return currentWeapon.fireRate * (1 - (percentageIncrease / 100.0f));
     }
 
-
+    private float CalculateProcOfIncreaseStat(float currentWeaponStat,float percentageIncrease)
+    {
+        return currentWeaponStat * (1 + (percentageIncrease / 100.0f));
+    }
 
     public void OpenShop()
     {

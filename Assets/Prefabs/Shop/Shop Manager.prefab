@@ -47,14 +47,24 @@ MonoBehaviour:
   currentWeapon: {fileID: 5332551000509181047, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
   PoweUpList:
   - powerUpName: Fire Rate
-    description: Increase fire rate of your weapon by %
-    upgradeStat: 50
-    cost: 10
+    description: Increase  fire rate of the projectile by %
+    upgradeStat: 10
+    cost: 50
     itemRef: {fileID: 0}
   - powerUpName: Fire Damage
-    description: Increase fire damage of your weapon by points
-    upgradeStat: 5
-    cost: 25
+    description: Increase  fire damage of the projectile by %
+    upgradeStat: 10
+    cost: 60
+    itemRef: {fileID: 0}
+  - powerUpName: Speed
+    description: Increase speed of the projectile by %
+    upgradeStat: 10
+    cost: 40
+    itemRef: {fileID: 0}
+  - powerUpName: Shooting range
+    description: Increase  shooting range of the projectile by %
+    upgradeStat: 25
+    cost: 80
     itemRef: {fileID: 0}
   totalCoinCount: {fileID: 0}
   shopUI: {fileID: 5724371413195830985, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
