@@ -47,26 +47,51 @@ MonoBehaviour:
   currentWeapon: {fileID: 5332551000509181047, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
   PoweUpList:
   - powerUpName: Fire Rate
-    description: Increase  fire rate of the projectile by %
+    description: Increase  fire rate of the projectile by 10%
     upgradeStat: 10
     cost: 50
     itemRef: {fileID: 0}
   - powerUpName: Fire Damage
-    description: Increase  fire damage of the projectile by %
+    description: Increase  fire damage of the projectile by 10%
     upgradeStat: 10
     cost: 60
     itemRef: {fileID: 0}
   - powerUpName: Speed
-    description: Increase speed of the projectile by %
+    description: Increase speed of the projectile by 10%
     upgradeStat: 10
     cost: 40
     itemRef: {fileID: 0}
-  - powerUpName: Shooting range
-    description: Increase  shooting range of the projectile by %
+  - powerUpName: Range
+    description: Increase  shooting range of the projectile by 25%
     upgradeStat: 25
     cost: 80
     itemRef: {fileID: 0}
+  - powerUpName: Fuel tank
+    description: Increase the overall amount of fuel the player can carry by 15%
+    upgradeStat: 15
+    cost: 35
+    itemRef: {fileID: 0}
+  - powerUpName: Fuel consumption
+    description: Reduce the amount of fuel the player uses when moving by 10%
+    upgradeStat: 10
+    cost: 25
+    itemRef: {fileID: 0}
+  - powerUpName: Dash fuel consumption
+    description: 'The Dash move costs less fuel by 20% '
+    upgradeStat: 20
+    cost: 40
+    itemRef: {fileID: 0}
+  - powerUpName: Currency drop
+    description: 'Increase the amount of currency dropped by enemies by 5 '
+    upgradeStat: 5
+    cost: 70
+    itemRef: {fileID: 0}
+  - powerUpName: Fuel loot drop
+    description: Increases the chance of enemies dropping fuel by 5%
+    upgradeStat: 5
+    cost: 50
+    itemRef: {fileID: 0}
   totalCoinCount: {fileID: 0}
-  shopUI: {fileID: 5724371413195830985, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
-  shopContent: {fileID: 4682592446032812275, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
+  shopUI: {fileID: 9018580226883190219, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
+  shopContent: {fileID: 7717480429886871454, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
   shopItemPefab: {fileID: 8023984699695924902, guid: bf79bebeb4cf838439b981eac7cee566, type: 3}

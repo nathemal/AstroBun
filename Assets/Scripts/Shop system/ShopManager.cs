@@ -102,7 +102,7 @@ public class ShopManager : MonoBehaviour
         {
             if (grandChildren.gameObject.name == "item description")
             {
-                grandChildren.gameObject.GetComponent<TMP_Text>().text = powerUp.description.ToString() + " " + powerUp.upgradeStat.ToString();
+                grandChildren.gameObject.GetComponent<TMP_Text>().text = powerUp.description.ToString();/// + " " + powerUp.upgradeStat.ToString();
             }
             else if (grandChildren.gameObject.name == "cost description")
             {
@@ -152,7 +152,7 @@ public class ShopManager : MonoBehaviour
             case "Speed": //speed of bullet
                 currentWeapon.speed = CalculateProcOfIncreaseStat(currentWeapon.speed, powerUp.upgradeStat);
                 break;
-            case "Shooting range":
+            case "Range":
                 currentWeapon.lifeSpan = CalculateProcOfIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
                 break;
         }
