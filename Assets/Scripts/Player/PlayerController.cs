@@ -109,8 +109,8 @@ public class PlayerController : MonoBehaviour
     // Call this function to refuel the spaceship
     public void Refuel(float amount)
     {
-        Debug.Log("Current fuel amount before addition: " + fuel);
-        Debug.Log("Added amount is " + amount);
+        //Debug.Log("Current fuel amount before addition: " + fuel);
+        //Debug.Log("Added amount is " + amount);
 
         fuel += amount;
         //Debug.Log("fuel amount AFTER without cap limit: " + fuel);

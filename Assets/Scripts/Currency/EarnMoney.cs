@@ -16,22 +16,24 @@ public class EarnMoney : MonoBehaviour
         if (shopManager != null)
         {
             OnBuy.AddListener(UpdateAfterPurchase);
-            Debug.Log("EarnMoney: OnBuy listener added");
+            //Debug.Log("EarnMoney: OnBuy listener added");
         }
     }
 
     public void AddMoney(int amount)
     {
+       
         moneyCount += amount;
         UpdateText();
+        Debug.Log("Money after killing enemy: " + moneyCount);
     }
 
     public void UpdateAfterPurchase(int amount)
     {
-        Debug.Log($"EarnMoney: Updating money from {moneyCount} to {amount}");
+        //Debug.Log($"EarnMoney: Updating money from {moneyCount} to {amount}");
         moneyCount = amount;
         UpdateText();
-        Debug.Log("Update the currency hud after buying");
+        //Debug.Log("Update the currency hud after buying");
     }
 
     private void UpdateText()

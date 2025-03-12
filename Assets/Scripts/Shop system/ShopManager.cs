@@ -160,20 +160,22 @@ public class ShopManager : MonoBehaviour
                 currentWeapon.lifeSpan = CalculateProcOfIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
                 break;
             case "Fuel tank":
-                 CalculateNewFuelTankCapacity(powerUp.upgradeStat); //increase capacity of fuel tank
+                 IncreaseFuelTank(powerUp.upgradeStat); //increase capacity of fuel tank
                 break;
             case "Fuel consumption":
-                playerFuel.fuelConsumptionRate = CalculateFuelConsumptionPowerupStat(powerUp.upgradeStat); //decrease fuel consumption rate
+                playerFuel.fuelConsumptionRate = DecreaseFuelConsumption(powerUp.upgradeStat); //decrease fuel consumption rate
                 break;
-            //case "Dash fuel consumption":
-            //    //code in here
-            //    break;
-            //case "Currency drop":
-                
-            //    break;
-            //case "Fuel loot drop":
-
-            //    break;
+            case "Dash fuel consumption":
+                //code in here
+                break;
+            case "Currency drop":
+                EnemyHealthController.worthMoneyMultiplier *= (1 + (powerUp.upgradeStat / 100.0f));
+                Debug.Log("New global currency multiplier: " + EnemyHealthController.worthMoneyMultiplier);
+                break;
+            case "Fuel loot drop":
+                EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(powerUp.upgradeStat);
+                Debug.Log("New global drop chance multiplier: " + EnemyHealthController.dropChanceMultiplier);
+                break;
         }
     }
 
@@ -188,10 +190,9 @@ public class ShopManager : MonoBehaviour
         return currentWeaponStat * (1 + (percentageIncrease / 100.0f));
     }
 
-    private float CalculateFuelConsumptionPowerupStat(float percentageIncrease)
+    private float DecreaseFuelConsumption(float percentageIncrease)
     {
-
-        if(playerFuel.fuelConsumptionRate >= 0)
+        if(playerFuel.fuelConsumptionRate > 0)
         {
             return playerFuel.fuelConsumptionRate * (1 - (percentageIncrease / 100.0f));
         }
@@ -199,14 +200,20 @@ public class ShopManager : MonoBehaviour
         return 0;
     }
 
-    private void CalculateNewFuelTankCapacity(float percentageIncrease)
+    private void IncreaseFuelTank(float percentageIncrease)
     {
-        //Debug.Log("Fuel amount before: " + playerFuel.fuel + "fuel amount max value " + fuelTank.fuelBar.maxValue + "Real Fuel tank value " + fuelTank.fuelBar.value);
-
         fuelTank.fuelBar.maxValue *= (1 + (percentageIncrease / 100.0f));
-        //Debug.Log("Fuel amount after buying: " + playerFuel.fuel + "fuel amount max value " + fuelTank.fuelBar.maxValue + "Real Fuel tank value " + fuelTank.fuelBar.value);
+        
         fuelTank.UpdateFuelText((int)fuelTank.fuelBar.maxValue, playerFuel.fuel);
-       
+    }
+
+    private float IncreaseFuelLootChance(float procentage)
+    {
+        if(procentage > 0.0f && procentage < 100.0f)
+        {
+            return EnemyHealthController.dropChanceMultiplier * (1 + (procentage / 100.0f)); //return upgraded
+        }
+        return EnemyHealthController.dropChanceMultiplier; //return not upgraded
     }
 
 

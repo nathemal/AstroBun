@@ -26,6 +26,6 @@ public class Fuelbar : MonoBehaviour
         int currentValue = (int) currentAmount;
 
         fuelText.text = " " + maxCapacity.ToString() + "/" + " " + currentValue.ToString();
-        Debug.Log("fuel amount AFTER updating inside of function: " + fuelText.text);
+       // Debug.Log("fuel amount AFTER updating inside of function: " + fuelText.text);
     }
 }

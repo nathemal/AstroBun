@@ -97,4 +97,4 @@ MonoBehaviour:
   shopItemPefab: {fileID: 8023984699695924902, guid: bf79bebeb4cf838439b981eac7cee566, type: 3}
   enemy: {fileID: -2407957162718211872, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
   fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
-  fuelConsumption: {fileID: 4562679898632507081, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+  playerFuel: {fileID: 4562679898632507081, guid: a4ee2bd6c8ad2ee45b975e9be56edf0c, type: 3}
