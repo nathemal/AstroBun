@@ -17,10 +17,7 @@ public class PowerUpSetting
 
 public class ShopManager : MonoBehaviour
 {
-
     public BulletSettings currentWeapon; 
-    //public PlayerMovement ship; //for the future upgrades?
-    //public PlayerHealthController playerHealth; //for the future upgrades?
 
     public static ShopManager instance;
     

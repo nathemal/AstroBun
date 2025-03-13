@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: -2407957162718211872}
   - component: {fileID: 124251646895732294}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Enemy 1 more aggresive
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +205,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5540308, g: 0.0793509, b: 0.36301845, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -309,8 +309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttackScript: {fileID: -7054073743433179072}
-  distanceToNoticePlayer: 6.23
-  speed: 1.7
+  distanceToNoticePlayer: 5.16
+  speed: 3.17
 --- !u!114 &-7054073743433179072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb503abe5a832240a32bee8edf66916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4211795601580036690, guid: 2472360040857884b9499a00db3913fe, type: 3}
+  projectilePrefab: {fileID: 4211795601580036690, guid: aa0eb6fe949c1f349b1b69057e2eb2b4, type: 3}
   target: {fileID: 4588143520461653735, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
   firePoint: {fileID: 7030781659933962759}
 --- !u!114 &-2407957162718211872
@@ -338,9 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4c0e7ef0cfca745adb693fde2287e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 45
+  maxHealth: 150
   currentHealth: 0
-  worthMoney: 10
+  worthMoney: 60
   onDeath:
     m_PersistentCalls:
       m_Calls:

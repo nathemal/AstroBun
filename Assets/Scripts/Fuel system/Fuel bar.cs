@@ -11,6 +11,7 @@ public class Fuelbar : MonoBehaviour
     {
         fuelBar.value = amount;
         UpdateFuelText((int)fuelBar.maxValue, amount);
+        //update scribtable object fuelScoreSO = amount
     }
 
     public void SetMaxFuelTank(float amount)
@@ -18,6 +19,7 @@ public class Fuelbar : MonoBehaviour
         fuelBar.maxValue = amount;
         fuelBar.value = amount;
         UpdateFuelText((int)amount, amount);
+        //update scribtable object fuelScoreSO = amount
     }
 
 
