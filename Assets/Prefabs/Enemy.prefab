@@ -290,11 +290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1bf30038155f04683b2b6477aec36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minBounds: {x: 8.2, y: 5.2}
-  maxBounds: {x: -8.2, y: -5}
-  speed: 1
-  range: 2
-  maxDistance: 6
+  speed: 2
+  range: 20
   rotationSpeed: 180
 --- !u!114 &3144772120863159138
 MonoBehaviour:
@@ -309,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttackScript: {fileID: -7054073743433179072}
-  distanceToNoticePlayer: 3.46
+  distanceToNoticePlayer: 20
   speed: 1.62
 --- !u!114 &-7054073743433179072
 MonoBehaviour:
@@ -357,7 +354,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   fuelLootPrefab: {fileID: 1537134886148360166, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
-  playerPosition: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
 --- !u!114 &124251646895732294
 MonoBehaviour:
   m_ObjectHideFlags: 0
