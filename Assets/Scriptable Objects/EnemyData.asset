@@ -15,3 +15,4 @@ MonoBehaviour:
   fuelDropChance: 30
   worthMoney: 200
   lastSceneName: Shop test
+  isNewGame: 1

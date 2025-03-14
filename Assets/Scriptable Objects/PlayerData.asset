@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4291f576454b3f43a4d2ceb8aa16102, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  health: 40
-  fuelAmount: 100
+  health: 94
+  fuelAmount: 71.20044
   fuelTankCapacity: 100
   fuelUsageAmount: 10
-  speed: 17.6
+  speed: 16
   lifeSpan: 1
-  damage: 5.5
-  fireRate: 0.45
-  lastSceneName: Shop test
+  damage: 5
+  fireRate: 0.5
+  defaultSpeed: 16
+  defualtLifeSpan: 1
+  defaultDamage: 5
+  defualtFireRate: 0.5
+  lastSceneName: Saving level
+  isNewGame: 1
+  hasStoredDefaults: 1

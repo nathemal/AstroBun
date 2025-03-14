@@ -133,6 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4211795601580036690, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
   firePoint: {fileID: 6075529247003743142}
+  bulletScript: {fileID: 0}
+  data: {fileID: 0}
 --- !u!1 &4588143520461653735
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac13734cba037a46bacd4d1210c7d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 100
   currentHealth: 20
   Healthbar: {fileID: 2215150977744439884, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
   onDeath:
@@ -362,6 +364,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4211795601580036690, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
   firePoint: {fileID: 6075529247003743142}
+  bulletScript: {fileID: 0}
+  data: {fileID: 0}
 --- !u!114 &7902972935622938603
 MonoBehaviour:
   m_ObjectHideFlags: 0

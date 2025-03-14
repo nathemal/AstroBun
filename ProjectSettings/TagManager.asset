@@ -9,6 +9,7 @@ TagManager:
   - Planet
   - FuelPickup
   - Shield
+  - HealthPickup
   layers:
   - Default
   - TransparentFX

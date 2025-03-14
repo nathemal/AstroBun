@@ -18,22 +18,36 @@ public class PlayerAttack : MonoBehaviour
 
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (bulletScript != null && data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == "")) //it is kinda works?
+        //Load data
+        if (data.isNewGame)
         {
-            bulletScript.fireRate = data.FireRateValue;
-            bulletScript.damage = data.FireDamageValue;
-            bulletScript.speed = data.BulletSpeedValue;
-            bulletScript.lifeSpan = data.ShootingRangeValue;
-        }
-        else
-        {
-            data.FireRateValue = bulletScript.fireRate;
-            data.FireDamageValue = bulletScript.damage;
-            data.BulletSpeedValue = bulletScript.speed;
-            data.ShootingRangeValue = bulletScript.lifeSpan;
-        }
+            SetBulletDefaultStats();
+            ResetBulletDefaultStats();
 
-           
+            data.isNewGame = false;
+        }
+      
+        data.lastSceneName = currentSceneName;
+    }
+
+    private void SetBulletDefaultStats()
+    {
+        if (!data.hasStoredDefaults) 
+        {
+            data.FireRateDefaultValue = bulletScript.fireRate;
+            data.FireDamageDefaultValue = bulletScript.damage;
+            data.BulletSpeedDefaultValue = bulletScript.speed;
+            data.ShootingRangeDefaultValue = bulletScript.lifeSpan;
+            data.hasStoredDefaults = true;
+        }
+    }
+
+    private void ResetBulletDefaultStats()
+    {
+        data.FireRateValue = data.FireRateDefaultValue;
+        data.FireDamageValue = data.FireDamageDefaultValue;
+        data.BulletSpeedValue = data.BulletSpeedDefaultValue;
+        data.ShootingRangeValue = data.ShootingRangeDefaultValue;
     }
 
     public void CreateBullets()
@@ -44,20 +58,16 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletInfo != null)
         {
-            //string currentSceneName = SceneManager.GetActiveScene().name;
-            //if (bulletScript != null && data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == "")) //it is kinda works?
-            //{
-            //    bulletScript.fireRate = data.FireRateValue;
-            //    bulletScript.damage = data.FireDamageValue;
-            //    bulletScript.speed = data.BulletSpeedValue;
-            //    bulletScript.lifeSpan = data.ShootingRangeValue;
-
-            //}
-
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
             Vector2 directionToTarget = mouseWorldPosition - firePoint.position;
 
             bulletInfo.SetDirection(directionToTarget);
+
+            //Upgrade bullet stats after purchase
+            bulletInfo.fireRate = data.FireRateValue;
+            bulletInfo.damage = data.FireDamageValue;
+            bulletInfo.speed = data.BulletSpeedValue;
+            bulletInfo.lifeSpan = data.ShootingRangeValue;
         }
     }
 

@@ -5,7 +5,8 @@ public class EnemyData : ScriptableObject
 {
     [SerializeField] private float fuelDropChance;
     [SerializeField] private int worthMoney;
-    [SerializeField] public string lastSceneName;
+    [SerializeField] public string lastSceneName = "";
+    [HideInInspector] public bool isNewGame = true;
     public float FuelDropChanceValue
 	{
 		get { return fuelDropChance; }
@@ -17,4 +18,9 @@ public class EnemyData : ScriptableObject
 		get { return worthMoney; }
 		set { worthMoney = value; }
 	}
+
+    private void OnEnable()
+    {
+        isNewGame = true;
+    }
 }

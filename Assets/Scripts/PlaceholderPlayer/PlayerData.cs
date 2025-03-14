@@ -9,12 +9,21 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float fuelTankCapacity;
     [SerializeField] private float fuelUsageAmount;
 
-    [Header("The player's weapon data")]
+    [Header("The player's weapon data after powerups purchase")]
     [SerializeField] private float speed;
     [SerializeField] private float lifeSpan; //range
     [SerializeField] private float damage;
     [SerializeField] private float fireRate;
-    [SerializeField] public string lastSceneName;
+
+    [Header("The player's weapon original data")]
+    [SerializeField] private float defaultSpeed;
+    [SerializeField] private float defualtLifeSpan; //range
+    [SerializeField] private float defaultDamage;
+    [SerializeField] private float defualtFireRate;
+
+    [SerializeField] public string lastSceneName = "";
+    [HideInInspector] public bool isNewGame = true;
+    [HideInInspector] public bool hasStoredDefaults = false;
     public float HealthValue
 	{
 		get { return health; }
@@ -59,5 +68,33 @@ public class PlayerData : ScriptableObject
     {
         get { return fireRate; }
         set { fireRate = value; }
+    }
+
+
+    public float BulletSpeedDefaultValue
+    {
+        get { return defaultSpeed; }
+        set { defaultSpeed = value; }
+    }
+
+    public float ShootingRangeDefaultValue
+    {
+        get { return defualtLifeSpan; }
+        set { defualtLifeSpan = value; }
+    }
+    public float FireDamageDefaultValue
+    {
+        get { return defaultDamage; }
+        set { defaultDamage = value; }
+    }
+    public float FireRateDefaultValue
+    {
+        get { return defualtFireRate; }
+        set { defualtFireRate = value; }
+    }
+
+    private void OnEnable()
+    {
+        isNewGame = true;
     }
 }

@@ -17,25 +17,33 @@ public class PlayerHealthController: MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        {
-            currentHealth = data.HealthValue;
+        //Load data
 
-            Healthbar.UpdateHealthBar(maxHealth, currentHealth);
-        }
-        else
+
+        if (data.isNewGame)
         {
-            currentHealth = maxHealth;
-            Healthbar.UpdateHealthBar(maxHealth, currentHealth);
-            data.HealthValue = currentHealth;
+            UpdateHealthInFirstScene();
         }
+        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        {
+            UpdateHealthInNextScene();
+        }
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateHealthInNextScene()
     {
-       
+        currentHealth = data.HealthValue;
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
     }
+
+    private void UpdateHealthInFirstScene()
+    {
+        currentHealth = maxHealth;
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
+        data.HealthValue = currentHealth;
+    }
+
 
     public void TakeDamage(float damage) 
     {
@@ -53,16 +61,15 @@ public class PlayerHealthController: MonoBehaviour
         }
     }
 
-    //if we want to have powerup as heal
     public void AddHealth(float healAmount)
     {
         if (currentHealth <= 0)
             return;
 
         currentHealth += healAmount;
+        currentHealth = Mathf.Min(currentHealth, Healthbar.healthSlider.maxValue); //cap heal according the heal bar capacity
       
         data.HealthValue = currentHealth;
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
     }
-
 }

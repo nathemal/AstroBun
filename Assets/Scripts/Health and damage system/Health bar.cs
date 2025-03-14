@@ -10,5 +10,4 @@ public class Healthbar : MonoBehaviour
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
     }
-
 }

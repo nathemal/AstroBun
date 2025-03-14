@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FuelLootFollowPlayer : MonoBehaviour
+public class LootFollowPlayer : MonoBehaviour
 {
     [HideInInspector] public Transform targetToMoveTowards;
     public int lootMovementSpeed;

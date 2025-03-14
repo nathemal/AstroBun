@@ -530,11 +530,19 @@ PrefabInstance:
       value: 200
       objectReference: {fileID: 0}
     - target: {fileID: -2407957162718211872, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
+      propertyPath: healLootPrefab
+      value: 
+      objectReference: {fileID: 1537134886148360166, guid: 3539858c11bf064419ad7f0c93ab56dd, type: 3}
+    - target: {fileID: -2407957162718211872, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
       propertyPath: playerPosition
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: -416595285380299799, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 207546679581344561, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3337742245564429002, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
@@ -1205,6 +1213,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4174720279336430493, guid: a4ee2bd6c8ad2ee45b975e9be56edf0c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4562679898632507081, guid: a4ee2bd6c8ad2ee45b975e9be56edf0c, type: 3}
       propertyPath: data
       value: 
@@ -1275,7 +1287,7 @@ PrefabInstance:
       objectReference: {fileID: 3866062321976536932}
     - target: {fileID: 7581807370788533872, guid: a4ee2bd6c8ad2ee45b975e9be56edf0c, type: 3}
       propertyPath: maxHealth
-      value: 40
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

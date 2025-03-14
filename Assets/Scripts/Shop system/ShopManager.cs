@@ -15,8 +15,6 @@ public class PowerUpSetting
 
 public class ShopManager : MonoBehaviour
 {
-    public BulletSettings currentWeapon; 
-
     public static ShopManager instance;
     
     public PowerUpSetting[] PoweUpList;
@@ -33,22 +31,21 @@ public class ShopManager : MonoBehaviour
     public Fuelbar fuelTank;
     public PlayerController playerFuel;
     public PlayerAttack weaponAttack;
-    
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //        //DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
 
-        //DontDestroyOnLoad(gameObject);
-    }
+    //    DontDestroyOnLoad(gameObject);
+    //}
 
 
     private void Start()
@@ -145,24 +142,16 @@ public class ShopManager : MonoBehaviour
         switch(powerUp.powerUpName)
         {
             case "Fire Rate": //write name that you wrote in shop manager shop item list
-                //currentWeapon.fireRate = CalculateFireRateUpdate(powerUp.upgradeStat);
-                weaponAttack.bulletScript.fireRate = CalculateFireRateUpdate(powerUp.upgradeStat);
-                weaponAttack.data.FireRateValue = currentWeapon.fireRate;
+                weaponAttack.data.FireRateValue = CalculateFireRateUpdate(powerUp.upgradeStat);
                 break;
             case "Fire Damage":
-                //currentWeapon.damage = ApplyPercentageIncreaseStat(currentWeapon.damage, powerUp.upgradeStat);
-                weaponAttack.bulletScript.damage = ApplyPercentageIncreaseStat(currentWeapon.damage, powerUp.upgradeStat);
-                weaponAttack.data.FireDamageValue = currentWeapon.damage;
+                weaponAttack.data.FireDamageValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.damage, powerUp.upgradeStat);
                 break;
             case "Speed": //speed of bullet
-                //currentWeapon.speed = ApplyPercentageIncreaseStat(currentWeapon.speed, powerUp.upgradeStat);
-                weaponAttack.bulletScript.speed = ApplyPercentageIncreaseStat(currentWeapon.speed, powerUp.upgradeStat);
-                weaponAttack.data.BulletSpeedValue = currentWeapon.speed;
+                weaponAttack.data.BulletSpeedValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.speed, powerUp.upgradeStat);
                 break;
             case "Range":
-                //currentWeapon.lifeSpan = ApplyPercentageIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
-                weaponAttack.bulletScript.lifeSpan = ApplyPercentageIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
-                weaponAttack.data.ShootingRangeValue = currentWeapon.lifeSpan;
+                weaponAttack.data.ShootingRangeValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.lifeSpan, powerUp.upgradeStat);
                 break;
             case "Fuel tank":
                  IncreaseFuelTank(powerUp.upgradeStat); //increase capacity of fuel tank
@@ -186,7 +175,7 @@ public class ShopManager : MonoBehaviour
 
     private float CalculateFireRateUpdate(float percentageIncrease)
     {
-        return currentWeapon.fireRate * (1 - (percentageIncrease / 100.0f));
+        return weaponAttack.bulletScript.fireRate * (1 - (percentageIncrease / 100.0f));
     }
 
     private float ApplyPercentageIncreaseStat(float currentWeaponStat,float percentageIncrease)
