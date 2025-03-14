@@ -1,0 +1,10 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=815d2f71302b397458b4789c80d5b791&amp;type=3#MainMenuStyle" />
+    <engine:VisualElement name="Container" style="flex-grow: 1;">
+        <engine:Label text="Astrobun&#10;" name="Title" class="title" />
+        <engine:Button text="Start Game" name="StartGameButton" class="button" style="margin-top: 140px;" />
+        <engine:Button text="Settings" name="SettingsButton" class="button" style="margin-left: 155px;" />
+        <engine:Button text="Credits" name="CreditsButton" class="button" style="margin-left: 180px;" />
+        <engine:Button text="Quit" name="QuitButton" class="button" style="margin-left: 205px;" />
+    </engine:VisualElement>
+</engine:UXML>
