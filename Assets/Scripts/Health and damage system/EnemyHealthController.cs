@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealthController : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class EnemyHealthController : MonoBehaviour
     private ChangeEnemyColor enemyColor;
 
     public int worthMoney;
-    public static float worthMoneyMultiplier = 1.0f; //no effect
+    //public static float worthMoneyMultiplier = 1.0f; //no effect
 
     [Header("To destroy enemy")]
     public UnityEvent<int> onDeath;
@@ -17,10 +18,24 @@ public class EnemyHealthController : MonoBehaviour
     public GameObject fuelLootPrefab;
     public float dropChance = 30.0f;
     public static float dropChanceMultiplier = 1.0f; //no effect
-    //private Transform playerPosition;
+
+    [Header("To save data")]
+    public EnemyData data; 
 
     private void Start()
     {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        
+        if (data != null && data.lastSceneName != currentSceneName)
+        {
+            worthMoney = data.WorthMoneyValue;
+            dropChance = data.FuelDropChanceValue;
+            //Debug.Log("inside in the if statement");
+            //Debug.Log("worth money " + worthMoney + " enemyData: " + data.WorthMoneyValue);
+            //Debug.Log("drop chance " + dropChance + " enemyData: " + data.FuelDropChanceValue);
+        }
+       
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
 
@@ -46,11 +61,11 @@ public class EnemyHealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             DropTheLoot();
-            //Debug.Log("Before invoking event enemy worth: " + worthMoney);
+            Debug.Log("Before invoking event enemy worth: " + worthMoney);
 
-            int money = GetModifiedWorthMoney();
-            onDeath.Invoke(money); // Notify listeners that the enemy is dead
-            //Debug.Log("After invoking event enemy worth: " + worthMoney);
+            //int money = GetModifiedWorthMoney();
+            onDeath.Invoke(worthMoney); // Notify listeners that the enemy is dead
+            Debug.Log("After invoking event enemy worth: " + worthMoney);
             Destroy(gameObject);
         }
     }
@@ -81,20 +96,20 @@ public class EnemyHealthController : MonoBehaviour
         }
     }
 
-    public int GetModifiedWorthMoney()
-    {
-        return Mathf.RoundToInt(worthMoney * worthMoneyMultiplier);
-    }
+    //public int GetModifiedWorthMoney()
+    //{
+    //    return Mathf.RoundToInt(worthMoney * worthMoneyMultiplier);
+    //}
 
     private bool CanLootbeDroped()
     {
-        float modifiedChance = dropChance * dropChanceMultiplier;
-        Debug.Log("Chance right now: " + modifiedChance);
+        //float modifiedChance = dropChance * dropChanceMultiplier;
+        Debug.Log("Chance right now: " + dropChance);
 
         float roll = Random.Range(0f, 100f);
         Debug.Log("Roll was " + roll);
 
-        if (roll < modifiedChance)
+        if (roll < dropChance)
         {
             Debug.Log("Loot was dropped");
             return true;
@@ -102,4 +117,5 @@ public class EnemyHealthController : MonoBehaviour
 
         return false;
     }
+  
 }

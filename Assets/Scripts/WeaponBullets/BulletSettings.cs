@@ -10,14 +10,14 @@ public class BulletSettings : MonoBehaviour
     public Rigidbody2D[] rbs;
     private Rigidbody2D rb;
 
-
+   
     private Vector2 directionToTarget;
     private bool hasDirectionToTarget = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+       
         Destroy(gameObject, lifeSpan); 
     }
 

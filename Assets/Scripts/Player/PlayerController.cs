@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public bool shieldActive = false;
     public bool useFuel = true;
     public float fuel = 100f;
-    public float currentFuelAmount;
     public float fuelConsumptionRate = 10f;
 
     private bool canPlayerShoot = true;
@@ -24,12 +24,38 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     Vector2 mousePosition;
 
+    [Header("Saving Player Data")]
+    public PlayerData data;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         orbitController = GetComponent<OrbitController>();
 
-        fuelTank.SetMaxFuelTank(fuel);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (data != null && data.lastSceneName != currentSceneName)
+        {
+            fuel = data.FuelAmountValue;
+            fuelConsumptionRate = data.FueConsumptionValue;
+            fuelTank.fuelBar.maxValue = data.FuelTankCapValue;
+            fuelTank.fuelBar.value = fuel;
+            fuelTank.UpdateFuelText((int)fuelTank.fuelBar.maxValue, fuel);
+
+            //Debug.Log("inside in the if statement");
+            //Debug.Log("current fuel amount " + fuel + " enemyData: " + data.FuelAmountValue);
+            //Debug.Log("consumption rate " + fuelConsumptionRate + " enemyData: " + data.FueConsumptionValue);
+            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " enemyData: " + data.FuelTankCapValue);
+            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " current fuel amount: " + fuel);
+
+        }
+        else
+        {
+            fuelTank.SetMaxFuelTank(fuel);
+        }
+
+         //fuelTank.SetMaxFuelTank(fuel);
+        //fuel = fuelTank.fuelBar.maxValue;
+
     }
 
     void Update()
@@ -95,6 +121,8 @@ public class PlayerController : MonoBehaviour
                 fuel -= fuelConsumptionRate * Time.deltaTime;
                 fuelTank.UpdateFuelTank(fuel);
                 fuel = Mathf.Max(fuel, 0);
+                
+                data.FuelAmountValue = fuel;
 
             }
             else if (!useFuel && movementInput.sqrMagnitude > 0.1f)

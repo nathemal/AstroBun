@@ -133,6 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4211795601580036690, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
   firePoint: {fileID: 6075529247003743142}
+  bulletScript: {fileID: 5332551000509181047, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
+  data: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
 --- !u!1 &4588143520461653735
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +291,7 @@ MonoBehaviour:
   gun: {fileID: 4120851394582011434}
   shield: {fileID: 4822186024077637573}
   fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
+  data: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
 --- !u!50 &6073240009910876780
 Rigidbody2D:
   serializedVersion: 5
@@ -346,6 +349,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  data: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
 --- !u!114 &7902972935622938603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 174598ba311dd1b40adc0ce9227c7ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelPoerUp: {fileID: 7479508409902853415, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
 --- !u!114 &-4530304411956145218
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -281,11 +281,15 @@ MonoBehaviour:
   thrustForceWithoutFuel: 2
   maxSpeed: 15
   rotationSpeed: 80
+  shieldActive: 0
   useFuel: 1
   fuel: 100
   fuelConsumptionRate: 10
   weapon: {fileID: 117549714485997888}
+  gun: {fileID: 0}
+  shield: {fileID: 0}
   fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
+  data: {fileID: 0}
 --- !u!50 &6073240009910876780
 Rigidbody2D:
   serializedVersion: 5
@@ -343,6 +347,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  data: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
 --- !u!114 &117549714485997888
 MonoBehaviour:
   m_ObjectHideFlags: 0

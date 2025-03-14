@@ -1,17 +1,31 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Handles the player attacks
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public Transform firePoint;
-    private BulletSettings bulletScript;
+    public BulletSettings bulletScript;
     private float firePointRadiusForVisualization = 0.08f;
     private float nextFireTime;
+    [Header("Saving Player Data")]
+    public PlayerData data;
 
     private void Start()
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
+
+        //string currentSceneName = SceneManager.GetActiveScene().name;
+
+        //if (bulletScript != null && data != null && data.lastSceneName != currentSceneName) //it is kinda works?
+        //{
+        //    bulletScript.fireRate = data.FireRateValue;
+        //    bulletScript.damage = data.FireDamageValue;
+        //    bulletScript.speed = data.BulletSpeedValue;
+        //    bulletScript.lifeSpan = data.ShootingRangeValue;
+
+        //}
     }
 
     public void CreateBullets()
@@ -22,6 +36,16 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletInfo != null)
         {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            if (bulletScript != null && data != null && data.lastSceneName != currentSceneName) //it is kinda works?
+            {
+                bulletScript.fireRate = data.FireRateValue;
+                bulletScript.damage = data.FireDamageValue;
+                bulletScript.speed = data.BulletSpeedValue;
+                bulletScript.lifeSpan = data.ShootingRangeValue;
+
+            }
+
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
             Vector2 directionToTarget = mouseWorldPosition - firePoint.position;
 

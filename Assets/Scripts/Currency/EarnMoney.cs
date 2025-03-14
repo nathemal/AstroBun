@@ -9,6 +9,7 @@ public class EarnMoney : MonoBehaviour
     [Header("Currency HUD is prefab. Add the text of currency HUD from the scene, not from prefab folder")]
     public TextMeshProUGUI coinText;
     public UnityEvent<int> OnBuy;
+    //[SerializeField] public PlayerData data;
 
     void Start()
     {
@@ -22,10 +23,11 @@ public class EarnMoney : MonoBehaviour
 
     public void AddMoney(int amount)
     {
-       
+        //Debug.Log("Money that needs to be added before addition: " + amount);
+        //Debug.Log("Money before addition: " + moneyCount);
         moneyCount += amount;
         UpdateText();
-        Debug.Log("Money after killing enemy: " + moneyCount);
+        //Debug.Log("Money after addition: " + moneyCount);
     }
 
     public void UpdateAfterPurchase(int amount)
@@ -33,12 +35,11 @@ public class EarnMoney : MonoBehaviour
         //Debug.Log($"EarnMoney: Updating money from {moneyCount} to {amount}");
         moneyCount = amount;
         UpdateText();
-        //Debug.Log("Update the currency hud after buying");
     }
 
     private void UpdateText()
     {
-        coinText.text = " : " + moneyCount.ToString();
+        coinText.text = " : " + moneyCount.ToString(); //moneyCount
     }
 
 }

@@ -338,9 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4c0e7ef0cfca745adb693fde2287e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 45
+  maxHealth: 50
   currentHealth: 0
-  worthMoney: 10
+  worthMoney: 30
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -358,6 +358,7 @@ MonoBehaviour:
         m_CallState: 2
   fuelLootPrefab: {fileID: 1537134886148360166, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
   dropChance: 30
+  data: {fileID: 11400000, guid: 5b04e04dd94cb384498cb440922b1d5f, type: 2}
 --- !u!114 &124251646895732294
 MonoBehaviour:
   m_ObjectHideFlags: 0

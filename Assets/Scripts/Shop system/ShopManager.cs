@@ -13,8 +13,6 @@ public class PowerUpSetting
     [HideInInspector] public GameObject itemRef;
 }
 
-
-
 public class ShopManager : MonoBehaviour
 {
     public BulletSettings currentWeapon; 
@@ -34,19 +32,22 @@ public class ShopManager : MonoBehaviour
     public EnemyHealthController enemy;
     public Fuelbar fuelTank;
     public PlayerController playerFuel;
+    public PlayerAttack weaponAttack;
+    
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 
@@ -143,35 +144,46 @@ public class ShopManager : MonoBehaviour
     {
         switch(powerUp.powerUpName)
         {
-            //powerups for weapon
             case "Fire Rate": //write name that you wrote in shop manager shop item list
-                currentWeapon.fireRate = CalculateFireRateUpdate(powerUp.upgradeStat);
+                //currentWeapon.fireRate = CalculateFireRateUpdate(powerUp.upgradeStat);
+                weaponAttack.bulletScript.fireRate = CalculateFireRateUpdate(powerUp.upgradeStat);
+                weaponAttack.data.FireRateValue = currentWeapon.fireRate;
                 break;
             case "Fire Damage":
-                currentWeapon.damage = CalculateProcOfIncreaseStat(currentWeapon.damage, powerUp.upgradeStat);
+                //currentWeapon.damage = ApplyPercentageIncreaseStat(currentWeapon.damage, powerUp.upgradeStat);
+                weaponAttack.bulletScript.damage = ApplyPercentageIncreaseStat(currentWeapon.damage, powerUp.upgradeStat);
+                weaponAttack.data.FireDamageValue = currentWeapon.damage;
                 break;
             case "Speed": //speed of bullet
-                currentWeapon.speed = CalculateProcOfIncreaseStat(currentWeapon.speed, powerUp.upgradeStat);
+                //currentWeapon.speed = ApplyPercentageIncreaseStat(currentWeapon.speed, powerUp.upgradeStat);
+                weaponAttack.bulletScript.speed = ApplyPercentageIncreaseStat(currentWeapon.speed, powerUp.upgradeStat);
+                weaponAttack.data.BulletSpeedValue = currentWeapon.speed;
                 break;
             case "Range":
-                currentWeapon.lifeSpan = CalculateProcOfIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
+                //currentWeapon.lifeSpan = ApplyPercentageIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
+                weaponAttack.bulletScript.lifeSpan = ApplyPercentageIncreaseStat(currentWeapon.lifeSpan, powerUp.upgradeStat);
+                weaponAttack.data.ShootingRangeValue = currentWeapon.lifeSpan;
                 break;
             case "Fuel tank":
                  IncreaseFuelTank(powerUp.upgradeStat); //increase capacity of fuel tank
                 break;
             case "Fuel consumption":
                 playerFuel.fuelConsumptionRate = DecreaseFuelConsumption(powerUp.upgradeStat); //decrease fuel consumption rate
+                playerFuel.data.FueConsumptionValue = playerFuel.fuelConsumptionRate;
                 break;
             case "Dash fuel consumption":
                 //code in here
                 break;
             case "Currency drop":
-                EnemyHealthController.worthMoneyMultiplier *= (1 + (powerUp.upgradeStat / 100.0f));
-                Debug.Log("New global currency multiplier: " + EnemyHealthController.worthMoneyMultiplier);
+                UpdateCurrencyDropValue((int)powerUp.upgradeStat);
+                //EnemyHealthController.worthMoneyMultiplier *= (1 + (powerUp.upgradeStat / 100.0f));
+                
+                //Debug.Log("New global currency multiplier: " + EnemyHealthController.worthMoneyMultiplier);
                 break;
             case "Fuel loot drop":
-                EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(powerUp.upgradeStat);
-                Debug.Log("New global drop chance multiplier: " + EnemyHealthController.dropChanceMultiplier);
+                UpdateFuelLootDropChanceValue(powerUp.upgradeStat);
+                //EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(powerUp.upgradeStat);
+                //Debug.Log("New global drop chance multiplier: " + EnemyHealthController.dropChanceMultiplier);
                 break;
         }
     }
@@ -182,7 +194,7 @@ public class ShopManager : MonoBehaviour
         return currentWeapon.fireRate * (1 - (percentageIncrease / 100.0f));
     }
 
-    private float CalculateProcOfIncreaseStat(float currentWeaponStat,float percentageIncrease)
+    private float ApplyPercentageIncreaseStat(float currentWeaponStat,float percentageIncrease)
     {
         return currentWeaponStat * (1 + (percentageIncrease / 100.0f));
     }
@@ -200,10 +212,17 @@ public class ShopManager : MonoBehaviour
     private void IncreaseFuelTank(float percentageIncrease)
     {
         fuelTank.fuelBar.maxValue *= (1 + (percentageIncrease / 100.0f));
+        playerFuel.data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
         
-        fuelTank.UpdateFuelText((int)fuelTank.fuelBar.maxValue, playerFuel.fuel);
+        fuelTank.UpdateFuelText((int)playerFuel.data.FuelTankCapValue, playerFuel.data.FuelAmountValue);
     }
 
+
+    private void UpdateCurrencyDropValue(int amountIncrease)
+    {
+        enemy.worthMoney += amountIncrease;
+        enemy.data.WorthMoneyValue = enemy.worthMoney;
+    }
     private float IncreaseFuelLootChance(float procentage)
     {
         if(procentage > 0.0f && procentage < 100.0f)
@@ -213,6 +232,13 @@ public class ShopManager : MonoBehaviour
         return EnemyHealthController.dropChanceMultiplier; //return not upgraded
     }
 
+    private void UpdateFuelLootDropChanceValue(float percentageIncrease)
+    {
+        EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(percentageIncrease);
+        
+        enemy.dropChance = enemy.dropChance * EnemyHealthController.dropChanceMultiplier;
+        enemy.data.FuelDropChanceValue = enemy.dropChance;
+    }
 
     public void OpenShop()
     {
