@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bece7343a9b5941b497a683c0fecc4, type: 3}
   m_Name: Treasure Planet
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 0}
+  _sprites:
+  - {fileID: 252676394814072956, guid: db80665cdbf6e5c4d850202598b44608, type: 3}
+  - {fileID: -6542419137546923719, guid: 7d17899c7f6208b4d8b726ec90f16d74, type: 3}
+  - {fileID: 5588468718466774762, guid: 0463b49c08ac9a147b704f9b5e5eb960, type: 3}
+  - {fileID: 3466089955745624652, guid: d6630b882f7fd5d47abc95f1048c09b3, type: 3}
   planetName: 
-  size: 3
-  color: {r: 1, g: 0, b: 0, a: 0}
+  size: 1
+  color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
   gravityStrength: 10

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,14 @@ public class PlayerController : MonoBehaviour
     public bool useFuel = true;
     public float fuel = 100f;
     public float fuelConsumptionRate = 10f;
+
+    //Dash
+    public float dashForce = 50f;      
+    public float dashCooldown = 0f;    
+    public float dashDuration = 0.8f;  
+    private bool isDashing = false;
+    private bool canDash = true;
+    private Vector2 dashDirection;
 
     private bool canPlayerShoot = true;
 
@@ -41,11 +50,21 @@ public class PlayerController : MonoBehaviour
     {
         ApplyMovement();
         AimDirectionRotation();
+
+       if (!isDashing) // Prevents movement from interfering during dash
+        {
+            ApplyMovement();
+        }
     }
 
     private void HandleInput()
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            Dash();
+        }
 
         if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
         {
@@ -135,4 +154,24 @@ public class PlayerController : MonoBehaviour
     {
         canPlayerShoot = true;
     }
+
+    private void Dash()
+    {
+        if (fuel >= dashForce) // Check if player has enough fuel
+        {
+            fuel -= dashForce; // Consume fuel
+            fuelTank.UpdateFuelTank(fuel); // Update UI
+
+            Vector2 dashDirection = rb.linearVelocity.normalized; // Get current movement direction
+            rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse); // Apply dash force instantly
+
+            Debug.Log("Player dashed!");
+        }
+        else
+        {
+            Debug.Log("Not enough fuel to dash!");
+        }
+    }
+
+
 }
