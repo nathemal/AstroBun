@@ -19,6 +19,9 @@ public class EnemyHealthController : MonoBehaviour
     public float dropChance = 30.0f;
     public static float dropChanceMultiplier = 1.0f; //no effect
 
+    [Header("For Heal Loot")]
+    public GameObject healLootPrefab;
+
     [Header("To save data")]
     public EnemyData data; 
 
@@ -27,7 +30,7 @@ public class EnemyHealthController : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         
-        if (data != null && data.lastSceneName != currentSceneName)
+        if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
         {
             worthMoney = data.WorthMoneyValue;
             dropChance = data.FuelDropChanceValue;
@@ -35,7 +38,10 @@ public class EnemyHealthController : MonoBehaviour
             //Debug.Log("worth money " + worthMoney + " enemyData: " + data.WorthMoneyValue);
             //Debug.Log("drop chance " + dropChance + " enemyData: " + data.FuelDropChanceValue);
         }
-       
+
+        data.WorthMoneyValue = worthMoney;
+        data.FuelDropChanceValue = dropChance;
+
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
 
@@ -61,11 +67,11 @@ public class EnemyHealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             DropTheLoot();
-            Debug.Log("Before invoking event enemy worth: " + worthMoney);
+            
 
             //int money = GetModifiedWorthMoney();
-            onDeath.Invoke(worthMoney); // Notify listeners that the enemy is dead
-            Debug.Log("After invoking event enemy worth: " + worthMoney);
+            onDeath.Invoke(worthMoney);
+           
             Destroy(gameObject);
         }
     }
@@ -87,6 +93,8 @@ public class EnemyHealthController : MonoBehaviour
         //FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
         //loot.DropLoot(enemyPosition);
 
+
+        //drop fuel loot
         if (CanLootbeDroped())
         {
             GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
@@ -103,7 +111,6 @@ public class EnemyHealthController : MonoBehaviour
 
     private bool CanLootbeDroped()
     {
-        //float modifiedChance = dropChance * dropChanceMultiplier;
         Debug.Log("Chance right now: " + dropChance);
 
         float roll = Random.Range(0f, 100f);

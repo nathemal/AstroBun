@@ -7,19 +7,12 @@ public class Fuelbar : MonoBehaviour
     public Slider fuelBar;
     public TextMeshProUGUI fuelText;
 
-    public void UpdateFuelTank(float amount)
+    public void UpdateFuelTank(float maxValue, float currentAmount)
     {
-        fuelBar.value = amount;
-        UpdateFuelText((int)fuelBar.maxValue, amount);
+        fuelBar.maxValue = maxValue;
+        fuelBar.value = currentAmount;
+        UpdateFuelText((int)fuelBar.maxValue, currentAmount);
     }
-
-    public void SetMaxFuelTank(float amount)
-    {
-        fuelBar.maxValue = amount;
-        fuelBar.value = amount;
-        UpdateFuelText((int)amount, amount);
-    }
-
 
     public void UpdateFuelText(int maxCapacity, float currentAmount)
     {

@@ -17,19 +17,17 @@ public class PlayerHealthController: MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (data != null && data.lastSceneName != currentSceneName)
+        if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
         {
             currentHealth = data.HealthValue;
 
-            Healthbar.healthSlider.value = currentHealth;
-            Healthbar.healthSlider.maxValue = maxHealth;
-            //Healthbar.UpdateHealthBar(currentHealth);
+            Healthbar.UpdateHealthBar(maxHealth, currentHealth);
         }
         else
         {
             currentHealth = maxHealth;
-            Healthbar.SetMaxHealth(maxHealth);
-
+            Healthbar.UpdateHealthBar(maxHealth, currentHealth);
+            data.HealthValue = currentHealth;
         }
     }
 
@@ -46,7 +44,7 @@ public class PlayerHealthController: MonoBehaviour
 
         currentHealth -= damage;
         data.HealthValue = currentHealth;
-        Healthbar.UpdateHealthBar(currentHealth);
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -62,9 +60,9 @@ public class PlayerHealthController: MonoBehaviour
             return;
 
         currentHealth += healAmount;
-
+      
         data.HealthValue = currentHealth;
-        Healthbar.UpdateHealthBar(currentHealth);
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
     }
 
 }

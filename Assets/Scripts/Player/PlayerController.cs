@@ -33,13 +33,12 @@ public class PlayerController : MonoBehaviour
 
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (data != null && data.lastSceneName != currentSceneName)
+        if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
         {
             fuel = data.FuelAmountValue;
             fuelConsumptionRate = data.FueConsumptionValue;
-            fuelTank.fuelBar.maxValue = data.FuelTankCapValue;
-            fuelTank.fuelBar.value = fuel;
-            fuelTank.UpdateFuelText((int)fuelTank.fuelBar.maxValue, fuel);
+
+            fuelTank.UpdateFuelTank(data.FuelTankCapValue, fuel);
 
             //Debug.Log("inside in the if statement");
             //Debug.Log("current fuel amount " + fuel + " enemyData: " + data.FuelAmountValue);
@@ -50,11 +49,11 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            fuelTank.SetMaxFuelTank(fuel);
+            fuelTank.UpdateFuelTank(fuel, fuel);
+            data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
+            data.FueConsumptionValue = fuelConsumptionRate;
+            data.FuelAmountValue = fuel;
         }
-
-         //fuelTank.SetMaxFuelTank(fuel);
-        //fuel = fuelTank.fuelBar.maxValue;
 
     }
 
@@ -119,7 +118,7 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(movementInput.normalized * thrustForceWithFuel);
 
                 fuel -= fuelConsumptionRate * Time.deltaTime;
-                fuelTank.UpdateFuelTank(fuel);
+                fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
                 fuel = Mathf.Max(fuel, 0);
                 
                 data.FuelAmountValue = fuel;
@@ -146,7 +145,7 @@ public class PlayerController : MonoBehaviour
         //fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
         fuel = Mathf.Min(fuel, fuelTank.fuelBar.maxValue); //cap fuel according the fuel tank capacity
 
-        fuelTank.UpdateFuelTank(fuel);
+        fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
     }
 
     //Kamile added this

@@ -176,14 +176,9 @@ public class ShopManager : MonoBehaviour
                 break;
             case "Currency drop":
                 UpdateCurrencyDropValue((int)powerUp.upgradeStat);
-                //EnemyHealthController.worthMoneyMultiplier *= (1 + (powerUp.upgradeStat / 100.0f));
-                
-                //Debug.Log("New global currency multiplier: " + EnemyHealthController.worthMoneyMultiplier);
                 break;
             case "Fuel loot drop":
                 UpdateFuelLootDropChanceValue(powerUp.upgradeStat);
-                //EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(powerUp.upgradeStat);
-                //Debug.Log("New global drop chance multiplier: " + EnemyHealthController.dropChanceMultiplier);
                 break;
         }
     }

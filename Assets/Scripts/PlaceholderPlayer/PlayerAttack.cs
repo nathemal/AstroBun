@@ -16,16 +16,24 @@ public class PlayerAttack : MonoBehaviour
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
 
-        //string currentSceneName = SceneManager.GetActiveScene().name;
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
-        //if (bulletScript != null && data != null && data.lastSceneName != currentSceneName) //it is kinda works?
-        //{
-        //    bulletScript.fireRate = data.FireRateValue;
-        //    bulletScript.damage = data.FireDamageValue;
-        //    bulletScript.speed = data.BulletSpeedValue;
-        //    bulletScript.lifeSpan = data.ShootingRangeValue;
+        if (bulletScript != null && data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == "")) //it is kinda works?
+        {
+            bulletScript.fireRate = data.FireRateValue;
+            bulletScript.damage = data.FireDamageValue;
+            bulletScript.speed = data.BulletSpeedValue;
+            bulletScript.lifeSpan = data.ShootingRangeValue;
+        }
+        else
+        {
+            data.FireRateValue = bulletScript.fireRate;
+            data.FireDamageValue = bulletScript.damage;
+            data.BulletSpeedValue = bulletScript.speed;
+            data.ShootingRangeValue = bulletScript.lifeSpan;
+        }
 
-        //}
+           
     }
 
     public void CreateBullets()
@@ -36,15 +44,15 @@ public class PlayerAttack : MonoBehaviour
 
         if (bulletInfo != null)
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            if (bulletScript != null && data != null && data.lastSceneName != currentSceneName) //it is kinda works?
-            {
-                bulletScript.fireRate = data.FireRateValue;
-                bulletScript.damage = data.FireDamageValue;
-                bulletScript.speed = data.BulletSpeedValue;
-                bulletScript.lifeSpan = data.ShootingRangeValue;
+            //string currentSceneName = SceneManager.GetActiveScene().name;
+            //if (bulletScript != null && data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == "")) //it is kinda works?
+            //{
+            //    bulletScript.fireRate = data.FireRateValue;
+            //    bulletScript.damage = data.FireDamageValue;
+            //    bulletScript.speed = data.BulletSpeedValue;
+            //    bulletScript.lifeSpan = data.ShootingRangeValue;
 
-            }
+            //}
 
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
             Vector2 directionToTarget = mouseWorldPosition - firePoint.position;
