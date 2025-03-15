@@ -51,7 +51,7 @@ public class EnemySpawner : MonoBehaviour
         float randomScale = Random.Range(1f, 3f);
         enemy.transform.localScale = Vector3.one * randomScale;*/
 
-        float Scale = 3f;
+        float Scale = 0.5f;
         enemy.transform.localScale = Vector3.one * Scale;
 
     }
