@@ -3,10 +3,10 @@
     <engine:VisualElement name="Container" style="flex-grow: 1; justify-content: space-around; flex-direction: column; width: 60%; align-self: center;">
         <engine:Label text="Credits&#10;" name="Title" class="title" style="margin-bottom: 0; margin-top: 50px;" />
         <engine:Label text="Project Managers" name="ProjectManagersHeader" class="header" />
-        <engine:Label text="Product Owner - Angie&#10;Scrum Master - Lara" name="ProjectManagersNames" class="text" />
+        <engine:Label text="Product Owner - Angelika Juhász&#10;Scrum Master - Lara Maria Velasquez Laitinen" name="ProjectManagersNames" class="text" />
         <engine:Label text="Artists" name="ArtistsHeader" class="header" />
-        <engine:Label text="Lead Artist - Agnija&#10;Artist &amp; Sound Designer  - Marcus" name="ArtistsNaames" class="text" />
+        <engine:Label text="Lead Artist - Agnija Jemeljanova&#10;Artist &amp; Sound Designer  - Marcus Wilson" name="ArtistsNaames" class="text" />
         <engine:Label text="Programmers" name="ProgrammersHeader" class="header" />
-        <engine:Label text="Lead Programmer - Martin&#10;Programmer - Kamile" name="Progammersnames" class="text" style="margin-bottom: 60px;" />
+        <engine:Label text="Lead Programmer - Martin Carlsten&#10;Programmer - Kamile Smataviciute" name="Progammersnames" class="text" style="margin-bottom: 60px;" />
     </engine:VisualElement>
 </engine:UXML>
