@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     Vector2 mousePosition;
 
+    public GameObject pauseMenu;
+    public bool gamePaused = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -34,18 +37,24 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleInput();
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void FixedUpdate()
     {
         ApplyMovement();
-        AimDirectionRotation();
+        AimDirectionRotation();   
     }
 
     private void HandleInput()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            HandlePauseMenu();
+
+        if (gamePaused)
+            return;
+
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
         {
@@ -54,14 +63,14 @@ public class PlayerController : MonoBehaviour
 
             weapon.Fire();
         }
-		
+
         if (Input.GetMouseButtonDown(1)) // right click
         {
             gun.SetActive(!gun.activeInHierarchy);
             shield.SetActive(!shield.activeInHierarchy);
-
+            
             shieldActive = !shieldActive;
-        }
+            }
 
         if (Input.GetKeyDown(KeyCode.F))
             useFuel = !useFuel;
@@ -102,6 +111,25 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
+    }
+
+    public void HandlePauseMenu()
+    {
+        gamePaused = !gamePaused;
+
+        if (gamePaused)
+        {
+            pauseMenu.SetActive(true);
+
+            Time.timeScale = 0;
+        }
+
+        else
+        {
+            pauseMenu.SetActive(false);
+
+            Time.timeScale = 1;
+        }
     }
 
     // Call this function to refuel the spaceship

@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MenuStyle.uss?fileID=7433441132597879392&amp;guid=815d2f71302b397458b4789c80d5b791&amp;type=3#MenuStyle" />
+    <engine:VisualElement name="ContainerContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.59);">
+        <engine:VisualElement name="TextContainer" style="flex-grow: 1; align-items: center;">
+            <engine:Label text="Game Over" name="GameOverText" class="title" />
+        </engine:VisualElement>
+        <engine:VisualElement name="ButtonContainer" style="flex-grow: 1; align-items: center; margin-top: 0; justify-content: flex-end;">
+            <engine:Button text="Retry&#10;" name="RetryButton" class="button" style="margin-top: 30px;" />
+            <engine:Button text="Main Menu" name="MainMenuButton" class="button" style="margin-right: 0; margin-top: 0;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
