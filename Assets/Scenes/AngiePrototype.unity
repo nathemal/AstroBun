@@ -671,7 +671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4530304411956145218, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: orbitRadius
-      value: 5.5
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: -4530304411956145218, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: maxOrbitSpeed
@@ -1351,6 +1351,6 @@ SceneRoots:
   - {fileID: 1277866991}
   - {fileID: 1116735735}
   - {fileID: 1476749196}
-  - {fileID: 958130610}
   - {fileID: 1723618306}
+  - {fileID: 958130610}
   - {fileID: 90238216}
