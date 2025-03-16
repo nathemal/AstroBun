@@ -1,21 +1,47 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealthController : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
     private ChangeEnemyColor enemyColor;
+
     public int worthMoney;
+
     [Header("To destroy enemy")]
     public UnityEvent<int> onDeath;
 
     [Header("For Fuel Loot")]
     public GameObject fuelLootPrefab;
-    //private Transform playerPosition;
+    public float dropChance = 30.0f;
+    public static float dropChanceMultiplier = 1.0f; //no effect
+
+    [Header("For Heal Loot")]
+    public GameObject healLootPrefab;
+
+    [Header("To save data")]
+    public EnemyData data; 
 
     private void Start()
     {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if(data.isNewGame)
+        {
+            data.WorthMoneyValue = worthMoney;
+            data.FuelDropChanceValue = dropChance;
+        }
+        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        {
+            worthMoney = data.WorthMoneyValue;
+            dropChance = data.FuelDropChanceValue;
+            //Debug.Log("inside in the if statement");
+            //Debug.Log("worth money " + worthMoney + " enemyData: " + data.WorthMoneyValue);
+            //Debug.Log("drop chance " + dropChance + " enemyData: " + data.FuelDropChanceValue);
+        }
+
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
 
@@ -42,7 +68,8 @@ public class EnemyHealthController : MonoBehaviour
         {
             DropTheLoot();
 
-            onDeath.Invoke(worthMoney); // Notify listeners that the enemy is dead
+            onDeath.Invoke(worthMoney);
+           
             Destroy(gameObject);
         }
     }
@@ -58,14 +85,17 @@ public class EnemyHealthController : MonoBehaviour
     {
         Vector3 enemyPosition = transform.position;
 
-        //------------FOR TESTING 100 PROC DROP CHANCE----------
-        //GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
+        //Drop heal loot
+        GameObject healLootInstance = Instantiate(healLootPrefab, enemyPosition, Quaternion.identity);
 
-        //FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
-        //loot.DropLoot(enemyPosition);
+        HealPickUp heal = healLootInstance.GetComponent<HealPickUp>();
+        heal.DropLoot(enemyPosition);
 
+
+        //drop fuel loot
         if (CanLootbeDroped())
         {
+            //Drop Fuel Loot
             GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
 
             FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
@@ -75,9 +105,10 @@ public class EnemyHealthController : MonoBehaviour
 
     private bool CanLootbeDroped()
     {
-        float dropChance = 30f;
+        Debug.Log("Chance right now: " + dropChance);
+
         float roll = Random.Range(0f, 100f);
-        Debug.Log("Chance was " + roll);
+        Debug.Log("Roll was " + roll);
 
         if (roll < dropChance)
         {
@@ -87,5 +118,5 @@ public class EnemyHealthController : MonoBehaviour
 
         return false;
     }
-
+  
 }

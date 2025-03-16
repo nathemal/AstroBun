@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthController: MonoBehaviour
 {
@@ -10,18 +11,41 @@ public class PlayerHealthController: MonoBehaviour
 
     public GameObject deathMenu;
 
+    [Header("For Saving Data")]
+    [SerializeField] private PlayerData data;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       currentHealth = maxHealth;
-       Healthbar.SetMaxHealth(maxHealth);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        //Load data
+
+
+        if (data.isNewGame)
+        {
+            UpdateHealthInFirstScene();
+        }
+        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        {
+            UpdateHealthInNextScene();
+        }
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateHealthInNextScene()
     {
-       
+        currentHealth = data.HealthValue;
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
     }
+
+    private void UpdateHealthInFirstScene()
+    {
+        currentHealth = maxHealth;
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
+        data.HealthValue = currentHealth;
+    }
+
 
     public void TakeDamage(float damage) 
     {
@@ -32,7 +56,8 @@ public class PlayerHealthController: MonoBehaviour
         }
 
         currentHealth -= damage;
-        Healthbar.UpdateHealthBar(currentHealth);
+        data.HealthValue = currentHealth;
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -43,13 +68,15 @@ public class PlayerHealthController: MonoBehaviour
         }
     }
 
-    //if we want to have powerup as heal
     public void AddHealth(float healAmount)
     {
         if (currentHealth <= 0)
             return;
 
         currentHealth += healAmount;
-        Healthbar.UpdateHealthBar(currentHealth);
+        currentHealth = Mathf.Min(currentHealth, Healthbar.healthSlider.maxValue); //cap heal according the heal bar capacity
+      
+        data.HealthValue = currentHealth;
+        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
     }
 }

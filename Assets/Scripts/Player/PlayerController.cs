@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,12 +27,48 @@ public class PlayerController : MonoBehaviour
     public GameObject pauseMenu;
     public bool gamePaused = false;
 
+    [Header("Saving Player Data")]
+    public PlayerData data;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         orbitController = GetComponent<OrbitController>();
 
-        fuelTank.SetMaxFuelTank(fuel);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        
+        if (data.isNewGame)//if (data.lastSceneName == currentSceneName || (data.lastSceneName == ""))
+        {
+            UpdateFuelDataInNextScene();
+        }
+        else if(data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        {
+            UpdateFuelDataInFirstScene();
+
+            //Debug.Log("inside in the if statement");
+            //Debug.Log("current fuel amount " + fuel + " enemyData: " + data.FuelAmountValue);
+            //Debug.Log("consumption rate " + fuelConsumptionRate + " enemyData: " + data.FueConsumptionValue);
+            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " enemyData: " + data.FuelTankCapValue);
+            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " current fuel amount: " + fuel);
+        }
+
+    }
+
+    private void UpdateFuelDataInFirstScene()
+    {
+        fuel = data.FuelAmountValue;
+        fuelConsumptionRate = data.FueConsumptionValue;
+
+        fuelTank.UpdateFuelTank(data.FuelTankCapValue, fuel);
+    }
+
+    private void UpdateFuelDataInNextScene()
+    {
+        fuelTank.UpdateFuelTank(fuel, fuel);
+        data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
+        data.FueConsumptionValue = fuelConsumptionRate;
+        data.FuelAmountValue = fuel;
     }
 
     void Update()
@@ -101,8 +138,11 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(movementInput.normalized * thrustForceWithFuel);
 
                 fuel -= fuelConsumptionRate * Time.deltaTime;
-                fuelTank.UpdateFuelTank(fuel);
+                fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
                 fuel = Mathf.Max(fuel, 0);
+                
+                data.FuelAmountValue = fuel;
+
             }
             else if (!useFuel && movementInput.sqrMagnitude > 0.1f)
             {
@@ -142,10 +182,12 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Added amount is " + amount);
 
         fuel += amount;
+        //Debug.Log("fuel amount AFTER without cap limit: " + fuel);
 
-        //Debug.Log("fuel amount AFTER: " + fuel);
+        //fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
+        fuel = Mathf.Min(fuel, fuelTank.fuelBar.maxValue); //cap fuel according the fuel tank capacity
 
-        fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
+        fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
     }
 
     //Kamile added this

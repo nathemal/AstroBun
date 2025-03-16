@@ -13,15 +13,8 @@ public class PowerUpSetting
     [HideInInspector] public GameObject itemRef;
 }
 
-
-
 public class ShopManager : MonoBehaviour
 {
-
-    public BulletSettings currentWeapon; 
-    //public PlayerMovement ship; //for the future upgrades?
-    //public PlayerHealthController playerHealth; //for the future upgrades?
-
     public static ShopManager instance;
     
     public PowerUpSetting[] PoweUpList;
@@ -34,19 +27,25 @@ public class ShopManager : MonoBehaviour
 
     private GameObject shopItemParent;
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+    public EnemyHealthController enemy;
+    public Fuelbar fuelTank;
+    public PlayerController playerFuel;
+    public PlayerAttack weaponAttack;
 
-        DontDestroyOnLoad(gameObject);
-    }
+    //private void Awake()
+    //{
+    //    if (instance == null)
+    //    {
+    //        instance = this;
+    //        //DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+
+    //    DontDestroyOnLoad(gameObject);
+    //}
 
 
     private void Start()
@@ -102,7 +101,7 @@ public class ShopManager : MonoBehaviour
         {
             if (grandChildren.gameObject.name == "item description")
             {
-                grandChildren.gameObject.GetComponent<TMP_Text>().text = powerUp.description.ToString() + " " + powerUp.upgradeStat.ToString();
+                grandChildren.gameObject.GetComponent<TMP_Text>().text = powerUp.description.ToString();/// + " " + powerUp.upgradeStat.ToString();
             }
             else if (grandChildren.gameObject.name == "cost description")
             {
@@ -142,29 +141,88 @@ public class ShopManager : MonoBehaviour
     {
         switch(powerUp.powerUpName)
         {
-            //powerups for weapon
             case "Fire Rate": //write name that you wrote in shop manager shop item list
-                currentWeapon.fireRate = CalculateFireRateUpdate(powerUp.upgradeStat);
+                weaponAttack.data.FireRateValue = CalculateFireRateUpdate(powerUp.upgradeStat);
                 break;
             case "Fire Damage":
-                currentWeapon.damage += powerUp.upgradeStat;
+                weaponAttack.data.FireDamageValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.damage, powerUp.upgradeStat);
                 break;
-            //case "Speed": //speed of bullet
-            //    currentWeapon.speed += powerUp.upgradeStat;
-            //    break;
-            //case "Shooting range":
-            //    currentWeapon.lifeSpan += powerUp.upgradeStat;
-            //    break;
+            case "Speed": //speed of bullet
+                weaponAttack.data.BulletSpeedValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.speed, powerUp.upgradeStat);
+                break;
+            case "Range":
+                weaponAttack.data.ShootingRangeValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.lifeSpan, powerUp.upgradeStat);
+                break;
+            case "Fuel tank":
+                 IncreaseFuelTank(powerUp.upgradeStat); //increase capacity of fuel tank
+                break;
+            case "Fuel consumption":
+                playerFuel.fuelConsumptionRate = DecreaseFuelConsumption(powerUp.upgradeStat); //decrease fuel consumption rate
+                playerFuel.data.FueConsumptionValue = playerFuel.fuelConsumptionRate;
+                break;
+            case "Dash fuel consumption":
+                //code in here
+                break;
+            case "Currency drop":
+                UpdateCurrencyDropValue((int)powerUp.upgradeStat);
+                break;
+            case "Fuel loot drop":
+                UpdateFuelLootDropChanceValue(powerUp.upgradeStat);
+                break;
         }
     }
 
 
     private float CalculateFireRateUpdate(float percentageIncrease)
     {
-        return currentWeapon.fireRate * (1 - (percentageIncrease / 100.0f));
+        return weaponAttack.bulletScript.fireRate * (1 - (percentageIncrease / 100.0f));
+    }
+
+    private float ApplyPercentageIncreaseStat(float currentWeaponStat,float percentageIncrease)
+    {
+        return currentWeaponStat * (1 + (percentageIncrease / 100.0f));
+    }
+
+    private float DecreaseFuelConsumption(float percentageIncrease)
+    {
+        if(playerFuel.fuelConsumptionRate > 0)
+        {
+            return playerFuel.fuelConsumptionRate * (1 - (percentageIncrease / 100.0f));
+        }
+        Debug.Log("Fuel consumption cannot be negative");
+        return 0;
+    }
+
+    private void IncreaseFuelTank(float percentageIncrease)
+    {
+        fuelTank.fuelBar.maxValue *= (1 + (percentageIncrease / 100.0f));
+        playerFuel.data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
+        
+        fuelTank.UpdateFuelText((int)playerFuel.data.FuelTankCapValue, playerFuel.data.FuelAmountValue);
     }
 
 
+    private void UpdateCurrencyDropValue(int amountIncrease)
+    {
+        enemy.worthMoney += amountIncrease;
+        enemy.data.WorthMoneyValue = enemy.worthMoney;
+    }
+    private float IncreaseFuelLootChance(float procentage)
+    {
+        if(procentage > 0.0f && procentage < 100.0f)
+        {
+            return EnemyHealthController.dropChanceMultiplier * (1 + (procentage / 100.0f)); //return upgraded
+        }
+        return EnemyHealthController.dropChanceMultiplier; //return not upgraded
+    }
+
+    private void UpdateFuelLootDropChanceValue(float percentageIncrease)
+    {
+        EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(percentageIncrease);
+        
+        enemy.dropChance = enemy.dropChance * EnemyHealthController.dropChanceMultiplier;
+        enemy.data.FuelDropChanceValue = enemy.dropChance;
+    }
 
     public void OpenShop()
     {

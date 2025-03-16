@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 6618909838791483807}
   - component: {fileID: 3488378105068736635}
   - component: {fileID: 125053133313606488}
-  - component: {fileID: 7479508409902853415}
-  - component: {fileID: 8721742010814687947}
+  - component: {fileID: -6847484106478824287}
+  - component: {fileID: -7423145600814102421}
   - component: {fileID: -7802291101884051610}
   m_Layer: 0
-  m_Name: Fuel drop
-  m_TagString: FuelPickup
+  m_Name: Heal drop
+  m_TagString: HealthPickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,7 +141,7 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
---- !u!114 &7479508409902853415
+--- !u!114 &-6847484106478824287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,11 +150,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1537134886148360166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed572fe6142fea044a53fa0640b5bc16, type: 3}
+  m_Script: {fileID: 11500000, guid: 5431400e69106e84c94e902605d05d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionalFuelAmount: 80
---- !u!114 &8721742010814687947
+  healAmount: 10
+--- !u!114 &-7423145600814102421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,10 +163,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1537134886148360166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95717afb5f8491146b5b439fa87ea042, type: 3}
+  m_Script: {fileID: 11500000, guid: ceffcbb4b91b3c24fba102a98a466660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelLootData: {fileID: 7479508409902853415}
+  healLootData: {fileID: -6847484106478824287}
   fuelMovement: {fileID: -7802291101884051610}
 --- !u!114 &-7802291101884051610
 MonoBehaviour:
