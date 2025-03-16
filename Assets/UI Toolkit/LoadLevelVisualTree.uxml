@@ -3,8 +3,8 @@
     <engine:VisualElement name="Container" style="flex-grow: 1; align-items: center;">
         <engine:Label text="Astrobun&#10;" name="Title" class="title" />
         <engine:Button text="Tutorial" name="TutorialButton" class="button" style="margin-top: 140px; margin-left: 0; margin-right: 0;" />
-        <engine:Button text="Level 1" name="SettingsButton" class="button" style="margin-top: 0; margin-right: 0;" />
-        <engine:Button text="Level 2" name="CreditsButton" class="buttonNotAvailable" style="margin-top: 0; margin-right: 0;" />
-        <engine:Button text="Level 3" name="QuitButton" class="buttonNotAvailable" style="margin-top: 0; margin-right: 0;" />
+        <engine:Button text="Level 1" name="LevelOneButton" class="button" style="margin-top: 0; margin-right: 0;" />
+        <engine:Button text="Level 2" name="LevelTwoButton" class="buttonNotAvailable" style="margin-top: 0; margin-right: 0;" />
+        <engine:Button text="Level 3" name="LevelThreeButton" class="buttonNotAvailable" style="margin-top: 0; margin-right: 0;" />
     </engine:VisualElement>
 </engine:UXML>
