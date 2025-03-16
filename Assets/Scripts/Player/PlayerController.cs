@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,9 +9,16 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 15f;
     public float rotationSpeed = 80f;
     public bool shieldActive = false;
-    public bool useFuel = true;
+
+    //fuel
+    public bool useFuel = false;
     public float fuel = 100f;
     public float fuelConsumptionRate = 10f;
+
+    //dash
+    public float dashForce = 15f;  
+    public float dashDuration = 0.3f; 
+    private bool isDashing = false;
 
     private bool canPlayerShoot = true;
 
@@ -79,7 +87,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         ApplyMovement();
-        AimDirectionRotation();   
+        AimDirectionRotation();
     }
 
     private void HandleInput()
@@ -92,6 +100,11 @@ public class PlayerController : MonoBehaviour
 
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && !orbitController.isOrbiting)
+        {
+            StartCoroutine(Dash());
+        }
 
         if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
         {
@@ -115,6 +128,7 @@ public class PlayerController : MonoBehaviour
 
     void ApplyMovement()
     {
+
         if (fuel <= 0)
             useFuel = false;
 
@@ -150,7 +164,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
+        if (!isDashing)
+        {
+            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
+        }
     }
 
     public void PublicChangePauseState()
@@ -208,4 +225,25 @@ public class PlayerController : MonoBehaviour
     {
         canPlayerShoot = true;
     }
+
+    IEnumerator Dash()
+    {
+        isDashing = true;
+
+        // Capture movement direction
+        Vector2 dashDirection = movementInput.normalized;
+
+        // Apply impulse force only if the player is moving
+        if (dashDirection != Vector2.zero)
+        {
+            rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
+        }
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+    }
+
+
+
 }

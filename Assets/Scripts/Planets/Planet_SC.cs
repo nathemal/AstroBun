@@ -13,7 +13,7 @@ public class Planet : MonoBehaviour
 
         if (planetCollider == null)
         {
-            planetCollider = gameObject.AddComponent<CircleCollider2D>(); 
+            planetCollider = gameObject.AddComponent<CircleCollider2D>();
         }
     }
 
@@ -22,11 +22,16 @@ public class Planet : MonoBehaviour
         planetData = data;
         gameObject.name = planetData.planetName;
         Debug.Log($"Planet Set: {planetData.planetName}, Gravity: {planetData.gravityStrength}");
-        transform.localScale = Vector3.one * planetData.size;  // Adjust size based on scriptable object
+
+        transform.localScale = Vector3.one * planetData.size;  
+
 
         if (spriteRenderer != null)
         {
-            spriteRenderer.color = planetData.color; // Change color if needed
+            spriteRenderer.color = planetData.color; 
+            spriteRenderer.sprite = planetData.GetRandomSprite(); 
         }
     }
+
+
 }
