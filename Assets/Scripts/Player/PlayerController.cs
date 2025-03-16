@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     private void HandleInput()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            HandlePauseMenu();
+            ChangePauseState();
 
         if (gamePaused)
             return;
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
     }
 
-    public void HandlePauseMenu()
+    public void ChangePauseState()
     {
         gamePaused = !gamePaused;
 

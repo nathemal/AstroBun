@@ -52,11 +52,13 @@ public class PauseMenuEvents : MonoBehaviour
 
     private void OnContinueClick(ClickEvent evt)
     {
-        player.HandlePauseMenu();
+        player.ChangePauseState();
     }
 
     private void OnRestartClick(ClickEvent evt)
     {
+        Time.timeScale = 1;
+
         LoadScene(currentScene);
     }
 
