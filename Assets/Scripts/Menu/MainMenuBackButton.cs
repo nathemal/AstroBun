@@ -9,7 +9,7 @@ public class MainMenuBackButton : MonoBehaviour
     private Button mainMenuBackButton;
 
     private string startMenuScene = "StartMenu";
-
+    
     private void Awake()
     {
         document = GetComponent<UIDocument>();
@@ -18,10 +18,28 @@ public class MainMenuBackButton : MonoBehaviour
         mainMenuBackButton.RegisterCallback<ClickEvent>(OnBackButtonClick);
     }
 
+    private void Update()
+    {
+        HandleInput();
+    }
+
     private void OnBackButtonClick(ClickEvent evt)
     {
-        SceneManager.LoadScene(startMenuScene);
+        LoadScene(startMenuScene);
 
         // TODO: If we're adding clicking sounds when pressing buttons do that here
+    }
+
+    private void HandleInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            LoadScene(startMenuScene);
+        }
+    }
+
+    private void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }

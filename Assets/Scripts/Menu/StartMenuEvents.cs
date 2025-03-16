@@ -40,21 +40,26 @@ public class StartMenuEvents : MonoBehaviour
 
     private void OnStartGameClick(ClickEvent evt)
     {
-        SceneManager.LoadScene(levelSelectScene);
+        LoadScene(levelSelectScene);
     }
 
     private void OnSettingsClick(ClickEvent evt)
     {
-        SceneManager.LoadScene(settingsScene);
+        LoadScene(settingsScene);
     }
 
     private void OnCreditsClick(ClickEvent evt)
     {
-        SceneManager.LoadScene(creditsScene);
+        LoadScene(creditsScene);
     }
 
     private void OnAllButtonsClick(ClickEvent evt)
     {
         // TODO: If we want to add sounds or anything else that happens every time a button is clicked do it here
+    }
+
+    private void LoadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }
