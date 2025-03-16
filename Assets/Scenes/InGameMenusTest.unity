@@ -5461,6 +5461,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1608484635}
+    - target: {fileID: 7782549695633281632, guid: 8597f71af927d004dbab948a40b8eb39, type: 3}
+      propertyPath: currentScene
+      value: InGameMenusTest
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
