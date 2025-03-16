@@ -8,17 +8,16 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 15f;
     public float rotationSpeed = 80f;
     public bool shieldActive = false;
-    public bool useFuel = true;
+
+    //fuel
+    public bool useFuel = false;
     public float fuel = 100f;
     public float fuelConsumptionRate = 10f;
 
-    //Dash
-    public float dashForce = 50f;      
-    public float dashCooldown = 0f;    
-    public float dashDuration = 0.8f;  
+    //dash
+    public float dashForce = 15f;  
+    public float dashDuration = 0.3f; 
     private bool isDashing = false;
-    private bool canDash = true;
-    private Vector2 dashDirection;
 
     private bool canPlayerShoot = true;
 
@@ -50,20 +49,16 @@ public class PlayerController : MonoBehaviour
     {
         ApplyMovement();
         AimDirectionRotation();
-
-       if (!isDashing) // Prevents movement from interfering during dash
-        {
-            ApplyMovement();
-        }
+    
     }
 
     private void HandleInput()
     {
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && !orbitController.isOrbiting)
         {
-            Dash();
+            StartCoroutine(Dash());
         }
 
         if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
@@ -88,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
     void ApplyMovement()
     {
+
         if (fuel <= 0)
             useFuel = false;
 
@@ -120,7 +116,10 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
+        if (!isDashing)
+        {
+            rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
+        }
     }
 
     // Call this function to refuel the spaceship
@@ -155,23 +154,24 @@ public class PlayerController : MonoBehaviour
         canPlayerShoot = true;
     }
 
-    private void Dash()
+    IEnumerator Dash()
     {
-        if (fuel >= dashForce) // Check if player has enough fuel
-        {
-            fuel -= dashForce; // Consume fuel
-            fuelTank.UpdateFuelTank(fuel); // Update UI
+        isDashing = true;
 
-            Vector2 dashDirection = rb.linearVelocity.normalized; // Get current movement direction
-            rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse); // Apply dash force instantly
+        // Capture movement direction
+        Vector2 dashDirection = movementInput.normalized;
 
-            Debug.Log("Player dashed!");
-        }
-        else
+        // Apply impulse force only if the player is moving
+        if (dashDirection != Vector2.zero)
         {
-            Debug.Log("Not enough fuel to dash!");
+            rb.AddForce(dashDirection * dashForce, ForceMode2D.Impulse);
         }
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
     }
+
 
 
 }
