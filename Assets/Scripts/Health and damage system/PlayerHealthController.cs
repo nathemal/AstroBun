@@ -8,6 +8,8 @@ public class PlayerHealthController: MonoBehaviour
     public Healthbar Healthbar;
     public UnityEvent onDeath;
 
+    public GameObject deathMenu;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,13 +26,18 @@ public class PlayerHealthController: MonoBehaviour
     public void TakeDamage(float damage) 
     {
         if (currentHealth <= 0)
+        {
+            deathMenu.SetActive(true);
             return;
+        }
 
         currentHealth -= damage;
         Healthbar.UpdateHealthBar(currentHealth);
 
         if (currentHealth <= 0)
         {
+            deathMenu.SetActive(true);
+
             onDeath.Invoke();
             Destroy(gameObject);
         }
@@ -45,5 +52,4 @@ public class PlayerHealthController: MonoBehaviour
         currentHealth += healAmount;
         Healthbar.UpdateHealthBar(currentHealth);
     }
-
 }
