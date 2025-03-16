@@ -19,9 +19,12 @@ public class PauseMenuEvents : MonoBehaviour
     [Header("Name of current scene. CASE SENSITIVE!!")]
     public string currentScene;
 
-    
-
     private void Awake()
+    {
+        
+    }
+
+    private void Update()
     {
         document = GetComponent<UIDocument>();
 

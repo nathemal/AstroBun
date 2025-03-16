@@ -113,22 +113,25 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxSpeed);
     }
 
+    public void PublicChangePauseState()
+    {
+        ChangePauseState();
+    }
+
     public void ChangePauseState()
     {
-        gamePaused = !gamePaused;
-
-        if (gamePaused)
-        {
-            pauseMenu.SetActive(true);
-
-            Time.timeScale = 0;
-        }
-
-        else
+        if (pauseMenu.activeInHierarchy)
         {
             pauseMenu.SetActive(false);
 
             Time.timeScale = 1;
+        }
+
+        else
+        {
+            pauseMenu.SetActive(true);
+
+            Time.timeScale = 0;
         }
     }
 
