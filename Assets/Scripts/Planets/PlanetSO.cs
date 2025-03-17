@@ -7,7 +7,7 @@ public abstract class PlanetSO : ScriptableObject
     public string planetName;
     public float size = 1f;
     public Color color;
-    public float gravityStrength = 0.2f;
+    public float gravityStrength = 0.1f;
 
     public Sprite GetRandomSprite()
     {
