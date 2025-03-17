@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         orbitController = GetComponent<OrbitController>();
 
-        string currentSceneName = SceneManager.GetActiveScene().name;
+       /* string currentSceneName = SceneManager.GetActiveScene().name;
 
         
         if (data.isNewGame)//if (data.lastSceneName == currentSceneName || (data.lastSceneName == ""))
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("consumption rate " + fuelConsumptionRate + " enemyData: " + data.FueConsumptionValue);
             //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " enemyData: " + data.FuelTankCapValue);
             //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " current fuel amount: " + fuel);
-        }
+        }*/
 
     }
 
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
                 fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
                 fuel = Mathf.Max(fuel, 0);
                 
-                data.FuelAmountValue = fuel;
+              // data.FuelAmountValue = fuel;
 
             }
             else if (!useFuel && movementInput.sqrMagnitude > 0.1f)

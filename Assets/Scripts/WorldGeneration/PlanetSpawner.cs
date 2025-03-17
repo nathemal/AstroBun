@@ -57,7 +57,7 @@ public class PlanetSpawner : MonoBehaviour
         {
             planetComponent.SetPlanetData(planetTypes[Random.Range(0, planetTypes.Length)]);
         }
-        Debug.Log($"Spawned {planet.name} at {planet.transform.position} with scale {planet.transform.localScale}");
+       // Debug.Log($"Spawned {planet.name} at {planet.transform.position} with scale {planet.transform.localScale}");
     }
 
     private void OnDrawGizmos()

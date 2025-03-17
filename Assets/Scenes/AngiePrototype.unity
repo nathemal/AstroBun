@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 90238214}
   - component: {fileID: 90238213}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -982,7 +982,10 @@ MonoBehaviour:
   minSpacing: 50
   regionSize: {x: 350, y: 160}
   rejectionSamples: 35
-  enemyPrefab: {fileID: 5293202144255024865, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
+  enemyPrefab:
+  - {fileID: 5293202144255024865, guid: 9b25854827553514c879abda70f08ea4, type: 3}
+  - {fileID: 5293202144255024865, guid: e25e812d6775da94c95a78fac41addf4, type: 3}
+  - {fileID: 5293202144255024865, guid: 704cc130189d8594ab3f0d3d6d70cd8d, type: 3}
 --- !u!4 &1608484626 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
@@ -1320,7 +1323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6033315306773963474, guid: d30e2cf85e443b946a37c1f2ac523d5d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 29
+      value: 89
       objectReference: {fileID: 0}
     - target: {fileID: 6033315306773963474, guid: d30e2cf85e443b946a37c1f2ac523d5d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1349,8 +1352,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1277866991}
-  - {fileID: 1116735735}
-  - {fileID: 1476749196}
-  - {fileID: 1723618306}
   - {fileID: 958130610}
+  - {fileID: 1476749196}
   - {fileID: 90238216}
+  - {fileID: 1723618306}
+  - {fileID: 1116735735}
