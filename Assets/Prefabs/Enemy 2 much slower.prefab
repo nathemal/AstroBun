@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 0
-  worthMoney: 5
+  worthMoney: 10
   onDeath:
     m_PersistentCalls:
       m_Calls:

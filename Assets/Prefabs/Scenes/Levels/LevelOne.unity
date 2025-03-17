@@ -1794,14 +1794,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4806238340366439156, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
-    - target: {fileID: 4806238340366439156, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
-      propertyPath: bulletScript
-      value: 
-      objectReference: {fileID: 5332551000509181047, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
     - target: {fileID: 6073240009910876780, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: m_Interpolate
       value: 0
