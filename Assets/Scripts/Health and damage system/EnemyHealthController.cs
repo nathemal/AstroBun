@@ -15,7 +15,7 @@ public class EnemyHealthController : MonoBehaviour
 
     [Header("For Fuel Loot")]
     public GameObject fuelLootPrefab;
-    public float dropChance = 30.0f;
+    public float dropChance;
     public static float dropChanceMultiplier = 1.0f; //no effect
 
     [Header("For Heal Loot")]
