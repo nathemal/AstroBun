@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 5626140462382079696}
   - component: {fileID: 6309099584526059486}
   m_Layer: 0
-  m_Name: NewPlanet
+  m_Name: NewPlanet (UNUSED)
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

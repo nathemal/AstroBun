@@ -108,18 +108,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
         {
-            if (shieldActive)
-                return;
-
             weapon.Fire();
         }
 
         if (Input.GetMouseButtonDown(1)) // right click
         {
-            gun.SetActive(!gun.activeInHierarchy);
             shield.SetActive(!shield.activeInHierarchy);
             
             shieldActive = !shieldActive;
+            canPlayerShoot = !shieldActive;
             }
 
         if (Input.GetKeyDown(KeyCode.F))
