@@ -16,9 +16,9 @@ public class PlayerAttack : MonoBehaviour
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
 
-        //string currentSceneName = SceneManager.GetActiveScene().name;
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
-        /*Load data
+        //Load data
         if (data.isNewGame)
         {
             SetBulletDefaultStats();
@@ -26,13 +26,13 @@ public class PlayerAttack : MonoBehaviour
 
             data.isNewGame = false;
         }
-      
-        data.lastSceneName = currentSceneName;*/
+
+        data.lastSceneName = currentSceneName;
     }
 
-   /* private void SetBulletDefaultStats()
+    private void SetBulletDefaultStats()
     {
-        if (!data.hasStoredDefaults) 
+        if (!data.hasStoredDefaults)
         {
             data.FireRateDefaultValue = bulletScript.fireRate;
             data.FireDamageDefaultValue = bulletScript.damage;
@@ -48,7 +48,7 @@ public class PlayerAttack : MonoBehaviour
         data.FireDamageValue = data.FireDamageDefaultValue;
         data.BulletSpeedValue = data.BulletSpeedDefaultValue;
         data.ShootingRangeValue = data.ShootingRangeDefaultValue;
-    }*/
+    }
 
     public void CreateBullets()
     {
@@ -63,11 +63,11 @@ public class PlayerAttack : MonoBehaviour
 
             bulletInfo.SetDirection(directionToTarget);
 
-            /*Upgrade bullet stats after purchase
+            //Upgrade bullet stats after purchase
             bulletInfo.fireRate = data.FireRateValue;
             bulletInfo.damage = data.FireDamageValue;
             bulletInfo.speed = data.BulletSpeedValue;
-            bulletInfo.lifeSpan = data.ShootingRangeValue;*/
+            bulletInfo.lifeSpan = data.ShootingRangeValue;
         }
     }
 

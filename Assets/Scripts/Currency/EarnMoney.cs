@@ -17,29 +17,24 @@ public class EarnMoney : MonoBehaviour
         if (shopManager != null)
         {
             OnBuy.AddListener(UpdateAfterPurchase);
-            //Debug.Log("EarnMoney: OnBuy listener added");
         }
     }
 
     public void AddMoney(int amount)
     {
-        //Debug.Log("Money that needs to be added before addition: " + amount);
-        //Debug.Log("Money before addition: " + moneyCount);
         moneyCount += amount;
         UpdateText();
-        //Debug.Log("Money after addition: " + moneyCount);
     }
 
     public void UpdateAfterPurchase(int amount)
     {
-        //Debug.Log($"EarnMoney: Updating money from {moneyCount} to {amount}");
         moneyCount = amount;
         UpdateText();
     }
 
     private void UpdateText()
     {
-        coinText.text = " : " + moneyCount.ToString(); //moneyCount
+        coinText.text = " : " + moneyCount.ToString();
     }
 
 }

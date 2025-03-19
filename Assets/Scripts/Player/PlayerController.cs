@@ -43,24 +43,17 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         orbitController = GetComponent<OrbitController>();
 
-       /* string currentSceneName = SceneManager.GetActiveScene().name;
+        string currentSceneName = SceneManager.GetActiveScene().name;
 
-        
-        if (data.isNewGame)//if (data.lastSceneName == currentSceneName || (data.lastSceneName == ""))
+
+        if (data.isNewGame)
         {
             UpdateFuelDataInNextScene();
         }
-        else if(data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
         {
             UpdateFuelDataInFirstScene();
-
-            //Debug.Log("inside in the if statement");
-            //Debug.Log("current fuel amount " + fuel + " enemyData: " + data.FuelAmountValue);
-            //Debug.Log("consumption rate " + fuelConsumptionRate + " enemyData: " + data.FueConsumptionValue);
-            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " enemyData: " + data.FuelTankCapValue);
-            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " current fuel amount: " + fuel);
-        }*/
-
+        }
     }
 
     private void UpdateFuelDataInFirstScene()
@@ -101,7 +94,8 @@ public class PlayerController : MonoBehaviour
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && !orbitController.isOrbiting)
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && !orbitController.isOrbiting && fuel > 0)
         {
             StartCoroutine(Dash());
         }
@@ -111,13 +105,13 @@ public class PlayerController : MonoBehaviour
             weapon.Fire();
         }
 
-        if (Input.GetMouseButtonDown(1)) // right click
+        if (Input.GetMouseButtonDown(1))
         {
             shield.SetActive(!shield.activeInHierarchy);
             
             shieldActive = !shieldActive;
             canPlayerShoot = !shieldActive;
-            }
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
             useFuel = !useFuel;
@@ -129,19 +123,6 @@ public class PlayerController : MonoBehaviour
         if (fuel <= 0)
             useFuel = false;
 
-        /* if (movementInput.sqrMagnitude > 0.1f) // Moved this function here from Update to avoid tying any of the physics to fps
-        {
-            REASON: I commented this out because the program is confused - doesnt understand in which way the rigid body needs to rotate,  because I use same rigid body for aiming.
-            I tried to add additional rigid body to gun, but when I playtested, it detached from the main body. I don't know if you want to rotate the main body differenty from the gun 'body' 
-
-            Tried to work on different values for the player movemnt but it is really unresponsive, feels like you skate on ice, it is really annoying.
-
-            float angle = Mathf.Atan2(movementInput.y, movementInput.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, angle), rotationSpeed * Time.deltaTime);
-        } */
-
-        //Debug.Log("In applying movement");
-
         if (!orbitController.isOrbiting)
         {
             if (useFuel && movementInput.sqrMagnitude > 0.1f)
@@ -151,9 +132,6 @@ public class PlayerController : MonoBehaviour
                 fuel -= fuelConsumptionRate * Time.deltaTime;
                 fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
                 fuel = Mathf.Max(fuel, 0);
-                
-              // data.FuelAmountValue = fuel;
-
             }
             else if (!useFuel && movementInput.sqrMagnitude > 0.1f)
             {
@@ -192,22 +170,16 @@ public class PlayerController : MonoBehaviour
     // Call this function to refuel the spaceship
     public void Refuel(float amount)
     {
-        //Debug.Log("Current fuel amount before addition: " + fuel);
-        //Debug.Log("Added amount is " + amount);
-
         fuel += amount;
-        //Debug.Log("fuel amount AFTER without cap limit: " + fuel);
-
-        //fuel = Mathf.Min(fuel, 100f); // Cap fuel at max
+        
         fuel = Mathf.Min(fuel, fuelTank.fuelBar.maxValue); //cap fuel according the fuel tank capacity
 
         fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
     }
 
-    //Kamile added this
     private void AimDirectionRotation()
     {
-        //rotate the player / gun with the mouse
+        //rotate the player with the mouse
         Vector3 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
@@ -240,7 +212,4 @@ public class PlayerController : MonoBehaviour
 
         isDashing = false;
     }
-
-
-
 }

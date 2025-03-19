@@ -9,10 +9,13 @@ public class EnemyAttack : MonoBehaviour
     private BulletSettings bulletScript;
     private float firePointRadiusForVisualization = 0.08f;
     private float nextFireTime;
+    private bool canEnemyShoot;
 
     private void Start()
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
+
+        canEnemyShoot = true;
     }
 
     public void CreateBullets(GameObject target)
@@ -35,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
         if (target == null || this.gameObject == null) { return; }
 
         //fire according the fire rate
-        if (nextFireTime < Time.time && this.gameObject != null)
+        if (nextFireTime < Time.time && this.gameObject != null && canEnemyShoot)
         {
             CreateBullets(target);
             nextFireTime = Time.time + bulletScript.fireRate;
@@ -46,5 +49,16 @@ public class EnemyAttack : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(firePoint.transform.position, firePointRadiusForVisualization);
+    }
+
+
+    public void DisableShooting()
+    {
+        canEnemyShoot = false;
+    }
+
+    public void EnableShooting()
+    {
+        canEnemyShoot = true;
     }
 }

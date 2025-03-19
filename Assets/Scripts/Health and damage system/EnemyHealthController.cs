@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyHealthController : MonoBehaviour
 {
+    public EnemyTypeChoices enemyType;
     public float maxHealth;
     public float currentHealth;
     private ChangeEnemyColor enemyColor;
@@ -37,9 +38,6 @@ public class EnemyHealthController : MonoBehaviour
         {
             worthMoney = data.WorthMoneyValue;
             dropChance = data.FuelDropChanceValue;
-            //Debug.Log("inside in the if statement");
-            //Debug.Log("worth money " + worthMoney + " enemyData: " + data.WorthMoneyValue);
-            //Debug.Log("drop chance " + dropChance + " enemyData: " + data.FuelDropChanceValue);
         }
 
         currentHealth = maxHealth;

@@ -27,25 +27,10 @@ public class ShopManager : MonoBehaviour
 
     private GameObject shopItemParent;
 
-    public EnemyHealthController enemy;
-    public Fuelbar fuelTank;
+    public EnemyHealthController[] EnemiesList;
+    public Fuelbar fuelTankBar;
     public PlayerController playerFuel;
-    public PlayerAttack weaponAttack;
-
-    //private void Awake()
-    //{
-    //    if (instance == null)
-    //    {
-    //        instance = this;
-    //        //DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-
-    //    DontDestroyOnLoad(gameObject);
-    //}
+    public PlayerAttack playerGun;
 
 
     private void Start()
@@ -125,7 +110,6 @@ public class ShopManager : MonoBehaviour
         if(CheckIfPlayerHasEnoughMoney(powerUp))
         {
            totalCoinCount.moneyCount -= powerUp.cost;
-           Debug.Log($"ShopManager: New money count after purchase: {totalCoinCount.moneyCount}");
            totalCoinCount.OnBuy.Invoke(totalCoinCount.moneyCount);
 
            ApplyPowerUp(powerUp);
@@ -142,16 +126,16 @@ public class ShopManager : MonoBehaviour
         switch(powerUp.powerUpName)
         {
             case "Fire Rate": //write name that you wrote in shop manager shop item list
-                weaponAttack.data.FireRateValue = CalculateFireRateUpdate(powerUp.upgradeStat);
+                playerGun.data.FireRateValue = CalculateFireRateUpdate(powerUp.upgradeStat);
                 break;
             case "Fire Damage":
-                weaponAttack.data.FireDamageValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.damage, powerUp.upgradeStat);
+                playerGun.data.FireDamageValue = ApplyPercentageIncreaseStat(playerGun.bulletScript.damage, powerUp.upgradeStat);
                 break;
             case "Speed": //speed of bullet
-                weaponAttack.data.BulletSpeedValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.speed, powerUp.upgradeStat);
+                playerGun.data.BulletSpeedValue = ApplyPercentageIncreaseStat(playerGun.bulletScript.speed, powerUp.upgradeStat);
                 break;
             case "Range":
-                weaponAttack.data.ShootingRangeValue = ApplyPercentageIncreaseStat(weaponAttack.bulletScript.lifeSpan, powerUp.upgradeStat);
+                playerGun.data.ShootingRangeValue = ApplyPercentageIncreaseStat(playerGun.bulletScript.lifeSpan, powerUp.upgradeStat);
                 break;
             case "Fuel tank":
                  IncreaseFuelTank(powerUp.upgradeStat); //increase capacity of fuel tank
@@ -164,10 +148,16 @@ public class ShopManager : MonoBehaviour
                 //code in here
                 break;
             case "Currency drop":
-                UpdateCurrencyDropValue((int)powerUp.upgradeStat);
+                foreach (EnemyTypeChoices enemyType in System.Enum.GetValues(typeof(EnemyTypeChoices)))
+                {
+                    UpdateCurrencyDropValue((int)powerUp.upgradeStat, enemyType);
+                }
                 break;
             case "Fuel loot drop":
-                UpdateFuelLootDropChanceValue(powerUp.upgradeStat);
+                foreach (EnemyTypeChoices enemyType in System.Enum.GetValues(typeof(EnemyTypeChoices)))
+                {
+                    UpdateFuelLootDropChanceValue(powerUp.upgradeStat, enemyType);
+                }
                 break;
         }
     }
@@ -175,7 +165,7 @@ public class ShopManager : MonoBehaviour
 
     private float CalculateFireRateUpdate(float percentageIncrease)
     {
-        return weaponAttack.bulletScript.fireRate * (1 - (percentageIncrease / 100.0f));
+        return playerGun.bulletScript.fireRate * (1 - (percentageIncrease / 100.0f));
     }
 
     private float ApplyPercentageIncreaseStat(float currentWeaponStat,float percentageIncrease)
@@ -195,18 +185,25 @@ public class ShopManager : MonoBehaviour
 
     private void IncreaseFuelTank(float percentageIncrease)
     {
-        fuelTank.fuelBar.maxValue *= (1 + (percentageIncrease / 100.0f));
-        playerFuel.data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
+        fuelTankBar.fuelBar.maxValue *= (1 + (percentageIncrease / 100.0f));
+        playerFuel.data.FuelTankCapValue = fuelTankBar.fuelBar.maxValue;
         
-        fuelTank.UpdateFuelText((int)playerFuel.data.FuelTankCapValue, playerFuel.data.FuelAmountValue);
+        fuelTankBar.UpdateFuelText((int)playerFuel.data.FuelTankCapValue, playerFuel.data.FuelAmountValue);
     }
 
 
-    private void UpdateCurrencyDropValue(int amountIncrease)
+    private void UpdateCurrencyDropValue(int amountIncrease, EnemyTypeChoices enemyType)
     {
-        enemy.worthMoney += amountIncrease;
-        enemy.data.WorthMoneyValue = enemy.worthMoney;
+        foreach (EnemyHealthController enemy in EnemiesList)
+        {
+            if (enemy.enemyType == enemyType)
+            {
+                enemy.worthMoney += amountIncrease;
+                enemy.data.WorthMoneyValue = enemy.worthMoney;
+            }
+        }
     }
+
     private float IncreaseFuelLootChance(float procentage)
     {
         if(procentage > 0.0f && procentage < 100.0f)
@@ -216,12 +213,18 @@ public class ShopManager : MonoBehaviour
         return EnemyHealthController.dropChanceMultiplier; //return not upgraded
     }
 
-    private void UpdateFuelLootDropChanceValue(float percentageIncrease)
+    private void UpdateFuelLootDropChanceValue(float percentageIncrease, EnemyTypeChoices enemyType)
     {
         EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(percentageIncrease);
-        
-        enemy.dropChance = enemy.dropChance * EnemyHealthController.dropChanceMultiplier;
-        enemy.data.FuelDropChanceValue = enemy.dropChance;
+
+        foreach (EnemyHealthController enemy in EnemiesList)
+        {
+            if (enemy.enemyType == enemyType)
+            {
+                enemy.dropChance = enemy.dropChance * EnemyHealthController.dropChanceMultiplier;
+                enemy.data.FuelDropChanceValue = enemy.dropChance;
+            }
+        }
     }
 
     public void OpenShop()

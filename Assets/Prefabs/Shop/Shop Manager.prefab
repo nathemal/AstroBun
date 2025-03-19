@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a0a163e0eb5bb4fbec48d8c02b86f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 5332551000509181047, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
   PoweUpList:
   - powerUpName: Fire Rate
     description: Increase  fire rate of the projectile by 10%
@@ -95,6 +94,11 @@ MonoBehaviour:
   shopUI: {fileID: 9018580226883190219, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
   shopContent: {fileID: 7717480429886871454, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
   shopItemPefab: {fileID: 8023984699695924902, guid: bf79bebeb4cf838439b981eac7cee566, type: 3}
-  enemy: {fileID: -2407957162718211872, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
-  fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
-  playerFuel: {fileID: 4562679898632507081, guid: a4ee2bd6c8ad2ee45b975e9be56edf0c, type: 3}
+  EnemiesList:
+  - {fileID: -2407957162718211872, guid: d7db041de5f37514c861fe2e8cf099bd, type: 3}
+  - {fileID: -2407957162718211872, guid: 9b25854827553514c879abda70f08ea4, type: 3}
+  - {fileID: -2407957162718211872, guid: e25e812d6775da94c95a78fac41addf4, type: 3}
+  - {fileID: -2407957162718211872, guid: 704cc130189d8594ab3f0d3d6d70cd8d, type: 3}
+  fuelTankBar: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
+  playerFuel: {fileID: 4562679898632507081, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+  playerGun: {fileID: 117549714485997888, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}

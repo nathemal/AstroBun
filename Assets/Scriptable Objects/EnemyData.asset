@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4104921b1505db43997b193a51e7d44, type: 3}
   m_Name: EnemyData
   m_EditorClassIdentifier: 
-  fuelDropChance: 30
-  worthMoney: 200
-  lastSceneName: Shop test
+  enemyType: 0
+  fuelDropChance: 60
+  worthMoney: 80
+  lastSceneName: 
   isNewGame: 1

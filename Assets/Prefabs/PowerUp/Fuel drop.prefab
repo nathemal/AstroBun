@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed572fe6142fea044a53fa0640b5bc16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionalFuelAmount: 80
+  additionalFuelAmount: 40
 --- !u!114 &8721742010814687947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,4 +181,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetToMoveTowards: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
-  lootMovementSpeed: 15
+  lootMovementSpeed: 100

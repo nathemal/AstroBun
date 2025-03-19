@@ -3,11 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/EnemyData")]
 public class EnemyData : ScriptableObject
 {
+	public EnemyTypeChoices enemyType;
+
     [SerializeField] private float fuelDropChance;
     [SerializeField] private int worthMoney;
     [SerializeField] public string lastSceneName = "";
     [HideInInspector] public bool isNewGame = true;
-    public float FuelDropChanceValue
+
+	public float FuelDropChanceValue
 	{
 		get { return fuelDropChance; }
 		set { fuelDropChance = value; }
