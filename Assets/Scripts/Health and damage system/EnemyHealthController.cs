@@ -29,15 +29,14 @@ public class EnemyHealthController : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if(data.isNewGame)
+        if(data.isNewGame && data.enemyType == enemyType)
         {
-            data.WorthMoneyValue = worthMoney;
-            data.FuelDropChanceValue = dropChance;
+            data.SetDefaultStats(this);
+            data.ResetStats();
         }
-        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == "") && data.enemyType == enemyType)
         {
-            worthMoney = data.WorthMoneyValue;
-            dropChance = data.FuelDropChanceValue;
+            data.SetStatsNextLevel(this);
         }
 
         currentHealth = maxHealth;
@@ -93,7 +92,6 @@ public class EnemyHealthController : MonoBehaviour
         //drop fuel loot
         if (CanLootbeDroped())
         {
-            //Drop Fuel Loot
             GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
 
             FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
@@ -103,14 +101,14 @@ public class EnemyHealthController : MonoBehaviour
 
     private bool CanLootbeDroped()
     {
-        Debug.Log("Chance right now: " + dropChance);
+        //Debug.Log("Chance right now: " + dropChance);
 
         float roll = Random.Range(0f, 100f);
-        Debug.Log("Roll was " + roll);
+        //Debug.Log("Roll was " + roll);
 
         if (roll < dropChance)
         {
-            Debug.Log("Loot was dropped");
+            //Debug.Log("Loot was dropped");
             return true;
         }
 

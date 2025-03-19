@@ -9,17 +9,18 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float fuelTankCapacity;
     [SerializeField] private float fuelUsageAmount;
 
-    [Header("The player's weapon data after powerups purchase")]
-    [SerializeField] private float speed;
-    [SerializeField] private float lifeSpan; //range
-    [SerializeField] private float damage;
-    [SerializeField] private float fireRate;
 
     [Header("The player's weapon original data")]
     [SerializeField] private float defaultSpeed;
     [SerializeField] private float defualtLifeSpan; //range
     [SerializeField] private float defaultDamage;
     [SerializeField] private float defualtFireRate;
+
+    [Header("The player's weapon data after powerups purchase")]
+    [SerializeField] private float speed;
+    [SerializeField] private float lifeSpan; //range
+    [SerializeField] private float damage;
+    [SerializeField] private float fireRate;
 
     [SerializeField] public string lastSceneName = "";
     [HideInInspector] public bool isNewGame = true;
@@ -29,25 +30,21 @@ public class PlayerData : ScriptableObject
 		get { return health; }
 		set { health = value; }
 	}
-
     public float FuelAmountValue
     {
         get { return fuelAmount; }
         set { fuelAmount = value; }
     }
-
     public float FuelTankCapValue
     {
         get { return fuelTankCapacity; }
         set { fuelTankCapacity = value; }
     }
-
     public float FueConsumptionValue
     {
         get { return fuelUsageAmount; }
         set { fuelUsageAmount = value; }
     }
-
     public float BulletSpeedValue
     {
         get { return speed; }
@@ -69,8 +66,6 @@ public class PlayerData : ScriptableObject
         get { return fireRate; }
         set { fireRate = value; }
     }
-
-
     public float BulletSpeedDefaultValue
     {
         get { return defaultSpeed; }
@@ -93,8 +88,60 @@ public class PlayerData : ScriptableObject
         set { defualtFireRate = value; }
     }
 
+    public void SetBulletDefaultStats(BulletSettings bullet)
+    {
+        if (hasStoredDefaults)
+        {
+            FireRateDefaultValue = bullet.fireRate;
+            Debug.Log("Set default Fire rate value " + FireRateDefaultValue + " with initial bullet value" + bullet.fireRate);
+            FireDamageDefaultValue = bullet.damage;
+            BulletSpeedDefaultValue = bullet.speed;
+            ShootingRangeDefaultValue = bullet.lifeSpan;
+            hasStoredDefaults = true;
+        }
+    }
+    public void ResetBulletDefaultStats()
+    {
+        FireRateValue = FireRateDefaultValue;
+        Debug.Log("Reset work Fire rate value " + FireRateValue + " and default value" + FireRateDefaultValue);
+        FireDamageValue = FireDamageDefaultValue;
+        BulletSpeedValue = BulletSpeedDefaultValue;
+        ShootingRangeValue = ShootingRangeDefaultValue;
+    }
+
+    public void UpdateFuelDataInNextScene(PlayerController player)
+    {
+        player.fuel = FuelAmountValue;
+        player.fuelConsumptionRate = FueConsumptionValue;
+
+        player.fuelTank.UpdateFuelTank(FuelTankCapValue, player.fuel);
+    }
+    public void UpdateFuelDataInFirstScene(PlayerController player)
+    {
+        player.fuelTank.UpdateFuelTank(player.fuel, player.fuel);
+        FuelTankCapValue = player.fuelTank.fuelBar.maxValue;
+        FueConsumptionValue = player.fuelConsumptionRate;
+        FuelAmountValue = player.fuel;
+    }
+
+    public void UpdateHealthInNextScene(PlayerHealthController player)
+    {
+        player.currentHealth = HealthValue;
+        player.Healthbar.UpdateHealthBar(player.maxHealth, player.currentHealth);
+    }
+
+    public void UpdateHealthInFirstScene(PlayerHealthController player)
+    {
+        player.currentHealth = player.maxHealth;
+        player.Healthbar.UpdateHealthBar(player.maxHealth, player.currentHealth);
+        HealthValue = player.currentHealth;
+    }
+
+
+
     private void OnEnable()
     {
         isNewGame = true;
     }
+
 }

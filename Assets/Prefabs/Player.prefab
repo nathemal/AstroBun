@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustForceWithFuel: 5
   thrustForceWithoutFuel: 2
-  maxSpeed: 15
+  maxSpeed: 20
   rotationSpeed: 80
   shieldActive: 0
   useFuel: 1

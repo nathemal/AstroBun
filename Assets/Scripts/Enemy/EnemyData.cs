@@ -5,12 +5,32 @@ public class EnemyData : ScriptableObject
 {
 	public EnemyTypeChoices enemyType;
 
+	[Header("The enemy default data before powerups purchase")]
+    [SerializeField] private float defaultFuelDropChance;
+    [SerializeField] private int defaultWorthMoney;
+
+    [Header("The enemy data after powerups purchase")]
     [SerializeField] private float fuelDropChance;
     [SerializeField] private int worthMoney;
+
     [SerializeField] public string lastSceneName = "";
     [HideInInspector] public bool isNewGame = true;
+    [HideInInspector] public bool hasStoredDefaults = false;
 
-	public float FuelDropChanceValue
+
+    public float DefaultFuelDropChanceValue
+    {
+        get { return defaultFuelDropChance; }
+        set { defaultFuelDropChance = value; }
+    }
+
+    public int DefaultWorthMoneyValue
+    {
+        get { return defaultWorthMoney; }
+        set { defaultWorthMoney = value; }
+    }
+
+    public float FuelDropChanceValue
 	{
 		get { return fuelDropChance; }
 		set { fuelDropChance = value; }
@@ -21,6 +41,29 @@ public class EnemyData : ScriptableObject
 		get { return worthMoney; }
 		set { worthMoney = value; }
 	}
+
+    public void SetDefaultStats(EnemyHealthController enemy)
+    {
+        if (!hasStoredDefaults)
+        {
+            DefaultFuelDropChanceValue = enemy.dropChance;
+            DefaultWorthMoneyValue = enemy.worthMoney;
+            hasStoredDefaults = true;
+        }
+    }
+
+    public void ResetStats()
+    {
+        FuelDropChanceValue = DefaultFuelDropChanceValue;
+        WorthMoneyValue = DefaultWorthMoneyValue;
+    }
+
+    public void SetStatsNextLevel(EnemyHealthController enemy)
+    {
+        enemy.worthMoney = WorthMoneyValue;
+        enemy.dropChance = FuelDropChanceValue;
+    }
+
 
     private void OnEnable()
     {

@@ -75,11 +75,6 @@ MonoBehaviour:
     upgradeStat: 10
     cost: 25
     itemRef: {fileID: 0}
-  - powerUpName: Dash fuel consumption
-    description: 'The Dash move costs less fuel by 20% '
-    upgradeStat: 20
-    cost: 40
-    itemRef: {fileID: 0}
   - powerUpName: Currency drop
     description: 'Increase the amount of currency dropped by enemies by 5 '
     upgradeStat: 5

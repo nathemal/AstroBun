@@ -1,0 +1,50 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/UXML/EnemyDataInspectorStyle.uss?fileID=7433441132597879392&amp;guid=b94a029912fbb4e4fad87abf398a722b&amp;type=3#EnemyDataInspectorStyle" />
+    <engine:VisualElement name="EasyEnemyPanel" style="flex-grow: 1; height: auto;">
+        <engine:VisualElement name="Variables" class="section" style="flex-grow: 1;">
+            <engine:Foldout text="Easy enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
+                <editor:PropertyField name="DefaultFuelDropChanceField" binding-path="defaultFuelDropChance" />
+                <editor:PropertyField binding-path="defaultWorthMoney" name="DefaultWorthMoneyField" />
+                <editor:PropertyField binding-path="fuelDropChance" name="FuelDropChanceField" />
+                <editor:PropertyField binding-path="worthMoney" name="WorthMoneyField" />
+            </engine:Foldout>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="NormalEnemyPanel" style="flex-grow: 1; height: auto;">
+        <engine:VisualElement name="Variables" class="section" style="flex-grow: 1;">
+            <engine:Foldout text="Easy enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
+                <editor:PropertyField name="DefaultFuelDropChanceField" binding-path="defaultFuelDropChance" />
+                <editor:PropertyField binding-path="defaultWorthMoney" name="DefaultWorthMoneyField" />
+                <editor:PropertyField binding-path="fuelDropChance" name="FuelDropChanceField" />
+                <editor:PropertyField binding-path="worthMoney" name="WorthMoneyField" />
+            </engine:Foldout>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="StrongEnemyPanel" style="flex-grow: 1; height: auto;">
+        <engine:VisualElement name="Variables" class="section" style="flex-grow: 1;">
+            <engine:Foldout text="Easy enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
+                <editor:PropertyField name="DefaultFuelDropChanceField" binding-path="defaultFuelDropChance" />
+                <editor:PropertyField binding-path="defaultWorthMoney" name="DefaultWorthMoneyField" />
+                <editor:PropertyField binding-path="fuelDropChance" name="FuelDropChanceField" />
+                <editor:PropertyField binding-path="worthMoney" name="WorthMoneyField" />
+            </engine:Foldout>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="StrongestEnemyPanel" style="flex-grow: 1; height: auto;">
+        <engine:VisualElement name="Variables" class="section" style="flex-grow: 1;">
+            <engine:Foldout text="Easy enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
+                <editor:PropertyField name="DefaultFuelDropChanceField" binding-path="defaultFuelDropChance" />
+                <editor:PropertyField binding-path="defaultWorthMoney" name="DefaultWorthMoneyField" />
+                <editor:PropertyField binding-path="fuelDropChance" name="FuelDropChanceField" />
+                <editor:PropertyField binding-path="worthMoney" name="WorthMoneyField" />
+            </engine:Foldout>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="GeneralPanel" style="flex-grow: 1;">
+        <engine:Foldout text="General data">
+            <editor:PropertyField binding-path="lastSceneName" />
+            <editor:PropertyField binding-path="isNewGame" />
+            <editor:PropertyField binding-path="hasStoredDefaults" />
+        </engine:Foldout>
+    </engine:VisualElement>
+</engine:UXML>

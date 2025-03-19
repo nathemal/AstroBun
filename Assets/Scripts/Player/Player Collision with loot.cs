@@ -24,13 +24,9 @@ public class PlayerCollisionWithLoot : MonoBehaviour
 
     }
 
-
     private void CollisionWithFuelLoot(Collider2D collision)
     {
-        FuelPickUp fuelObject = collision.GetComponent<FuelPickUp>(); //search for fuelPickUp script
-                                                                      //that is attached to the collided object
-                                                                      //GetComponent would search for the script
-                                                                      //that is attached to the player
+        FuelPickUp fuelObject = collision.GetComponent<FuelPickUp>(); 
 
         if (fuelObject != null && fuelObject.fuelLootData != null)
         {

@@ -48,28 +48,12 @@ public class PlayerController : MonoBehaviour
 
         if (data.isNewGame)
         {
-            UpdateFuelDataInNextScene();
+            data.UpdateFuelDataInFirstScene(this);
         }
         else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
         {
-            UpdateFuelDataInFirstScene();
+            data.UpdateFuelDataInNextScene(this);
         }
-    }
-
-    private void UpdateFuelDataInFirstScene()
-    {
-        fuel = data.FuelAmountValue;
-        fuelConsumptionRate = data.FueConsumptionValue;
-
-        fuelTank.UpdateFuelTank(data.FuelTankCapValue, fuel);
-    }
-
-    private void UpdateFuelDataInNextScene()
-    {
-        fuelTank.UpdateFuelTank(fuel, fuel);
-        data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
-        data.FueConsumptionValue = fuelConsumptionRate;
-        data.FuelAmountValue = fuel;
     }
 
     void Update()
@@ -131,6 +115,8 @@ public class PlayerController : MonoBehaviour
 
                 fuel -= fuelConsumptionRate * Time.deltaTime;
                 fuelTank.UpdateFuelTank(fuelTank.fuelBar.maxValue, fuel);
+                data.FuelAmountValue = fuel;
+
                 fuel = Mathf.Max(fuel, 0);
             }
             else if (!useFuel && movementInput.sqrMagnitude > 0.1f)

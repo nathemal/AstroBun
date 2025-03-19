@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  lifeSpan: 1.5
+  lifeSpan: 2
   damage: 1
   fireRate: 0.3
   rbs:

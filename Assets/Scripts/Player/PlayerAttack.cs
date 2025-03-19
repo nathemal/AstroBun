@@ -23,32 +23,37 @@ public class PlayerAttack : MonoBehaviour
         {
             SetBulletDefaultStats();
             ResetBulletDefaultStats();
+            //data.SetBulletDefaultStats(bulletScript);
+            //data.ResetBulletDefaultStats();
 
             data.isNewGame = false;
         }
 
-        data.lastSceneName = currentSceneName;
+        //data.lastSceneName = currentSceneName;
     }
 
-    private void SetBulletDefaultStats()
+    public void SetBulletDefaultStats()
     {
-        if (!data.hasStoredDefaults)
+        if (data.hasStoredDefaults)
         {
             data.FireRateDefaultValue = bulletScript.fireRate;
+            Debug.Log("Set default Fire rate value " + data.FireRateDefaultValue + " with initial bullet value" + bulletScript.fireRate);
             data.FireDamageDefaultValue = bulletScript.damage;
             data.BulletSpeedDefaultValue = bulletScript.speed;
             data.ShootingRangeDefaultValue = bulletScript.lifeSpan;
             data.hasStoredDefaults = true;
         }
     }
-
-    private void ResetBulletDefaultStats()
+    public void ResetBulletDefaultStats()
     {
         data.FireRateValue = data.FireRateDefaultValue;
+        Debug.Log("Reset work Fire rate value " + data.FireRateValue + " and default value" + data.FireRateDefaultValue);
         data.FireDamageValue = data.FireDamageDefaultValue;
         data.BulletSpeedValue = data.BulletSpeedDefaultValue;
         data.ShootingRangeValue = data.ShootingRangeDefaultValue;
     }
+
+
 
     public void CreateBullets()
     {

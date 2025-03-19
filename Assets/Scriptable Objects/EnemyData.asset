@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   enemyType: 0
-  fuelDropChance: 60
-  worthMoney: 80
+  defaultFuelDropChance: 0
+  defaultWorthMoney: 0
+  fuelDropChance: 0
+  worthMoney: 0
   lastSceneName: 
   isNewGame: 1
+  hasStoredDefaults: 0
