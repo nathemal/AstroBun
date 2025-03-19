@@ -29,14 +29,20 @@ public class EnemyHealthController : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if(data.isNewGame && data.enemyType == enemyType)
+        Debug.Log("Current scene name: " + currentSceneName);
+        Debug.Log("Data scene name: " + data.lastSceneName);
+
+
+        if (data.isNewGame)
         {
             data.SetDefaultStats(this);
             data.ResetStats();
+            data.isNewGame = false;
         }
-        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == "") && data.enemyType == enemyType)
+        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
         {
             data.SetStatsNextLevel(this);
+           // Debug.Log("Current scene name: " + currentSceneName);
         }
 
         currentHealth = maxHealth;

@@ -90,10 +90,9 @@ public class PlayerData : ScriptableObject
 
     public void SetBulletDefaultStats(BulletSettings bullet)
     {
-        if (hasStoredDefaults)
+        if (!hasStoredDefaults)
         {
             FireRateDefaultValue = bullet.fireRate;
-            Debug.Log("Set default Fire rate value " + FireRateDefaultValue + " with initial bullet value" + bullet.fireRate);
             FireDamageDefaultValue = bullet.damage;
             BulletSpeedDefaultValue = bullet.speed;
             ShootingRangeDefaultValue = bullet.lifeSpan;
@@ -103,7 +102,7 @@ public class PlayerData : ScriptableObject
     public void ResetBulletDefaultStats()
     {
         FireRateValue = FireRateDefaultValue;
-        Debug.Log("Reset work Fire rate value " + FireRateValue + " and default value" + FireRateDefaultValue);
+        //Debug.Log("Reset work Fire rate value " + FireRateValue + " and default value" + FireRateDefaultValue);
         FireDamageValue = FireDamageDefaultValue;
         BulletSpeedValue = BulletSpeedDefaultValue;
         ShootingRangeValue = ShootingRangeDefaultValue;

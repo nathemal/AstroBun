@@ -26,7 +26,7 @@ public class ShopManager : MonoBehaviour
     public GameObject shopItemPefab;
 
     private GameObject shopItemParent;
-
+  
     public EnemyHealthController[] EnemiesList;
     public Fuelbar fuelTankBar;
     public PlayerController playerFuel;
@@ -144,9 +144,6 @@ public class ShopManager : MonoBehaviour
                 playerFuel.fuelConsumptionRate = DecreaseFuelConsumption(powerUp.upgradeStat); //decrease fuel consumption rate
                 playerFuel.data.FueConsumptionValue = playerFuel.fuelConsumptionRate;
                 break;
-            case "Dash fuel consumption":
-                //code in here
-                break;
             case "Currency drop":
                 foreach (EnemyTypeChoices enemyType in System.Enum.GetValues(typeof(EnemyTypeChoices)))
                 {
@@ -191,7 +188,6 @@ public class ShopManager : MonoBehaviour
         fuelTankBar.UpdateFuelText((int)playerFuel.data.FuelTankCapValue, playerFuel.data.FuelAmountValue);
     }
 
-
     private void UpdateCurrencyDropValue(int amountIncrease, EnemyTypeChoices enemyType)
     {
         foreach (EnemyHealthController enemy in EnemiesList)
@@ -212,7 +208,6 @@ public class ShopManager : MonoBehaviour
         }
         return EnemyHealthController.dropChanceMultiplier; //return not upgraded
     }
-
     private void UpdateFuelLootDropChanceValue(float percentageIncrease, EnemyTypeChoices enemyType)
     {
         EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(percentageIncrease);
@@ -226,7 +221,6 @@ public class ShopManager : MonoBehaviour
             }
         }
     }
-
     public void OpenShop()
     {
         shopUI.SetActive(true);

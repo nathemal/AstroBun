@@ -113,7 +113,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -37410531
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -5963755928317198705, guid: e7d9451768a205f40b7c03886b58939a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -249,7 +249,7 @@ MonoBehaviour:
   enemyType: 1
   maxHealth: 50
   currentHealth: 0
-  worthMoney: 30
+  worthMoney: 35
   onDeath:
     m_PersistentCalls:
       m_Calls:

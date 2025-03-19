@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/EnemyData")]
 public class EnemyData : ScriptableObject
 {
-	public EnemyTypeChoices enemyType;
+    public EnemyTypeChoices enemyType;
 
 	[Header("The enemy default data before powerups purchase")]
     [SerializeField] private float defaultFuelDropChance;

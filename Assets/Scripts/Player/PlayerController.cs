@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
 
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-
         if (data.isNewGame)
         {
             data.UpdateFuelDataInFirstScene(this);

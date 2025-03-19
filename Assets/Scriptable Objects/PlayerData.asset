@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   health: 100
-  fuelAmount: 82.40027
+  fuelAmount: 51.2005
   fuelTankCapacity: 100
   fuelUsageAmount: 10
-  defaultSpeed: 0
-  defualtLifeSpan: 0
-  defaultDamage: 0
-  defualtFireRate: 0
-  speed: 0
-  lifeSpan: 0
-  damage: 0
-  fireRate: 0
-  lastSceneName: 
+  defaultSpeed: 19
+  defualtLifeSpan: 2
+  defaultDamage: 8
+  defualtFireRate: 0.3
+  speed: 19
+  lifeSpan: 2
+  damage: 8
+  fireRate: 0.3
+  lastSceneName: Shop test
   isNewGame: 0
-  hasStoredDefaults: 0
+  hasStoredDefaults: 1
