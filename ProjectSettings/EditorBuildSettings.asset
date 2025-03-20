@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prefabs/Scenes/MainMenu/StartMenu.unity
+    path: Assets/Scenes/MainMenu/StartMenu.unity
     guid: 14c1ac5302b8e6e4d89c9535727cfa30
   - enabled: 1
-    path: Assets/Prefabs/Scenes/MainMenu/LevelSelect.unity
+    path: Assets/Scenes/MainMenu/LevelSelect.unity
     guid: 3839c2433cacdef4289c997a13c216f3
   - enabled: 1
-    path: Assets/Prefabs/Scenes/MainMenu/Settings.unity
+    path: Assets/Scenes/MainMenu/Settings.unity
     guid: f6932460d75564e4bb8f5bb7029337c2
   - enabled: 1
-    path: Assets/Prefabs/Scenes/MainMenu/Credits.unity
+    path: Assets/Scenes/MainMenu/Credits.unity
     guid: d3271118e56b22d4fa54bc24d6528bcf
   - enabled: 1
-    path: Assets/Prefabs/Scenes/Tests/Shop test.unity
+    path: Assets/Scenes/Tests/Shop test.unity
     guid: ee0fc5c0c543b0140a63e0b92c5da148
   - enabled: 1
     path: Assets/Scenes/Saving level.unity
