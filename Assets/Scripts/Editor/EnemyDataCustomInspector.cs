@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using Sirenix.OdinValidator.Editor;
 
-//[CustomEditor(typeof(EnemyData))]
+[CustomEditor(typeof(EnemyData))]
 public class EnemyDataCustomInspector : Editor
 {
     public VisualTreeAsset VisualTree;
@@ -12,7 +12,7 @@ public class EnemyDataCustomInspector : Editor
 
     private void OnEnable()
     {
-        //enemyData = (EnemyData)target;
+        enemyData = (EnemyData)target;
 
         if (enemyData == null)
         {
@@ -35,10 +35,10 @@ public class EnemyDataCustomInspector : Editor
 
         serializedObject.Update();
 
-        PopulatePanel(root.Q<VisualElement>("EasyEnemyPanel"), serializedObject, EnemyTypeChoices.Easy);
-        PopulatePanel(root.Q<VisualElement>("NormalEnemyPanel"), serializedObject, EnemyTypeChoices.Normal);
-        PopulatePanel(root.Q<VisualElement>("StrongEnemyPanel"), serializedObject, EnemyTypeChoices.Strong);
-        PopulatePanel(root.Q<VisualElement>("StrongestEnemyPanel"), serializedObject, EnemyTypeChoices.Strongest);
+        InitPanel(root.Q<VisualElement>("EasyEnemyPanel"), serializedObject, EnemyTypeChoices.Easy);
+        InitPanel(root.Q<VisualElement>("NormalEnemyPanel"), serializedObject, EnemyTypeChoices.Normal);
+        InitPanel(root.Q<VisualElement>("StrongEnemyPanel"), serializedObject, EnemyTypeChoices.Strong);
+        InitPanel(root.Q<VisualElement>("StrongestEnemyPanel"), serializedObject, EnemyTypeChoices.Strongest);
 
         serializedObject.ApplyModifiedProperties();
 
@@ -46,7 +46,7 @@ public class EnemyDataCustomInspector : Editor
     }
 
   
-    private void PopulatePanel(VisualElement panel, SerializedObject serializedObject, EnemyTypeChoices type)
+    private void InitPanel(VisualElement panel, SerializedObject serializedObject, EnemyTypeChoices type)
     {
 
         SerializedProperty defaultFuelDropChance = serializedObject.FindProperty("defaultFuelDropChance");

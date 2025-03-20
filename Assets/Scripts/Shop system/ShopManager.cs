@@ -8,7 +8,7 @@ public class PowerUpSetting
     public string powerUpName; 
     public string description;
     public float upgradeStat; //how much the current stat will be improved
-    public int cost; 
+    public int cost;
     //public Sprite image;
     [HideInInspector] public GameObject itemRef;
 }

@@ -168,7 +168,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 4.4282, y: 0.34477234}
+  m_Offset: {x: 5.7075195, y: -5.428581}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -178,7 +178,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 335.24658, y: 237.01865}
+  m_Size: {x: 371.9212, y: 269.82263}
   m_EdgeRadius: 0
 --- !u!114 &7309342265280112566
 MonoBehaviour:
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7842993588574775839
 MonoBehaviour:
   m_ObjectHideFlags: 0

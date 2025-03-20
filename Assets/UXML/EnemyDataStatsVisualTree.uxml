@@ -12,7 +12,7 @@
     </engine:VisualElement>
     <engine:VisualElement name="NormalEnemyPanel" style="flex-grow: 1; height: auto;">
         <engine:VisualElement name="Variables" class="section" style="flex-grow: 1;">
-            <engine:Foldout text="Easy enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
+            <engine:Foldout text="Normal enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
                 <editor:PropertyField name="DefaultFuelDropChanceField" binding-path="defaultFuelDropChance" />
                 <editor:PropertyField binding-path="defaultWorthMoney" name="DefaultWorthMoneyField" />
                 <editor:PropertyField binding-path="fuelDropChance" name="FuelDropChanceField" />
@@ -22,7 +22,7 @@
     </engine:VisualElement>
     <engine:VisualElement name="StrongEnemyPanel" style="flex-grow: 1; height: auto;">
         <engine:VisualElement name="Variables" class="section" style="flex-grow: 1;">
-            <engine:Foldout text="Easy enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
+            <engine:Foldout text="Strong  enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
                 <editor:PropertyField name="DefaultFuelDropChanceField" binding-path="defaultFuelDropChance" />
                 <editor:PropertyField binding-path="defaultWorthMoney" name="DefaultWorthMoneyField" />
                 <editor:PropertyField binding-path="fuelDropChance" name="FuelDropChanceField" />
@@ -32,7 +32,7 @@
     </engine:VisualElement>
     <engine:VisualElement name="StrongestEnemyPanel" style="flex-grow: 1; height: auto;">
         <engine:VisualElement name="Variables" class="section" style="flex-grow: 1;">
-            <engine:Foldout text="Easy enemy data" name="data1" view-data-key="foldOutPosition" style="margin-top: 10px;">
+            <engine:Foldout text="Strongest  enemy data" name="Data2" view-data-key="foldOutPosition" style="margin-top: 10px;">
                 <editor:PropertyField name="DefaultFuelDropChanceField" binding-path="defaultFuelDropChance" />
                 <editor:PropertyField binding-path="defaultWorthMoney" name="DefaultWorthMoneyField" />
                 <editor:PropertyField binding-path="fuelDropChance" name="FuelDropChanceField" />
