@@ -1,11 +1,15 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Scriptable Objects/EnemyData")]
 public class EnemyData : ScriptableObject
 {
-    public EnemyTypeChoices enemyType;
 
-	[Header("The enemy default data before powerups purchase")]
+    [SerializeField] public EnemyTypeChoices enemyType;
+
+    [Header("The enemy default data before powerups purchase")]
     [SerializeField] private float defaultFuelDropChance;
     [SerializeField] private int defaultWorthMoney;
 
@@ -16,7 +20,6 @@ public class EnemyData : ScriptableObject
     [SerializeField] public string lastSceneName = "";
     [HideInInspector] public bool isNewGame = true;
     [HideInInspector] public bool hasStoredDefaults = false;
-
 
     public float DefaultFuelDropChanceValue
     {
@@ -31,20 +34,20 @@ public class EnemyData : ScriptableObject
     }
 
     public float FuelDropChanceValue
-	{
-		get { return fuelDropChance; }
-		set { fuelDropChance = value; }
-	}
+    {
+        get { return fuelDropChance; }
+        set { fuelDropChance = value; }
+    }
 
-	public int WorthMoneyValue
-	{
-		get { return worthMoney; }
-		set { worthMoney = value; }
-	}
+    public int WorthMoneyValue
+    {
+        get { return worthMoney; }
+        set { worthMoney = value; }
+    }
 
     public void SetDefaultStats(EnemyHealthController enemy)
     {
-        if (!hasStoredDefaults)
+        if(!hasStoredDefaults)
         {
             DefaultFuelDropChanceValue = enemy.dropChance;
             DefaultWorthMoneyValue = enemy.worthMoney;
@@ -64,9 +67,10 @@ public class EnemyData : ScriptableObject
         enemy.dropChance = FuelDropChanceValue;
     }
 
-
     private void OnEnable()
     {
         isNewGame = true;
+        hasStoredDefaults = false;
     }
+
 }

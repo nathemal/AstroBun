@@ -26,7 +26,7 @@ public class OrbitController : MonoBehaviour
         // Ignore anything tagged as "Enemy"
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log($"Ignoring collision with {other.name} (Enemy)");
+            //Debug.Log($"Ignoring collision with {other.name} (Enemy)");
             return;
         }
 
@@ -45,7 +45,7 @@ public class OrbitController : MonoBehaviour
             orbitSpeed = 3f; // Reset orbit speed to default
             rb.linearVelocity = tangent * orbitSpeed;
 
-            Debug.Log($"Player entered orbit around {currentPlanet.name}");
+            //Debug.Log($"Player entered orbit around {currentPlanet.name}");
         }
     }
 
@@ -62,7 +62,7 @@ public class OrbitController : MonoBehaviour
             {
                 reverseOrbit = !reverseOrbit;
 
-                Debug.Log($"Orbit direction reversed: {reverseOrbit}");
+                //Debug.Log($"Orbit direction reversed: {reverseOrbit}");
             }
             Vector2 tangent = reverseOrbit ? new Vector2(direction.y, -direction.x) : new Vector2(-direction.y, direction.x);
 
@@ -74,7 +74,7 @@ public class OrbitController : MonoBehaviour
             {
                 orbitSpeed += Time.deltaTime * boostMultiplier;
                 orbitSpeed = Mathf.Min(orbitSpeed, maxOrbitSpeed);
-                Debug.Log($"Boosting orbit speed: {orbitSpeed}");
+                //Debug.Log($"Boosting orbit speed: {orbitSpeed}");
             }
 
             // Launch player when space is released
@@ -87,7 +87,7 @@ public class OrbitController : MonoBehaviour
                 rb.linearVelocity = launchDirection * launchForce;
                 StartCoroutine(DecaySpeed());
 
-                Debug.Log($"Player launched from {currentPlanet.name} with velocity {rb.linearVelocity}");
+                //Debug.Log($"Player launched from {currentPlanet.name} with velocity {rb.linearVelocity}");
             }
 
             // Debug to check if speed cap is working
@@ -102,11 +102,11 @@ public class OrbitController : MonoBehaviour
         while (isDecaying && rb.linearVelocity.magnitude > maxOrbitSpeed)
         {
             rb.linearVelocity *= (1 - launchDecayRate * Time.deltaTime);
-            Debug.Log($"Reducing speed: {rb.linearVelocity.magnitude}");
+            //Debug.Log($"Reducing speed: {rb.linearVelocity.magnitude}");
             yield return null;
         }
         isDecaying = false;
-        Debug.Log("Speed decay complete");
+        //Debug.Log("Speed decay complete");
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -114,7 +114,7 @@ public class OrbitController : MonoBehaviour
         if (other.CompareTag("Planet"))
         {
             isOrbiting = false;
-            Debug.Log($"Player left orbit around {currentPlanet.name}");
+            //Debug.Log($"Player left orbit around {currentPlanet.name}");
             currentPlanet = null;
         }
     }

@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 124251646895732294}
   - component: {fileID: 5364399973174064757}
   m_Layer: 7
-  m_Name: Enemy 3 just pain
+  m_Name: Enemy 3 just pain STRONGEST
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4c0e7ef0cfca745adb693fde2287e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 3
   maxHealth: 80
   currentHealth: 0
   worthMoney: 70
@@ -232,7 +231,7 @@ MonoBehaviour:
   fuelLootPrefab: {fileID: 1537134886148360166, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
   dropChance: 60
   healLootPrefab: {fileID: 1537134886148360166, guid: 3539858c11bf064419ad7f0c93ab56dd, type: 3}
-  data: {fileID: 11400000, guid: 5b04e04dd94cb384498cb440922b1d5f, type: 2}
+  data: {fileID: 11400000, guid: 0068d683453bbe948b85ca5e7c78ef5e, type: 2}
 --- !u!114 &124251646895732294
 MonoBehaviour:
   m_ObjectHideFlags: 0

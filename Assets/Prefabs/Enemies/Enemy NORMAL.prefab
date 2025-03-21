@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: -2407957162718211872}
   - component: {fileID: 124251646895732294}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Enemy NORMAL
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -37410531
-  m_SortingLayer: 0
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -5963755928317198705, guid: e7d9451768a205f40b7c03886b58939a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -246,10 +246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4c0e7ef0cfca745adb693fde2287e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 1
   maxHealth: 50
   currentHealth: 0
-  worthMoney: 35
+  worthMoney: 40
   onDeath:
     m_PersistentCalls:
       m_Calls:
@@ -268,7 +267,7 @@ MonoBehaviour:
   fuelLootPrefab: {fileID: 1537134886148360166, guid: 9391fa64bbcd8bf4baf2d03c847f3687, type: 3}
   dropChance: 30
   healLootPrefab: {fileID: 1537134886148360166, guid: 3539858c11bf064419ad7f0c93ab56dd, type: 3}
-  data: {fileID: 11400000, guid: 5b04e04dd94cb384498cb440922b1d5f, type: 2}
+  data: {fileID: 11400000, guid: a8cfd52ceb6082f499c639827832d9e4, type: 2}
 --- !u!114 &124251646895732294
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -27,6 +27,8 @@ public class ShopManager : MonoBehaviour
 
     private GameObject shopItemParent;
   
+    //public EnemyHealthController enemy;
+    
     public EnemyHealthController[] EnemiesList;
     public Fuelbar fuelTankBar;
     public PlayerController playerFuel;
@@ -145,16 +147,10 @@ public class ShopManager : MonoBehaviour
                 playerFuel.data.FueConsumptionValue = playerFuel.fuelConsumptionRate;
                 break;
             case "Currency drop":
-                foreach (EnemyTypeChoices enemyType in System.Enum.GetValues(typeof(EnemyTypeChoices)))
-                {
-                    UpdateCurrencyDropValue((int)powerUp.upgradeStat, enemyType);
-                }
+                UpdateCurrencyDropValue((int)powerUp.upgradeStat);
                 break;
             case "Fuel loot drop":
-                foreach (EnemyTypeChoices enemyType in System.Enum.GetValues(typeof(EnemyTypeChoices)))
-                {
-                    UpdateFuelLootDropChanceValue(powerUp.upgradeStat, enemyType);
-                }
+                UpdateFuelLootDropChanceValue(powerUp.upgradeStat);
                 break;
         }
     }
@@ -188,17 +184,15 @@ public class ShopManager : MonoBehaviour
         fuelTankBar.UpdateFuelText((int)playerFuel.data.FuelTankCapValue, playerFuel.data.FuelAmountValue);
     }
 
-    private void UpdateCurrencyDropValue(int amountIncrease, EnemyTypeChoices enemyType)
+    private void UpdateCurrencyDropValue(int amountIncrease)
     {
         foreach (EnemyHealthController enemy in EnemiesList)
         {
-            if (enemy.enemyType == enemyType)
-            {
-                enemy.worthMoney += amountIncrease;
-                enemy.data.WorthMoneyValue = enemy.worthMoney;
-            }
+            enemy.data.WorthMoneyValue += amountIncrease;
         }
+        
     }
+
 
     private float IncreaseFuelLootChance(float procentage)
     {
@@ -208,19 +202,17 @@ public class ShopManager : MonoBehaviour
         }
         return EnemyHealthController.dropChanceMultiplier; //return not upgraded
     }
-    private void UpdateFuelLootDropChanceValue(float percentageIncrease, EnemyTypeChoices enemyType)
+    private void UpdateFuelLootDropChanceValue(float percentageIncrease)
     {
         EnemyHealthController.dropChanceMultiplier = IncreaseFuelLootChance(percentageIncrease);
-
+       
         foreach (EnemyHealthController enemy in EnemiesList)
         {
-            if (enemy.enemyType == enemyType)
-            {
-                enemy.dropChance = enemy.dropChance * EnemyHealthController.dropChanceMultiplier;
-                enemy.data.FuelDropChanceValue = enemy.dropChance;
-            }
+            enemy.data.FuelDropChanceValue *= EnemyHealthController.dropChanceMultiplier;
         }
     }
+
+   
     public void OpenShop()
     {
         shopUI.SetActive(true);

@@ -4,27 +4,27 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using Sirenix.OdinValidator.Editor;
 
-[CustomEditor(typeof(EnemyData))]
+//[CustomEditor(typeof(EnemyData))]
 public class EnemyDataCustomInspector : Editor
 {
     public VisualTreeAsset VisualTree;
-    private EnemyData enemyData;
+    //private EnemyData enemyData;
 
     private void OnEnable()
     {
-        enemyData = (EnemyData)target;
+        //enemyData = (EnemyData)target;
 
-        if (enemyData == null)
-        {
-            Debug.LogError("EnemyData is NULL!");
-        }
-        else
-        {
-            Debug.Log($"EnemyData Loaded: {enemyData.name}");
-        }
+        //if (enemyData == null)
+        //{
+        //    Debug.LogError("EnemyData is NULL!");
+        //}
+        //else
+        //{
+        //    Debug.Log($"EnemyData Loaded: {enemyData.name}");
+        //}
 
 
-        serializedObject.Update();
+        //serializedObject.Update();
 
     }
     public override VisualElement CreateInspectorGUI()

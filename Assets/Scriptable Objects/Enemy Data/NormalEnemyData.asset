@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4104921b1505db43997b193a51e7d44, type: 3}
-  m_Name: EnemyData
+  m_Name: NormalEnemyData
   m_EditorClassIdentifier: 
-  enemyType: 0
-  defaultFuelDropChance: 0
-  defaultWorthMoney: 0
-  fuelDropChance: 0
-  worthMoney: 0
-  lastSceneName: 
+  enemyType: 1
+  defaultFuelDropChance: 30
+  defaultWorthMoney: 30
+  fuelDropChance: 30
+  worthMoney: 30
+  lastSceneName: Shop test
   isNewGame: 1
   hasStoredDefaults: 0
