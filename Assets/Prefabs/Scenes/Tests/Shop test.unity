@@ -1502,6 +1502,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4ee2bd6c8ad2ee45b975e9be56edf0c, type: 3}
+--- !u!114 &1976442434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7581807370788533872, guid: a4ee2bd6c8ad2ee45b975e9be56edf0c, type: 3}
+  m_PrefabInstance: {fileID: 1976442433}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65144469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eac13734cba037a46bacd4d1210c7d2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1981334569 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4405605591640091435, guid: 418f06c5f65af1843a32f23a4e59c55b, type: 3}
@@ -2244,6 +2255,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1147065835596604266, guid: e2a2636e7379e4e4a8c384d8632048a3, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
+    - target: {fileID: 1147065835596604266, guid: e2a2636e7379e4e4a8c384d8632048a3, type: 3}
+      propertyPath: playerFuel
+      value: 
+      objectReference: {fileID: 65144474}
+    - target: {fileID: 1147065835596604266, guid: e2a2636e7379e4e4a8c384d8632048a3, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 1298069424}
+    - target: {fileID: 1147065835596604266, guid: e2a2636e7379e4e4a8c384d8632048a3, type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 1976442434}
+    - target: {fileID: 1147065835596604266, guid: e2a2636e7379e4e4a8c384d8632048a3, type: 3}
       propertyPath: 'AllEnemiesList.Array.data[0]'
       value: 
       objectReference: {fileID: 2099726962}
@@ -2303,6 +2330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: All Enemy Data Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8220362923779318919, guid: e2a2636e7379e4e4a8c384d8632048a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2321,9 +2352,9 @@ SceneRoots:
   - {fileID: 213660383}
   - {fileID: 3627931163764381818}
   - {fileID: 1217019058}
-  - {fileID: 1976442433}
   - {fileID: 985250369}
   - {fileID: 21721231}
   - {fileID: 124775848}
   - {fileID: 901320041}
   - {fileID: 8705741928757363165}
+  - {fileID: 1976442433}

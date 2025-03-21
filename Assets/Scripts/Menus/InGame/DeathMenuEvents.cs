@@ -15,6 +15,11 @@ public class DeathMenuEvents : MonoBehaviour
     [Header("Name of current scene. CASE SENSITIVE!!")]
     public string currentScene;
 
+
+    //[Header("For carrying over data to next level")]
+    //[SerializeField] public List<EnemyData> EnemiesDatasList;
+    //[SerializeField] public PlayerData playerData;
+
     private void Awake()
     {
         document = GetComponent<UIDocument>();
@@ -34,11 +39,13 @@ public class DeathMenuEvents : MonoBehaviour
 
     private void OnMainMenuClick(ClickEvent evt)
     {
+        ResetGameData();
         LoadScene(startMenuScene);
     }
 
     private void OnRetryClick(ClickEvent evt)
     {
+        ResetGameData();
         LoadScene(currentScene);
     }
 
@@ -50,5 +57,14 @@ public class DeathMenuEvents : MonoBehaviour
     private void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    private void ResetGameData()
+    {
+        if (AllEntityDataManager.Instance != null)
+        {
+            AllEntityDataManager.Instance.ResetPlayerData();
+            AllEntityDataManager.Instance.ResetAllEnemyData();
+        }
     }
 }

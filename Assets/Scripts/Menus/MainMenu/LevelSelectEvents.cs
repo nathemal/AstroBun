@@ -48,16 +48,19 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void OnLevelOneClick(ClickEvent evt)
     {
+        UpdateGameData();
         LoadScene(levelOneScene);
     }
 
     private void OnLevelTwoClick(ClickEvent evt)
     {
+        // UpdateGameData();
         // LoadScene(levelTwoScene);
     }
-    
+
     private void OnLevelThreeClick(ClickEvent evt)
     {
+        //UpdateGameData();
         // LoadScene(levelThreeScene);
     }
 
@@ -68,6 +71,28 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void LoadScene(string scene)
     {
+        //TO GET LAST SCENE NAME 
+        //playerData.lastSceneName = SceneManager.GetActiveScene().name;
+
+        //foreach (EnemyData enemyData in EnemiesDatasList)
+        //{
+        //    enemyData.lastSceneName = SceneManager.GetActiveScene().name;
+        //}
+
+        //carry over powerups to next level
+
+
         SceneManager.LoadScene(scene);
+    }
+
+    //Kamile: I have add this to update data when the player moves to next level
+    //I am not sure it it is going to work
+    private void UpdateGameData()
+    {
+        if (AllEntityDataManager.Instance != null)
+        {
+            AllEntityDataManager.Instance.UpdateEnemyStats();
+            AllEntityDataManager.Instance.UpdatePlayerStats();
+        }
     }
 }

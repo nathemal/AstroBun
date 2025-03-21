@@ -30,17 +30,10 @@ public class EnemyHealthController : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        //if (data.isNewGame)
+        //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
         //{
-        //    data.SetDefaultStats(this);
-        //    data.ResetStats();
-        //    data.isNewGame = false;
+        //    data.SetStatsNextLevel(this);
         //}
-        
-        if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        {
-            data.SetStatsNextLevel(this);
-        }
 
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();

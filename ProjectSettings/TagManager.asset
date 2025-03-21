@@ -21,7 +21,7 @@ TagManager:
   - Enemy
   - EnemyBullet
   - PlayerBullet
-  - 
+  - Boundary
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1265431743
+    locked: 0
+  - name: UI
+    uniqueID: 2533602823
     locked: 0
   m_RenderingLayers:
   - Default

@@ -18,13 +18,13 @@ public class PlayerAttack : MonoBehaviour
 
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        //Load data
-        if (data.isNewGame)
-        {
-            data.SetBulletDefaultStats(bulletScript);
-            data.ResetBulletDefaultStats();
-            data.isNewGame = false;
-        }
+        ////Load data
+        //if (data.isNewGame)
+        //{
+        //    data.SetBulletDefaultStats(bulletScript);
+        //    data.ResetBulletDefaultStats();
+        //    data.isNewGame = false;
+        //}
     }
 
     public void CreateBullets()

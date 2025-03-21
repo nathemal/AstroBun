@@ -20,15 +20,15 @@ public class PlayerHealthController: MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         //Load data
-        if (data.isNewGame)
-        {
-            data.UpdateHealthInFirstScene(this);
-        }
-        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        {
-            data.UpdateHealthInNextScene(this);
-        }
-        
+        //if (data.isNewGame)
+        //{
+        //    data.UpdateHealthInFirstScene(this);
+        //}
+        //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        //{
+        //    data.UpdateHealthInNextScene(this);
+        //}
+
     }
 
     public void TakeDamage(float damage) 
@@ -40,7 +40,13 @@ public class PlayerHealthController: MonoBehaviour
         }
 
         currentHealth -= damage;
-        data.HealthValue = currentHealth;
+
+        if(currentHealth >= 0)
+        {
+            data.HealthValue = currentHealth;
+        }
+        //data.HealthValue = currentHealth;
+
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
 
         if (currentHealth <= 0)
