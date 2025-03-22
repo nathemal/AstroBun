@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,22 +18,19 @@ public class PlayerHealthController: MonoBehaviour
     [SerializeField] private PlayerData data;
 
     [Header("Take Damage Post Processing Settings")]
-    public Volume takeDamageVolume; // Needs a reference to the post processing volume with the take damage profile
-    bool takeDamage; // Bool that is set true when the player takes damage, and is set false when the post processing fading is done
-    bool takeDamageFadeIn; // Bool that checks if the post processing is fading in (true) or out (false)
-    public float takeDamageFadeInTime; // The amount of time it takes for the post processing to fade in
-    public float takeDamageFadeOutTime; // The amount of time it takes for the post processing to fade out
-    float takeDamageTimer; // The temp timer value to do the fade timer
+    public Volume takeDamageVolume;
+    bool takeDamage;
+    bool takeDamageFadeIn;
+    public float takeDamageFadeInTime;
+    public float takeDamageFadeOutTime; 
+    float takeDamageTimer;
     float startWeight;
 
     [Header("Low Health Post Processing Settings")]
     public Volume lowHealthVolume;
     [Range(0f, 1f)]
+    [Header("To see low health effects on sceen:")]
     public float showLowHealthVolumePercentageThreshold;
-
-    //[Header("Camera Shake Post Processing Settings")]
-    //public CameraShake cameraShake;
-    //public float shakeAmount;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,11 +52,6 @@ public class PlayerHealthController: MonoBehaviour
 
     }
 
-    private void Update()
-    {
-       
-    }
-
     public void TakeDamage(float damage) 
     {
         if (currentHealth <= 0)
@@ -69,24 +62,14 @@ public class PlayerHealthController: MonoBehaviour
         }
 
         currentHealth -= damage;
-
+        currentHealth = Mathf.Max(currentHealth, 0);
         data.HealthValue = currentHealth;
 
         takeDamage = true;
 
-        float healthRatio = (1f - (currentHealth / maxHealth)); // Update the current health ratio (1 means full health, 0 is no health)
-        if (healthRatio >= showLowHealthVolumePercentageThreshold) // Check to see if the threshold for displaying the low health post processing is met
-        {
-            float weight = (healthRatio - showLowHealthVolumePercentageThreshold) / (1 - showLowHealthVolumePercentageThreshold); // Calculate the weight of the low health volume
-            weight += 0.5f * Mathf.PingPong(Time.time, 0.5f * (1.2f - weight)); // Add some flashing to the low health volume weight
-            lowHealthVolume.weight = Mathf.SmoothStep(0, 1, weight); // Set the low health volume in a lerp from 0 to 1
-
-        }
-
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
 
-        //cameraShake.ShakeCamera(weaponSettings.cameraShakeAmount, weaponSettings.cameraShakeTime, true, true); // Start the camera shake
-        ChangeVolumeWhenTakingDamage();
+        UpdatePostProcessingEffects();
 
         if (currentHealth <= 0)
         {
@@ -113,43 +96,54 @@ public class PlayerHealthController: MonoBehaviour
 
 
 
+    private void UpdatePostProcessingEffects()
+    {
+        float healthRatio = (1f - (currentHealth / maxHealth)); // Update the current health ratio (1 means full health, 0 is no health)
+        if (healthRatio >= showLowHealthVolumePercentageThreshold)
+        {
+            float weight = (healthRatio - showLowHealthVolumePercentageThreshold) / (1 - showLowHealthVolumePercentageThreshold); // Calculate the weight of the low health volume
+            weight += 0.5f * Mathf.PingPong(Time.time, 0.5f * (1.2f - weight)); // Add some flashing
+            lowHealthVolume.weight = Mathf.SmoothStep(0, 1, weight);
+
+            ChangeVolumeWhenTakingDamage();
+        }
+    }
+
     private void ChangeVolumeBasedOnHeal()
     {
         takeDamageTimer = 0;
         takeDamageFadeIn = true;
 
-        startWeight = takeDamageVolume.weight; // Store the current weight of the volume so we can revert back to this
+        startWeight = takeDamageVolume.weight;
         takeDamage = true; // Start the post processing fading in Update
     }
 
 
     private void ChangeVolumeWhenTakingDamage()
     {
-        if (takeDamage) // This is true when the player takes damage
+        if (!takeDamage) { return; } // This is true when the player takes damage
+        
+        takeDamageTimer += Time.deltaTime;
+
+        if (takeDamageFadeIn)
         {
-            
-            takeDamageTimer += Time.deltaTime; // Start the timer
+            takeDamageVolume.weight = Mathf.SmoothStep(takeDamageVolume.weight, 1, takeDamageTimer / takeDamageFadeInTime);
 
-            if (takeDamageFadeIn) // Is true when the post processing is fading in
+            if (takeDamageTimer >= takeDamageFadeInTime)
             {
-                takeDamageVolume.weight = Mathf.SmoothStep(takeDamageVolume.weight, 1, takeDamageTimer / takeDamageFadeInTime); // Set the post processing weight from 0 to 1
-
-                if (takeDamageTimer >= takeDamageFadeInTime) // Check when the fade in is over
-                {
-                    takeDamageVolume.weight = 1; // Set the weight to 1 for good measure
-                    takeDamageFadeIn = false; // Set to false to start the fade out
-                    takeDamageTimer = 0; // Reset timer
-                }
+                takeDamageVolume.weight = 1;
+                takeDamageFadeIn = false;
+                takeDamageTimer = 0;
             }
-            else // When takeDamageFadeIn is false, for the fade out
-            {
-                takeDamageVolume.weight = Mathf.SmoothStep(takeDamageVolume.weight, startWeight, takeDamageTimer / takeDamageFadeOutTime); // Fade out the post processing, from 1 to 0
+        }
+        else
+        {
+            takeDamageVolume.weight = Mathf.SmoothStep(takeDamageVolume.weight, startWeight, takeDamageTimer / takeDamageFadeOutTime);
 
-                if (takeDamageTimer >= takeDamageFadeOutTime) // Check when the timer is done
-                {
-                    takeDamageVolume.weight = 0; // Set weight to 0 for good measure
-                    takeDamage = false; // Stop the taking damage post processing since it has now both faded in and out again
-                }
+            if (takeDamageTimer >= takeDamageFadeOutTime)
+            {
+                takeDamageVolume.weight = 0;
+                takeDamage = false;
             }
         }
     }
