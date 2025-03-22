@@ -47,7 +47,9 @@ public class EnemyData : ScriptableObject
 
     public void SetDefaultStats(EnemyHealthController enemy)
     {
-        if(!hasStoredDefaults)
+        if (enemy == null || enemy.currentHealth < 0) { return; }
+
+        if (!hasStoredDefaults)
         {
             DefaultFuelDropChanceValue = enemy.dropChance;
             DefaultWorthMoneyValue = enemy.worthMoney;
@@ -63,6 +65,8 @@ public class EnemyData : ScriptableObject
 
     public void SetStatsNextLevel(EnemyHealthController enemy)
     {
+        if(enemy == null || enemy.currentHealth < 0) { return; }
+
         enemy.worthMoney = WorthMoneyValue;
         enemy.dropChance = FuelDropChanceValue;
     }

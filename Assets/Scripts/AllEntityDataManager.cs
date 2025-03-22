@@ -5,7 +5,8 @@ public class AllEntityDataManager : MonoBehaviour
     public static AllEntityDataManager Instance;
 
     [Header("JUST PUT THIS MANAGER IN ONE LEVEL ONCE")]
-    [SerializeField] private PlayerData playerData;
+    [SerializeField] private PlayerData playerData; 
+    //[SerializeField] public GameObject player; 
 
     [SerializeField] public PlayerHealthController playerHealth;
     [SerializeField] public PlayerController playerFuel;
@@ -40,6 +41,11 @@ public class AllEntityDataManager : MonoBehaviour
 
         //    playerData.isNewGame = false;
         //}
+
+        //GameObject newPlayer = Instantiate(playerHealth.);
+
+        //player.SetActive(true);
+        //player.transform.position = playerHealth.startPosition;
 
         playerData.UpdateHealthInFirstScene(playerHealth);
 
@@ -81,6 +87,8 @@ public class AllEntityDataManager : MonoBehaviour
 
     public void UpdatePlayerStats()
     {
+        if(playerFuel == null && playerHealth == null) { return; }
+
         playerData.UpdateHealthInNextScene(playerHealth);
         playerData.UpdateFuelDataInNextScene(playerFuel);
     }

@@ -48,7 +48,7 @@ MonoBehaviour:
   speed: 9
   lifeSpan: 2
   damage: 1
-  fireRate: 0.3
+  fireRate: 0.2
   attackParticlesAmount: 10
   rbs:
   - {fileID: 3743820231114872176}
@@ -282,7 +282,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.2957306
         inSlope: 0
         outSlope: 0
         tangentMode: 0

@@ -36,7 +36,7 @@ public class BulletCollision : MonoBehaviour
         {
             playerHealth.TakeDamage(bullet.damage);
         }
-       
+
         Destroy(gameObject);
     }
 
