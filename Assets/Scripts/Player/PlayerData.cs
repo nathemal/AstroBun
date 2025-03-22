@@ -109,7 +109,7 @@ public class PlayerData : ScriptableObject
 
     public void UpdateFuelDataInNextScene(PlayerController player)
     {
-        if (player == null) { return; }
+        //if (player == null) { return; }
 
         player.fuel = FuelAmountValue;
         player.fuelConsumptionRate = FueConsumptionValue;
@@ -118,7 +118,7 @@ public class PlayerData : ScriptableObject
     }
     public void UpdateFuelDataInFirstScene(PlayerController player)
     {
-        if (player == null) { return; }
+        //if (player == null) { return; }
 
         player.fuelTank.UpdateFuelTank(player.fuel, player.fuel);
         FuelTankCapValue = player.fuelTank.fuelBar.maxValue;
@@ -128,7 +128,7 @@ public class PlayerData : ScriptableObject
 
     public void UpdateHealthInNextScene(PlayerHealthController player)
     {
-        if(player == null || player.currentHealth < 0) { return; }
+        //if(player == null) { return; }
 
         player.currentHealth = HealthValue;
         player.Healthbar.UpdateHealthBar(player.maxHealth, player.currentHealth);
@@ -136,11 +136,11 @@ public class PlayerData : ScriptableObject
 
     public void UpdateHealthInFirstScene(PlayerHealthController player)
     {
-        if (player == null) { return; }
+        //if (player == null) { return; }
 
         player.currentHealth = player.maxHealth;
         player.Healthbar.UpdateHealthBar(player.maxHealth, player.currentHealth);
-        HealthValue = player.currentHealth;
+        HealthValue = player.maxHealth;
     }
 
 

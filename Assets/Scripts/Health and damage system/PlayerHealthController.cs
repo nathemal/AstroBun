@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
@@ -5,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealthController: MonoBehaviour
 {
-    //[HideInInspector] public Vector3 startPosition = new Vector3 (15.3f, -19.5f, 0.0f);
-    //public GameObject player;
     public float maxHealth;
     public float currentHealth;
     public Healthbar Healthbar;
@@ -31,11 +30,18 @@ public class PlayerHealthController: MonoBehaviour
     [Range(0f, 1f)]
     public float showLowHealthVolumePercentageThreshold;
 
+    //[Header("Camera Shake Post Processing Settings")]
+    //public CameraShake cameraShake;
+    //public float shakeAmount;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
+        lowHealthVolume.weight = 0;
+        takeDamageVolume.weight = 0;
         //Load data
         //if (data.isNewGame)
         //{
@@ -50,18 +56,7 @@ public class PlayerHealthController: MonoBehaviour
 
     private void Update()
     {
-        float healthRatio = (1f - (currentHealth / maxHealth)); // Update the current health ratio (1 means full health, 0 is no health)
-        if (healthRatio >= showLowHealthVolumePercentageThreshold) // Check to see if the threshold for displaying the low health post processing is met
-        {
-            float weight = (healthRatio - showLowHealthVolumePercentageThreshold) / (1 - showLowHealthVolumePercentageThreshold); // Calculate the weight of the low health volume
-            weight += 0.5f * Mathf.PingPong(Time.time, 0.5f * (1.2f - weight)); // Add some flashing to the low health volume weight
-            lowHealthVolume.weight = Mathf.SmoothStep(0, 1, weight); // Set the low health volume in a lerp from 0 to 1
-
-            if (takeDamage)
-            {
-                ChangeVolumeWhenTakingDamage();
-            }
-        }
+       
     }
 
     public void TakeDamage(float damage) 
@@ -69,24 +64,29 @@ public class PlayerHealthController: MonoBehaviour
         if (currentHealth <= 0)
         {
             deathMenu.SetActive(true);
-            //player.SetActive(false);
-            //player.transform.position = startPosition;
 
             return;
         }
 
         currentHealth -= damage;
 
-        if(currentHealth >= 0)
-        {
-            data.HealthValue = currentHealth;
-        }
-        //data.HealthValue = currentHealth;
+        data.HealthValue = currentHealth;
 
         takeDamage = true;
-        ChangeVolumeWhenTakingDamage();
+
+        float healthRatio = (1f - (currentHealth / maxHealth)); // Update the current health ratio (1 means full health, 0 is no health)
+        if (healthRatio >= showLowHealthVolumePercentageThreshold) // Check to see if the threshold for displaying the low health post processing is met
+        {
+            float weight = (healthRatio - showLowHealthVolumePercentageThreshold) / (1 - showLowHealthVolumePercentageThreshold); // Calculate the weight of the low health volume
+            weight += 0.5f * Mathf.PingPong(Time.time, 0.5f * (1.2f - weight)); // Add some flashing to the low health volume weight
+            lowHealthVolume.weight = Mathf.SmoothStep(0, 1, weight); // Set the low health volume in a lerp from 0 to 1
+
+        }
 
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
+
+        //cameraShake.ShakeCamera(weaponSettings.cameraShakeAmount, weaponSettings.cameraShakeTime, true, true); // Start the camera shake
+        ChangeVolumeWhenTakingDamage();
 
         if (currentHealth <= 0)
         {
@@ -125,17 +125,15 @@ public class PlayerHealthController: MonoBehaviour
 
     private void ChangeVolumeWhenTakingDamage()
     {
-
         if (takeDamage) // This is true when the player takes damage
         {
-            Debug.Log("in if statement in taking damage volume");
+            
             takeDamageTimer += Time.deltaTime; // Start the timer
 
             if (takeDamageFadeIn) // Is true when the post processing is fading in
             {
                 takeDamageVolume.weight = Mathf.SmoothStep(takeDamageVolume.weight, 1, takeDamageTimer / takeDamageFadeInTime); // Set the post processing weight from 0 to 1
 
-                Debug.Log("in if statement in fade in - taking damage volume");
                 if (takeDamageTimer >= takeDamageFadeInTime) // Check when the fade in is over
                 {
                     takeDamageVolume.weight = 1; // Set the weight to 1 for good measure
@@ -145,7 +143,6 @@ public class PlayerHealthController: MonoBehaviour
             }
             else // When takeDamageFadeIn is false, for the fade out
             {
-                Debug.Log("In else statement");
                 takeDamageVolume.weight = Mathf.SmoothStep(takeDamageVolume.weight, startWeight, takeDamageTimer / takeDamageFadeOutTime); // Fade out the post processing, from 1 to 0
 
                 if (takeDamageTimer >= takeDamageFadeOutTime) // Check when the timer is done
@@ -154,7 +151,6 @@ public class PlayerHealthController: MonoBehaviour
                     takeDamage = false; // Stop the taking damage post processing since it has now both faded in and out again
                 }
             }
-            Debug.Log("at the end of function");
         }
     }
 }

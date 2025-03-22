@@ -14,11 +14,7 @@ public class DeathMenuEvents : MonoBehaviour
     private string startMenuScene = "StartMenu";
     [Header("Name of current scene. CASE SENSITIVE!!")]
     public string currentScene;
-
-
-    //[Header("For carrying over data to next level")]
-    //[SerializeField] public List<EnemyData> EnemiesDatasList;
-    //[SerializeField] public PlayerData playerData;
+   
 
     private void Awake()
     {

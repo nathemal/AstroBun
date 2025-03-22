@@ -6,7 +6,6 @@ public class AllEntityDataManager : MonoBehaviour
 
     [Header("JUST PUT THIS MANAGER IN ONE LEVEL ONCE")]
     [SerializeField] private PlayerData playerData; 
-    //[SerializeField] public GameObject player; 
 
     [SerializeField] public PlayerHealthController playerHealth;
     [SerializeField] public PlayerController playerFuel;
@@ -30,29 +29,24 @@ public class AllEntityDataManager : MonoBehaviour
 
     public void ResetPlayerData()
     {
-        //if (playerData.isNewGame)
-        //{
-        //    playerData.UpdateHealthInFirstScene(playerHealth);
+        if (playerData.isNewGame)
+        {
+            playerData.UpdateHealthInFirstScene(playerHealth);
 
-        //    playerData.UpdateFuelDataInFirstScene(playerFuel);
+            playerData.UpdateFuelDataInFirstScene(playerFuel);
 
-        //    playerData.SetBulletDefaultStats(playerAttack.bulletScript);
-        //    playerData.ResetBulletDefaultStats();
+            playerData.SetBulletDefaultStats(playerAttack.bulletScript);
+            playerData.ResetBulletDefaultStats();
 
-        //    playerData.isNewGame = false;
-        //}
+            playerData.isNewGame = false;
+        }
 
-        //GameObject newPlayer = Instantiate(playerHealth.);
+        //playerData.UpdateHealthInFirstScene(playerHealth);
 
-        //player.SetActive(true);
-        //player.transform.position = playerHealth.startPosition;
+        //playerData.UpdateFuelDataInFirstScene(playerFuel);
 
-        playerData.UpdateHealthInFirstScene(playerHealth);
-
-        playerData.UpdateFuelDataInFirstScene(playerFuel);
-
-        playerData.SetBulletDefaultStats(playerAttack.bulletScript);
-        playerData.ResetBulletDefaultStats();
+        //playerData.SetBulletDefaultStats(playerAttack.bulletScript);
+        //playerData.ResetBulletDefaultStats();
     }
 
     public void ResetAllEnemyData()
