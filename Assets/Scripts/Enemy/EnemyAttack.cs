@@ -11,6 +11,9 @@ public class EnemyAttack : MonoBehaviour
     private float nextFireTime;
     private bool canEnemyShoot;
 
+    [Header("Attack Particle settings")]
+    public ParticleBurst attackParticles;
+
     private void Start()
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
@@ -30,6 +33,8 @@ public class EnemyAttack : MonoBehaviour
         {
             Vector2 directionToTarget = (target.transform.position - firePoint.position).normalized;
             bulletInfo.SetDirection(directionToTarget);
+
+            attackParticles.Burst(bulletInfo.attackParticlesAmount);
         }
     }
     

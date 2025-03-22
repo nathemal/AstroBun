@@ -7,6 +7,9 @@ public class BulletSettings : MonoBehaviour
     public float damage;
     [Header("The value closer to 0, firing is much faster")]
     public float fireRate;
+
+    public int attackParticlesAmount;
+
     public Rigidbody2D[] rbs;
     private Rigidbody2D rb;
 

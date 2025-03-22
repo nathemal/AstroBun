@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3bece7343a9b5941b497a683c0fecc4, type: 3}
+  m_Name: Industrial Planet
+  m_EditorClassIdentifier: 
+  _sprites:
+  - {fileID: -902584946761408576, guid: 70be0c3110be3624a8a464a049004089, type: 3}
+  - {fileID: 53662734116002741, guid: e82d949d4df128b45ad583046291c983, type: 3}
+  - {fileID: 78591843050361212, guid: 8889c80b293c4a84db97d8c3dd06d4c5, type: 3}
+  - {fileID: 4433711020595974973, guid: 6d0621fe5bd4b98428ccd4d16b456f1f, type: 3}
+  planetName: 
+  size: 2
+  color: {r: 1, g: 1, b: 1, a: 0}
+  gravityStrength: 15

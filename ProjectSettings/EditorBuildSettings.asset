@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Saving level.unity
     guid: 715c37a5b91bf8a438ad2465590aed53
+  - enabled: 1
+    path: Assets/Prefabs/Scenes/Tests/LevelOne SPECIAL EFFECTS ART SPAWNERS TEST.unity
+    guid: 07e4b5de697039a46bd9d196656709cb
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
