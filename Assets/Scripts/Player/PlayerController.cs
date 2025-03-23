@@ -167,11 +167,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void PublicChangePauseState()
-    {
-        ChangePauseState();
-    }
-
     public void ChangePauseState()
     {
         if (pauseMenu.activeInHierarchy)

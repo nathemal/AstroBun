@@ -14,9 +14,9 @@ public class LevelSelectEvents : MonoBehaviour
     private List<Button> menuButtons = new List<Button>();
 
     private string tutorialScene = "Tutorial";
-    private string levelOneScene = "Level1";
-    // private string levelTwoScene = "Level2";
-    // private string levelThreeScene = "Level3";
+    private string levelOneScene = "LevelOne";
+    private string levelTwoScene = "LevelTwo";
+    private string levelThreeScene = "LevelThree";
 
     private void Awake()
     {
@@ -53,12 +53,12 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void OnLevelTwoClick(ClickEvent evt)
     {
-        // LoadScene(levelTwoScene);
+        LoadScene(levelTwoScene);
     }
     
     private void OnLevelThreeClick(ClickEvent evt)
     {
-        // LoadScene(levelThreeScene);
+        LoadScene(levelThreeScene);
     }
 
     private void OnAllButtonsClick(ClickEvent evt)
