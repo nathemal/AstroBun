@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Astrobun_OptionsButton_0: 8065122398200945502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

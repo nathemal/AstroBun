@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Astrobun_Level_Select_Menu_0: -3247677574943031586
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

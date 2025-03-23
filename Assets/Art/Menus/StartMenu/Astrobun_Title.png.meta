@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Astrobun_Title_0: 7464352127385529321
+      Astrobun_Title_1: -2041640637679053817
+      Astrobun_Title_2: -5424549375782876623
+      Astrobun_Title_3: -884981200341705306
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

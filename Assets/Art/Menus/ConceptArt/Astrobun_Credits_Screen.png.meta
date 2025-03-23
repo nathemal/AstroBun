@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Astrobun_Credits_Screen_0: 3588490677326113549
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
