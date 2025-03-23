@@ -1,5 +1,6 @@
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.Events;
 
 
@@ -7,7 +8,7 @@ public class DisableEntityBehaviourInShop : MonoBehaviour
 {
     public UnityEvent nearShop;
     public UnityEvent farShop;
-
+    private HashSet<GameObject> EnemiesInsideShopArea = new HashSet<GameObject>();
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
@@ -16,7 +17,11 @@ public class DisableEntityBehaviourInShop : MonoBehaviour
         }
         else if(collision.tag == "Enemy")
         {
-            HandleAllEnemiesShooting(false);
+            if (!EnemiesInsideShopArea.Contains(collision.gameObject))
+            {
+                EnemiesInsideShopArea.Add(collision.gameObject);
+            }
+            HandleAllEnemiesShooting(false, collision.gameObject);
         }
     }
 
@@ -29,32 +34,27 @@ public class DisableEntityBehaviourInShop : MonoBehaviour
         }
         else if (collision.tag == "Enemy")
         {
-            HandleAllEnemiesShooting(true);
+            if (EnemiesInsideShopArea.Contains(collision.gameObject))
+            {
+                EnemiesInsideShopArea.Remove(collision.gameObject);
+            }
+            HandleAllEnemiesShooting(true, collision.gameObject);
         }
     }
 
-    private void HandleAllEnemiesShooting(bool canShoot)
+    private void HandleAllEnemiesShooting(bool canShoot, GameObject enemy)
     {
-        GameObject[] EnemiesList = GameObject.FindGameObjectsWithTag("Enemy");
+        EnemyAttack enemyAttack = enemy.GetComponent<EnemyAttack>();
 
-        foreach (GameObject enemy in EnemiesList)
+        if (enemyAttack == null) { return; }
+
+        if (canShoot)
         {
-            EnemyAttack enemyAttack = enemy.GetComponent<EnemyAttack>();
-
-            if (enemyAttack == null) { return; }
-
-            if (canShoot)
-            {
-                enemyAttack.EnableShooting();
-            }
-            else
-            {
-                enemyAttack.DisableShooting();
-            }
-
+            enemyAttack.EnableShooting();
+        }
+        else
+        {
+            enemyAttack.DisableShooting();
         }
     }
-
-
-    
 }

@@ -5087,7 +5087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttackScript: {fileID: -7054073743433179072}
-  distanceToNoticePlayer: 60
+  distanceToNoticePlayer: 30
   speed: 2
 --- !u!114 &-7054073743433179072
 MonoBehaviour:
@@ -5202,7 +5202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed679a349572fd4e85af94481c84e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowMaterial: {fileID: 2100000, guid: 3386054de2e89934fbc68cbf71887872, type: 2}
-  soulColor: {r: 1, g: 0.9199048, b: 0.006003499, a: 0}
-  enemySilhouette: {fileID: 3080410664333608661, guid: 002c823fa47b3db4baf8fcc24e952677, type: 3}
+  enemySilhouette: {fileID: 8881691511151636519, guid: 002c823fa47b3db4baf8fcc24e952677, type: 3}
   speed: 10
+  souExistanceDuration: 0.2

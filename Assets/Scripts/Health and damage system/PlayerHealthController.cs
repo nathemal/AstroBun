@@ -22,6 +22,8 @@ public class PlayerHealthController: MonoBehaviour
 
     private PlayerPostProcessing postProcessing;
     public bool takeDamage;
+    private float lastDamageTime;
+    private int activeHitsByBullets = 0;
     //public CameraShake sceneCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,17 +48,11 @@ public class PlayerHealthController: MonoBehaviour
 
     public void TakeDamage(float damage) 
     {
-        //if (currentHealth <= 0)
-        //{
-        //    deathMenu.SetActive(true);
-        //    return;
-        //}
         if (isDead) return;
 
         currentHealth -= damage;
         
         data.HealthValue = currentHealth;
-
 
         if (currentHealth <= 0)
         {
@@ -66,19 +62,19 @@ public class PlayerHealthController: MonoBehaviour
             Healthbar.UpdateHealthBar(maxHealth, currentHealth);
 
             deathMenu.SetActive(true);
-
-            //onDeath?.Invoke(); //I got stack overflow because this
             Destroy(gameObject);
             return;
         }
 
-
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
 
+        activeHitsByBullets++;
         takeDamage = true;
-        
-        //StartCoroutine(sceneCamera.ShakeCamera(sceneCamera.durationOfShake, sceneCamera.strenghtOfShake));
+        lastDamageTime = Time.time;
+        postProcessing.ChangeVolumeWhenTakingDamage();
 
+        //StartCoroutine(sceneCamera.ShakeCamera(sceneCamera.durationOfShake, sceneCamera.strenghtOfShake));
+        StartCoroutine(CheckIfStillBeingHit());
     }
 
     public void AddHealth(float healAmount)
@@ -89,9 +85,23 @@ public class PlayerHealthController: MonoBehaviour
         currentHealth += healAmount;
         currentHealth = Mathf.Min(currentHealth, Healthbar.healthSlider.maxValue); //cap heal according the heal bar capacity
 
-        postProcessing.ChangeVolumeBasedOnHeal();
+        postProcessing.ChangeVolumeBasedOnHeal(currentHealth);
 
         data.HealthValue = currentHealth;
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
+    }
+
+
+    private IEnumerator CheckIfStillBeingHit()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        activeHitsByBullets--;
+
+        if (activeHitsByBullets <= 0)
+        {
+            takeDamage = false;
+            postProcessing.ChangeVolumeWhenPlayerIsNotBeingHit();
+        }
     }
 }

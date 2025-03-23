@@ -48,7 +48,7 @@ MonoBehaviour:
   speed: 19
   lifeSpan: 2
   damage: 8
-  fireRate: 0.15
+  fireRate: 0.3
   attackParticlesAmount: 7
   rbs:
   - {fileID: 3743820231114872176}

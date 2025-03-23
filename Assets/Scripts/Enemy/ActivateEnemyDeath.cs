@@ -1,37 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ActivateEnemyDeath : MonoBehaviour
 {
-    public Material glowMaterial;
-    public Color soulColor;
-    public SpriteRenderer enemySilhouette;
-    //public GameObject enemySilhouette;
+    public GameObject enemySilhouette;
+    private GameObject instantaitedSoul;
     private EnemyHealthController enemy;
     public float speed;
+    public float souExistanceDuration;
    
     void Start()
     {
         enemy = GetComponent<EnemyHealthController>();
-       // enemySilhouette = GetComponent<SpriteRenderer>();
-
-        enemySilhouette.color = soulColor;
-        enemySilhouette.material = glowMaterial;
-
-        enemySilhouette.enabled = false;
     }
-
-    // Update is called once per frame
 
     public void SetSoulActive()
     {
         transform.position = enemy.transform.position;
-        enemySilhouette.enabled = true;
-        AnimateSoulMovement();
+        instantaitedSoul = Instantiate(enemySilhouette, enemy.transform.position, Quaternion.identity);
+
+        StartCoroutine(AnimateSoulEmissionIntensity(instantaitedSoul.transform, souExistanceDuration));
     }
 
-    private void AnimateSoulMovement()
+    private IEnumerator AnimateSoulEmissionIntensity(Transform enemySoulTransform, float duration)
     {
-        //transform.position += new Vector3(0, 0, 1 * Time.deltaTime);
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        float timeHasPassed = 0.0f;
+        SpriteRenderer sr = enemySoulTransform.GetComponent<SpriteRenderer>();
+
+        Material soulMaterial = sr.material;
+        Color initialEmissionColor = soulMaterial.GetColor("_EmissionColor");
+
+        while (timeHasPassed < duration)
+        {
+            float fadeAmount = Mathf.Lerp(1f, 0f, timeHasPassed / duration);
+            soulMaterial.SetColor("_EmissionColor", initialEmissionColor * fadeAmount);
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, fadeAmount);
+            
+            timeHasPassed += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(enemySoulTransform.gameObject);
     }
+
+
+    
 }

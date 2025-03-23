@@ -240,6 +240,8 @@ GameObject:
   - component: {fileID: 4378748438642313141}
   - component: {fileID: 4430072721564921288}
   - component: {fileID: 7348947610037627616}
+  - component: {fileID: 1223535905647082393}
+  - component: {fileID: 6751008934957672410}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -340,7 +342,6 @@ MonoBehaviour:
   deathMenu: {fileID: 0}
   data: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
   takeDamage: 0
-  sceneCamera: {fileID: 0}
 --- !u!114 &117549714485997888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +594,62 @@ MonoBehaviour:
   takeDamageFadeOutTime: 0.5
   lowHealthVolume: {fileID: 5956010199581481808}
   showLowHealthVolumePercentageThreshold: 0.4
+--- !u!70 &1223535905647082393
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588143520461653735}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -1.0924597, y: -0.5134814}
+  m_Size: {x: 2.2516003, y: 2.6717048}
+  m_Direction: 0
+--- !u!114 &6751008934957672410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588143520461653735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd53bd841347e740b9c07982414e93e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusOfRayCast: 3
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  obsticleLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &5028572986607801775
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &616859894934976741
 Transform:
   m_ObjectHideFlags: 0

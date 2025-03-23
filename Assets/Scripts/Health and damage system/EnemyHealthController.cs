@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -63,12 +65,23 @@ public class EnemyHealthController : MonoBehaviour
         {
             DropTheLoot();
 
-            enemySoul.SetSoulActive();
-
-            onDeath.Invoke(worthMoney);
-           
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            StartCoroutine(HandleEnemyDeath());
         }
+    }
+
+    private IEnumerator HandleEnemyDeath()
+    {
+        enemySoul.SetSoulActive();
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<EnemyAttack>().enabled = false;
+        GetComponent<EnemyChase>().enabled = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        onDeath.Invoke(worthMoney);
+        Destroy(gameObject);
     }
 
     public float CalculatehealthProcentage()

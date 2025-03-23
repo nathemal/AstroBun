@@ -19,5 +19,5 @@ MonoBehaviour:
   - {fileID: 9100805224293307531, guid: fbc2cb2fc19d1404d91779c94a576c0a, type: 3}
   planetName: 
   size: 2
-  color: {r: 1, g: 1, b: 1, a: 0}
-  gravityStrength: 20
+  color: {r: 1, g: 1, b: 1, a: 1}
+  gravityStrength: 11

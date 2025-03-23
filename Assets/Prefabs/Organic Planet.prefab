@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 5117078573975277364}
   - component: {fileID: 5336362311382174614}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Organic Planet
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

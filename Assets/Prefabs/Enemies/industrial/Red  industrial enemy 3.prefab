@@ -5201,7 +5201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ed679a349572fd4e85af94481c84e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glowMaterial: {fileID: 2100000, guid: 3386054de2e89934fbc68cbf71887872, type: 2}
-  soulColor: {r: 1, g: 0.9199048, b: 0.006003499, a: 0}
-  enemySilhouette: {fileID: 5226993789891777564, guid: d8738a1898c69b54b90f837542f3e83b, type: 3}
+  enemySilhouette: {fileID: 2973188771548920252, guid: d8738a1898c69b54b90f837542f3e83b, type: 3}
   speed: 10
+  souExistanceDuration: 0.2

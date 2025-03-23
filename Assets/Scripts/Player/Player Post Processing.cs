@@ -13,8 +13,7 @@ public class PlayerPostProcessing : MonoBehaviour
     public float takeDamageFadeOutTime;
     private float takeDamageTimer; // The temp timer value to do the fade timer
     private float startWeight;
-    //public float durationOfFlashing;
-    //public float maxIntensityOfFlashing;
+    public float durationOfFlashing;
 
     [Header("Low Health Post Processing Settings")]
     public Volume lowHealthVolume;
@@ -22,7 +21,6 @@ public class PlayerPostProcessing : MonoBehaviour
 
     [Header("To see low health effects on sceen:")]
     public float showLowHealthVolumePercentageThreshold;
-
 
     private void Start()
     {
@@ -34,11 +32,6 @@ public class PlayerPostProcessing : MonoBehaviour
 
     private void Update()
     {
-        if (!player.takeDamage && takeDamageVolume.weight > 0)
-        {
-            StartCoroutine(FadeOutVolume(takeDamageVolume, takeDamageFadeOutTime));
-        }
-
         UpdatePostProcessingEffects();
     }
 
@@ -56,15 +49,15 @@ public class PlayerPostProcessing : MonoBehaviour
             float volumeWeight = healthDropBeyondThreshold / remainingHealthRange;
 
             //Control intensity of post processing effect
-            //float maxValueOfFlashing = 0.5f * (1.2f - volumeWeight);
-            //volumeWeight += 0.5f * Mathf.PingPong(Time.time, maxValueOfFlashing); //flashing
+            float maxValueOfFlashing = 0.5f * (1.2f - volumeWeight);
+            volumeWeight += 0.5f * Mathf.PingPong(Time.time, maxValueOfFlashing); //flashing
             lowHealthVolume.weight = Mathf.SmoothStep(0, 1, volumeWeight);
 
             StartCoroutine(FadeInVolume(lowHealthVolume, takeDamageFadeInTime));
+
         }
         else
         {
-            //lowHealthVolume.weight = Mathf.Lerp(lowHealthVolume.weight, 0, Time.deltaTime * 3);
             StartCoroutine(FadeOutVolume(lowHealthVolume, takeDamageFadeOutTime)); //if the health proc is less than threshold in other words player isn't in critical condition, remove low health volume
         }
 
@@ -74,30 +67,20 @@ public class PlayerPostProcessing : MonoBehaviour
             takeDamageTimer = 0; // Reset fade-out timer
             StopAllCoroutines();
             StartCoroutine(FadeInVolume(takeDamageVolume, takeDamageFadeInTime));
-            //StartCoroutine(FllashingVolumeTakingDamage(durationOfFlashing, maxIntensityOfFlashing));
         }
-        else
-        {
-            takeDamageTimer += Time.deltaTime;
-            if (takeDamageTimer >= takeDamageFadeOutTime)
-            {
-                StopCoroutine(FadeInVolume(takeDamageVolume, takeDamageFadeInTime));
-                StartCoroutine(FadeOutVolume(takeDamageVolume, takeDamageFadeOutTime));
-                player.takeDamage = false;
-            }
-        }
+      
     }
 
     public void ChangeVolumeWhenTakingDamage()
     {
-
         takeDamageFadeIn = true;
+        player.takeDamage = true;
         takeDamageTimer = 0;
         StartCoroutine(FadeInVolume(takeDamageVolume, takeDamageFadeInTime));
     }
 
 
-    public void ChangeVolumeBasedOnHeal()
+    public void ChangeVolumeBasedOnHeal(float healthAfterHeal)
     {
         takeDamageTimer = 0;
         takeDamageFadeIn = false;
@@ -105,8 +88,24 @@ public class PlayerPostProcessing : MonoBehaviour
         startWeight = takeDamageVolume.weight;
         player.takeDamage = false;
 
+        //StartCoroutine(FadeOutVolume(takeDamageVolume, takeDamageFadeOutTime));
+
+        if(healthAfterHeal >= showLowHealthVolumePercentageThreshold)
+        {
+            StartCoroutine(FadeOutVolume(lowHealthVolume, takeDamageFadeOutTime));
+        }
+    }
+
+    public void ChangeVolumeWhenPlayerIsNotBeingHit()
+    {
+        takeDamageTimer = 0;
+        takeDamageFadeIn = false;
+
+        startWeight = takeDamageVolume.weight;
+        player.takeDamage = false;
+
+        StopAllCoroutines();
         StartCoroutine(FadeOutVolume(takeDamageVolume, takeDamageFadeOutTime));
-        StartCoroutine(FadeOutVolume(lowHealthVolume, takeDamageFadeOutTime));
     }
 
     private IEnumerator FadeOutVolume(Volume volume, float duration)
@@ -121,7 +120,6 @@ public class PlayerPostProcessing : MonoBehaviour
 
             yield return null;
         }
-
         volume.weight = 0;   
     }
 
@@ -141,23 +139,5 @@ public class PlayerPostProcessing : MonoBehaviour
 
         volume.weight = 1;
     }
-
-
-    private IEnumerator FllashingVolumeTakingDamage(float duration, float maxIntensity)
-    {
-        float minValue = 0.3f;
-
-        float timeHasPassed = 0;
-
-        while (timeHasPassed < duration)
-        {
-            float flickerValue = Mathf.PingPong(Time.time * 3, maxIntensity);
-            takeDamageVolume.weight = Mathf.Clamp(flickerValue, minValue, maxIntensity);
-
-            timeHasPassed += Time.deltaTime;
-            yield return null;
-        }
-
-        StartCoroutine(FadeOutVolume(takeDamageVolume, takeDamageFadeOutTime));
-    }
+    
 }
