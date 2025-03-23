@@ -4,15 +4,23 @@ using System.Collections;
 
 public class TutorialSpeechBubble : MonoBehaviour
 {
-    public GameObject speechBubblePanel; // UI panel for speech bubble
-    public TMP_Text speechBubbleText;    // Speech bubble text
-    public GameObject fuelMeter;         // Fuel meter to highlight
+    public GameObject speechBubblePanel;
+    public TMP_Text speechBubbleText;
+    public GameObject fuelMeter;
+    public GameObject enemyPrefab;
+    public Transform player;
 
-    private bool tutorialActive = true;  // Track if tutorial is running
-    private bool hasMoved = false;       // Track if the player has moved
+    private bool tutorialActive = true;
+    private bool hasMoved = false;
+    private bool dashPromptActive = false;
+    private bool enemyPromptActive = false;
+    private bool shootPromptActive = false;
+
+    private Rigidbody2D playerRb;
 
     void Start()
     {
+        playerRb = player.GetComponent<Rigidbody2D>(); // Get player's Rigidbody
         ShowSpeechBubble("Use WASD or Arrow Keys to Move!");
     }
 
@@ -20,46 +28,82 @@ public class TutorialSpeechBubble : MonoBehaviour
     {
         if (tutorialActive && !hasMoved)
         {
-            // Check if the player moves
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) ||
                 Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) ||
                 Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) ||
                 Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 hasMoved = true;
-                HideSpeechBubble();  // Hide the initial speech bubble
-
-                // Start the tutorial sequence for fuel meter
+                HideSpeechBubble();
                 StartCoroutine(WaitBeforeFuelHighlight());
             }
+        }
+
+        if (dashPromptActive && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            dashPromptActive = false;
+            HideSpeechBubble();
+            StartCoroutine(SpawnEnemyAndExplain());
+        }
+
+        if (shootPromptActive && Input.GetMouseButtonDown(0)) // Left mouse click
+        {
+            shootPromptActive = false;
+            HideSpeechBubble();
         }
     }
 
     IEnumerator WaitBeforeFuelHighlight()
     {
-        // Let the player move for 3 seconds before highlighting the fuel meter
         yield return new WaitForSeconds(3f);
 
-        // Freeze the game time so the player can't move
         Time.timeScale = 0f;
-
-        // Highlight the fuel meter
         HighlightFuelMeter(true);
-
-        // Show a speech bubble explaining the fuel meter
         ShowSpeechBubble("This is your fuel meter. Dashing and moving consume fuel!");
-
-        // Wait for 3 seconds while game is frozen
         yield return new WaitForSecondsRealtime(3f);
 
-        // Unfreeze the game so the player can continue
         Time.timeScale = 1f;
-
-        // Remove fuel highlight
         HighlightFuelMeter(false);
-
-        // Hide the speech bubble
         HideSpeechBubble();
+
+        StartCoroutine(WaitBeforeDashTutorial());
+    }
+
+    IEnumerator WaitBeforeDashTutorial()
+    {
+        yield return new WaitForSeconds(2f);
+
+        ShowSpeechBubble("Hold Shift to Dash!");
+        dashPromptActive = true;
+    }
+
+    IEnumerator SpawnEnemyAndExplain()
+    {
+        yield return new WaitForSeconds(2f);
+
+        // Stop player momentum
+        if (playerRb != null)
+        {
+            playerRb.linearVelocity = Vector2.zero;
+            playerRb.angularVelocity = 0f;
+        }
+
+        // Spawn enemy
+        if (enemyPrefab != null && player != null)
+        {
+            Vector2 randomDirection = Random.insideUnitCircle.normalized;
+            Vector3 spawnPosition = player.position + new Vector3(randomDirection.x, randomDirection.y, 0) * 20f;
+            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        }
+
+        // Show enemy tutorial
+        ShowSpeechBubble("This is an enemy! Avoid collisions and destroy them.");
+        enemyPromptActive = true;
+        yield return new WaitForSeconds(3f);
+
+        // Show shooting tutorial
+        ShowSpeechBubble("Aim with your mouse and click to shoot!");
+        shootPromptActive = true;
     }
 
     public void ShowSpeechBubble(string message)
@@ -77,7 +121,6 @@ public class TutorialSpeechBubble : MonoBehaviour
     {
         if (fuelMeter != null)
         {
-            // Get the Image component of the Slider's fill area (if needed)
             var fuelImage = fuelMeter.GetComponentInChildren<UnityEngine.UI.Image>();
             if (fuelImage != null)
             {
