@@ -76,7 +76,7 @@ public class PlayerHealthController: MonoBehaviour
         currentHealth += healAmount;
         currentHealth = Mathf.Min(currentHealth, Healthbar.healthSlider.maxValue); //cap heal according the heal bar capacity
       
-        data.HealthValue = currentHealth;
+        //data.HealthValue = currentHealth;//
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
     }
 }

@@ -2,25 +2,25 @@ using UnityEngine;
 
 public class TutorialEnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Assign your enemy prefab in the Inspector
-    public Transform player;       // Assign the player GameObject in the Inspector
-    public float spawnDistance = 5f;
 
-    public void SpawnEnemy()
+    // Reference to the tutorial enemy prefab (with the TutorialEnemyHealthController attached)
+    public GameObject tutorialEnemyPrefab;
+    // Reference to the player (or any other logic to determine the spawn position)
+    public GameObject Player;
+
+    void Start()
     {
-        if (enemyPrefab == null || player == null)
-        {
-            Debug.LogWarning("EnemyPrefab or Player is missing!");
-            return;
-        }
+        // Spawn the tutorial enemy at a position relative to the player
+        SpawnTutorialEnemy(Player.transform.position);
+    }
 
-        // Generate a random direction
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+    // Method to spawn the tutorial enemy at a position relative to the player
+    void SpawnTutorialEnemy(Vector3 playerPosition)
+    {
+        // For example, spawn the enemy 20 units in front of the player
+        Vector3 spawnPosition = playerPosition + (Vector3.up * 20f);
 
-        // Calculate spawn position
-        Vector3 spawnPosition = player.position + new Vector3(randomDirection.x, randomDirection.y, 0) * spawnDistance;
-
-        // Instantiate enemy at spawn position
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        // Instantiate the tutorial enemy prefab at the spawn position
+        Instantiate(tutorialEnemyPrefab, spawnPosition, Quaternion.identity);
     }
 }
