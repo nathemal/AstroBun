@@ -11,6 +11,7 @@ public class TutorialSpeechBubble : MonoBehaviour
     public GameObject enemyPrefab;
     public Transform player;
     public GameObject planetPrefab; // Reference for planet prefab
+    public GameObject shopPrefab;
 
     private bool tutorialActive = true;
     private bool hasMoved = false;
@@ -222,8 +223,62 @@ public class TutorialSpeechBubble : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         HideSpeechBubble();
-        Time.timeScale = 1f; // Unfreeze the game
+
+        // Show space bar tutorial message
+        ShowSpeechBubble("Once in Orbit, hold Space to accelerate. Release to shoot out in the direction you're facing.");
+        // Wait for the player to release the space bar before hiding the message
+        yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space)); // Wait until the player releases the space bar
+
+        HideSpeechBubble();  // Hide the message once the space bar is released
+        Time.timeScale = 1f; // Unfreeze the game (if frozen earlier)
+
+        Debug.Log("Space bar tutorial completed!");
     }
+
+    IEnumerator SpacebarTutorial()
+    {
+        ShowSpeechBubble("Hold Space to speed up. Release to shoot out!");
+
+        // Wait until the player lets go of spacebar
+        yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space));
+
+        HideSpeechBubble();
+        Debug.Log("Space tutorial completed!");
+
+        // Wait 1 second, then start the shop tutorial
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(SpawnShopAndExplain());
+    }
+
+    IEnumerator SpawnShopAndExplain()
+    {
+        yield return new WaitForSeconds(2f);
+
+        // Stop player momentum
+        if (playerRb != null)
+        {
+            playerRb.linearVelocity = Vector2.zero;
+            playerRb.angularVelocity = 0f;
+        }
+
+        // Spawn the shop prefab
+        if (shopPrefab != null && player != null)
+        {
+            Vector3 spawnPosition = player.position + new Vector3(50f, 0f, 0f); // Spawn shop 50 units away
+            Instantiate(shopPrefab, spawnPosition, Quaternion.identity);
+            Debug.Log("Shop spawned!");
+        }
+
+        // Show shop tutorial message
+        ShowSpeechBubble("This is a shop! Stand close and left-click to interact.");
+
+        // Wait until the player left-clicks
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        HideSpeechBubble();
+        Debug.Log("Shop tutorial completed!");
+    }
+
 
     public void ShowSpeechBubble(string message)
     {

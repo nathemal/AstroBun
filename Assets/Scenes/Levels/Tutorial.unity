@@ -827,6 +827,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 5293202144255024865, guid: f5a4ee1db03ac21419ddd043f166a780, type: 3}
   player: {fileID: 1257853070}
   planetPrefab: {fileID: 8803790218443994470, guid: 4e8b643ee1a4c784ca9b56e836d11be4, type: 3}
+  shopPrefab: {fileID: 3207460878384869860, guid: f39191ffb76fa5b438e409c4178c0664, type: 3}
 --- !u!4 &444143094
 Transform:
   m_ObjectHideFlags: 0
