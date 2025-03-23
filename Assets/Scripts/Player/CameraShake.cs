@@ -1,62 +1,45 @@
 using UnityEngine;
-
+using System.Collections.Generic;
+using System.Collections;
 public class CameraShake : MonoBehaviour
 {
-    //private Camera sceneCamera;
+    private float passedTime;
 
-    //float startShakeAmount;
+    public float durationOfShake;
+    public float strenghtOfShake;
 
-    //bool shaking;
-    //float _shakeAmount;
-    //float _shakeTime;
-    //bool _lerp;
-    //float timer;
+    private float CalculateCameraShakeTime()
+    {
+        //Calculate how much time has passed from beginning of last frame
+        passedTime += Time.deltaTime;
 
-    //private void Start()
-    //{
-    //    sceneCamera = GetComponent<Camera>();
-    //    if (sceneCamera.GetComponent<CinemachineBasicMultiChannelPerlin>() == null)
-    //    {
-    //        Debug.LogError("You are missing a CinemachineBasicMultiChannelPerlin component on your Cinemachine Camera!");
-    //    }
-    //    cameraNoise = sceneCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
-    //    startShakeAmount = cameraNoise.AmplitudeGain; // Store the initially set noise amplitude, so we can always revert back to this
-    //}
+        return passedTime;
+    }
 
-    //private void Update()
-    //{
-    //    if (shaking) // Check if camera is supposed to shake
-    //    {
-    //        timer += Time.deltaTime; // Start timer
+    public IEnumerator ShakeCamera(float duration, float strength)
+    {
+        //transform parent position into wanted possition
 
-    //        if (_lerp) // If lerp is true, camera shake tapers off smoothly
-    //        {
-    //            cameraNoise.AmplitudeGain = Mathf.SmoothStep(_shakeAmount, startShakeAmount, timer / _shakeTime); // Smooth change in camera shake
-    //        }
-    //        else
-    //        {
-    //            cameraNoise.AmplitudeGain = _shakeAmount; // If lerp is false, camera shake is set to the desired amplitude
-    //        }
+        Vector3 originalPosition = transform.parent.localPosition; // parent 
 
-    //        if (timer >= _shakeTime) // Check if timer is over
-    //        {
-    //            cameraNoise.AmplitudeGain = startShakeAmount; // Set the camera shake amount to the original value
-    //            shaking = false; // Reset variables
-    //            timer = 0;
-    //        }
-    //    }
-    //}
+        passedTime = 0.0f;
 
-    //public void ShakeCamera(float shakeAmount, float shakeTime, bool lerp, bool overrideCurrentShake)
-    //{
-    //    if (overrideCurrentShake) // Check to see if the current shake should be overwritten
-    //    {
-    //        // Store values and start the shake timer in Update
-    //        shaking = true;
-    //        _shakeAmount = shakeAmount;
-    //        _shakeTime = shakeTime;
-    //        _lerp = lerp;
-    //        timer = 0;
-    //    }
-    //}
+
+        while (passedTime < duration)
+        {
+            float cameraOffsetX = Random.Range(-1.0f, 1.0f) * strength;
+            float cameraOffsetY = Random.Range(-1.0f, 1.0f) * strength;
+
+            transform.parent.localPosition = new Vector3(cameraOffsetX, cameraOffsetY, originalPosition.z);
+
+            passedTime = CalculateCameraShakeTime();
+
+            yield return null;
+        }
+
+
+        transform.localPosition = originalPosition;
+
+
+    }
 }

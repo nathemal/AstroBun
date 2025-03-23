@@ -4952,6 +4952,7 @@ GameObject:
   - component: {fileID: -7054073743433179072}
   - component: {fileID: -2407957162718211872}
   - component: {fileID: 124251646895732294}
+  - component: {fileID: -8454365483858321974}
   m_Layer: 7
   m_Name: Red  industrial enemy 3
   m_TagString: Enemy
@@ -5122,7 +5123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyAttackScript: {fileID: -7054073743433179072}
-  distanceToNoticePlayer: 20
+  distanceToNoticePlayer: 40
   speed: 1.7
 --- !u!114 &-7054073743433179072
 MonoBehaviour:
@@ -5188,3 +5189,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HalfHealthColor: {r: 1, g: 0.7007278, b: 0.024299622, a: 1}
   LowHealthColor: {r: 1, g: 0, b: 0.15543318, a: 1}
+--- !u!114 &-8454365483858321974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293202144255024865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed679a349572fd4e85af94481c84e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: 2100000, guid: 3386054de2e89934fbc68cbf71887872, type: 2}
+  soulColor: {r: 1, g: 0.9199048, b: 0.006003499, a: 0}
+  enemySilhouette: {fileID: 5226993789891777564, guid: d8738a1898c69b54b90f837542f3e83b, type: 3}
+  speed: 10

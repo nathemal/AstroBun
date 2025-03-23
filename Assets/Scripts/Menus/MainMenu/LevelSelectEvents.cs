@@ -43,6 +43,7 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void OnTutorialClick(ClickEvent evt)
     {
+        //ResetGameData();
         LoadScene(tutorialScene);
     }
 
@@ -93,6 +94,15 @@ public class LevelSelectEvents : MonoBehaviour
         {
             AllEntityDataManager.Instance.UpdateEnemyStats();
             AllEntityDataManager.Instance.UpdatePlayerStats();
+        }
+    }
+
+    private void ResetGameData()
+    {
+        if (AllEntityDataManager.Instance != null)
+        {
+            AllEntityDataManager.Instance.ResetPlayerData();
+            AllEntityDataManager.Instance.ResetAllEnemyData();
         }
     }
 }

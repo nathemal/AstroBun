@@ -4952,8 +4952,9 @@ GameObject:
   - component: {fileID: -2407957162718211872}
   - component: {fileID: 124251646895732294}
   - component: {fileID: 7470020370034523364}
+  - component: {fileID: -8606557798853276862}
   m_Layer: 7
-  m_Name: 'Red  industrial enemy 2 '
+  m_Name: Red  industrial enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5188,3 +5189,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.05944252, y: 0}
   m_Radius: 5.4994426
+--- !u!114 &-8606557798853276862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293202144255024865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed679a349572fd4e85af94481c84e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glowMaterial: {fileID: 2100000, guid: 3386054de2e89934fbc68cbf71887872, type: 2}
+  soulColor: {r: 1, g: 0.9199048, b: 0.006003499, a: 0}
+  enemySilhouette: {fileID: 5226993789891777564, guid: d8738a1898c69b54b90f837542f3e83b, type: 3}
+  speed: 10

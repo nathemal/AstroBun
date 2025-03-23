@@ -138,9 +138,13 @@ public class PlayerData : ScriptableObject
     {
         //if (player == null) { return; }
 
+        //Debug.Log("Updating health in first scene. MaxHealth: " + player.maxHealth);
+
         player.currentHealth = player.maxHealth;
-        player.Healthbar.UpdateHealthBar(player.maxHealth, player.currentHealth);
+        player.Healthbar.UpdateHealthBar(player.maxHealth, player.maxHealth);
         HealthValue = player.maxHealth;
+
+       // Debug.Log("After update: CurrentHealth = " + player.currentHealth);
     }
 
 

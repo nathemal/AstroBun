@@ -91,8 +91,8 @@ public class OrbitController : MonoBehaviour
             }
 
             // Debug to check if speed cap is working
-            if (orbitSpeed >= maxOrbitSpeed) 
-                Debug.Log("Max orbit speed reached!");
+            //if (orbitSpeed >= maxOrbitSpeed) 
+                //Debug.Log("Max orbit speed reached!");
         }
     }
 

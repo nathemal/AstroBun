@@ -7,9 +7,9 @@ public class AllEntityDataManager : MonoBehaviour
     [Header("JUST PUT THIS MANAGER IN ONE LEVEL ONCE")]
     [SerializeField] private PlayerData playerData; 
 
-    [SerializeField] public PlayerHealthController playerHealth;
-    [SerializeField] public PlayerController playerFuel;
-    [SerializeField] public PlayerAttack playerAttack;
+    private PlayerHealthController playerHealth;
+    private PlayerController playerFuel;
+    private PlayerAttack playerAttack;
     [SerializeField] public EnemyData[] AllEnemyData;
     [SerializeField] public EnemyHealthController[] AllEnemiesList;
 
@@ -18,35 +18,51 @@ public class AllEntityDataManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-
-            //playerHealth = FindObjectOfType<PlayerHealthController>();
-
+ 
             DontDestroyOnLoad(gameObject);
-            ResetAllEnemyData(); //letter to comment out
-            ResetPlayerData();
         }
+    }
+
+
+    private void Start()
+    {
+        FindPlayerComponents();
+        ResetAllEnemyData(); //letter to comment out when the game will be playable from the start
+        ResetPlayerData();
+    }
+
+    private void FindPlayerComponents()
+    {
+        playerHealth = Object.FindFirstObjectByType<PlayerHealthController>();
+        playerFuel = Object.FindFirstObjectByType<PlayerController>();
+        playerAttack = Object.FindFirstObjectByType<PlayerAttack>();
     }
 
     public void ResetPlayerData()
     {
-        if (playerData.isNewGame)
-        {
-            playerData.UpdateHealthInFirstScene(playerHealth);
+        //if (playerData.isNewGame)
+        //{
+        //    playerData.UpdateHealthInFirstScene(playerHealth);
+        //    Debug.Log("Max health: " + playerHealth.maxHealth);
+        //    Debug.Log("Current health: " + playerHealth.currentHealth);
 
-            playerData.UpdateFuelDataInFirstScene(playerFuel);
+        //    playerData.UpdateFuelDataInFirstScene(playerFuel);
 
-            playerData.SetBulletDefaultStats(playerAttack.bulletScript);
-            playerData.ResetBulletDefaultStats();
+        //    playerData.SetBulletDefaultStats(playerAttack.bulletScript);
+        //    playerData.ResetBulletDefaultStats();
 
-            playerData.isNewGame = false;
-        }
+        //    playerData.isNewGame = false;
+        //}
 
-        //playerData.UpdateHealthInFirstScene(playerHealth);
+        //for first scene or replaying same scene - powerups stats are not saved
+        playerData.UpdateHealthInFirstScene(playerHealth);
 
-        //playerData.UpdateFuelDataInFirstScene(playerFuel);
+        playerData.UpdateFuelDataInFirstScene(playerFuel);
 
-        //playerData.SetBulletDefaultStats(playerAttack.bulletScript);
-        //playerData.ResetBulletDefaultStats();
+        playerData.SetBulletDefaultStats(playerAttack.bulletScript);
+        playerData.ResetBulletDefaultStats();
+
+        playerData.isNewGame = false;
     }
 
     public void ResetAllEnemyData()
@@ -56,13 +72,23 @@ public class AllEntityDataManager : MonoBehaviour
             if (data.isNewGame)
             {
                 EnemyHealthController enemy = FindEnemyByType(data.enemyType);
-                
+
                 data.SetDefaultStats(enemy);
 
                 data.ResetStats();
                 data.isNewGame = false;
             }
         }
+
+        //foreach (EnemyData data in AllEnemyData)
+        //{
+        //    EnemyHealthController enemy = FindEnemyByType(data.enemyType);
+
+        //    data.SetDefaultStats(enemy);
+
+        //    data.ResetStats();
+        //    data.isNewGame = false;
+        //}
     }
 
     private EnemyHealthController FindEnemyByType(EnemyTypeChoices type)
@@ -81,7 +107,7 @@ public class AllEntityDataManager : MonoBehaviour
 
     public void UpdatePlayerStats()
     {
-        if(playerFuel == null && playerHealth == null) { return; }
+        //if(playerFuel == null && playerHealth == null) { return; }
 
         playerData.UpdateHealthInNextScene(playerHealth);
         playerData.UpdateFuelDataInNextScene(playerFuel);

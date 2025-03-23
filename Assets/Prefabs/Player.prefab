@@ -239,6 +239,7 @@ GameObject:
   - component: {fileID: -4530304411956145218}
   - component: {fileID: 4378748438642313141}
   - component: {fileID: 4430072721564921288}
+  - component: {fileID: 7348947610037627616}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -336,28 +337,10 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 20
   Healthbar: {fileID: 2215150977744439884, guid: 6ec3e893be9d29b418723724a567aa8b, type: 3}
-  onDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7581807370788533872}
-        m_TargetAssemblyTypeName: PlayerHealthController, Assembly-CSharp
-        m_MethodName: TakeDamage
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   deathMenu: {fileID: 0}
   data: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
-  takeDamageVolume: {fileID: 0}
-  takeDamageFadeInTime: 0
-  takeDamageFadeOutTime: 0
-  lowHealthVolume: {fileID: 0}
-  showLowHealthVolumePercentageThreshold: 0
+  takeDamage: 0
+  sceneCamera: {fileID: 0}
 --- !u!114 &117549714485997888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +576,23 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &7348947610037627616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588143520461653735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8928793b9e619bc44aaaa16bbd3c2d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeDamageVolume: {fileID: 8999128679634005636}
+  takeDamageFadeInTime: 0.1
+  takeDamageFadeOutTime: 0.5
+  lowHealthVolume: {fileID: 5956010199581481808}
+  showLowHealthVolumePercentageThreshold: 0.4
 --- !u!1 &5028572986607801775
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,7 +706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &616859894934976741
 Transform:
   m_ObjectHideFlags: 0

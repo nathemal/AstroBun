@@ -11,6 +11,7 @@ public class EnemyHealthController : MonoBehaviour
     private ChangeEnemyColor enemyColor;
 
     public int worthMoney;
+    private ActivateEnemyDeath enemySoul;
 
     [Header("To destroy enemy")]
     public UnityEvent<int> onDeath;
@@ -37,6 +38,7 @@ public class EnemyHealthController : MonoBehaviour
 
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
+        enemySoul = GetComponent<ActivateEnemyDeath>();
 
         EarnMoney currencyManager = FindAnyObjectByType<EarnMoney>();
         if (currencyManager != null)
@@ -60,6 +62,8 @@ public class EnemyHealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             DropTheLoot();
+
+            enemySoul.SetSoulActive();
 
             onDeath.Invoke(worthMoney);
            
