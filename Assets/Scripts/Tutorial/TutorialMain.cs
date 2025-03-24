@@ -232,6 +232,7 @@ public class TutorialSpeechBubble : MonoBehaviour
         HideSpeechBubble();
 
         yield return new WaitForSeconds(2f);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
         ShowSpeechBubble("Make sure you spend your money, as you lose it if you die!");
         HideSpeechBubble();
 
