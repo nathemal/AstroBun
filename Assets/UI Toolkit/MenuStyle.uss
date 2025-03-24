@@ -5,7 +5,9 @@
     font-size: 180px;
     -unity-font-style: bold;
     color: rgb(213, 53, 118);
-    margin-top: 60px;
+    margin-top: 5px;
+    width: 1089px;
+    height: 244px;
 }
 
 .header {
