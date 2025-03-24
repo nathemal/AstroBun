@@ -210,74 +210,84 @@ public class TutorialSpeechBubble : MonoBehaviour
             playerRb.angularVelocity = 0f;
         }
 
-        // Spawn the planet 10 units from the player
+        // Spawn the planet 40 units from the player
         if (planetPrefab != null && player != null)
         {
-            Vector3 spawnPosition = player.position + new Vector3(40f, 0f, 0f); 
+            Vector3 spawnPosition = player.position + new Vector3(40f, 0f, 0f);
             Instantiate(planetPrefab, spawnPosition, Quaternion.identity);
+            Debug.Log("Player Position in orbit: " + player.position);
+            Debug.Log("Planet spawned!");
         }
 
         // Show planet tutorial message
         ShowSpeechBubble("This is a planet! The ring around it represents its gravitational pull.");
-        worldTutorialTriggered = true; // Mark world tutorial as triggered
         yield return new WaitForSeconds(4f);
 
         HideSpeechBubble();
 
-        // Show space bar tutorial message
-        ShowSpeechBubble("Once in Orbit, hold Space to accelerate. Release to shoot out in the direction you're facing.");
-        // Wait for the player to release the space bar before hiding the message
-        yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space)); // Wait until the player releases the space bar
+        // Show spacebar tutorial message
+        ShowSpeechBubble("Once in orbit, hold Space to accelerate. Release to shoot out in the direction you're facing.");
+       
 
-        HideSpeechBubble();  // Hide the message once the space bar is released
-        Time.timeScale = 1f; // Unfreeze the game (if frozen earlier)
-
-        Debug.Log("Space bar tutorial completed!");
-    }
-
-    IEnumerator SpacebarTutorial()
-    {
-        ShowSpeechBubble("Hold Space to speed up. Release to shoot out!");
-
-        // Wait until the player lets go of spacebar
+        // Wait until the player releases spacebar
         yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space));
 
         HideSpeechBubble();
-        Debug.Log("Space tutorial completed!");
+        Debug.Log("Space bar tutorial completed!");
 
-        // Wait 1 second, then start the shop tutorial
+        // Wait 1 second, then start shop tutorial
         yield return new WaitForSeconds(1f);
-        StartCoroutine(SpawnShopAndExplain());
+        StartCoroutine(MovePlayerToSpecificPosition());
     }
 
-    IEnumerator SpawnShopAndExplain()
-    {
-        yield return new WaitForSeconds(2f);
-
-        // Stop player momentum
-        if (playerRb != null)
+        IEnumerator MovePlayerToSpecificPosition()
         {
-            playerRb.linearVelocity = Vector2.zero;
-            playerRb.angularVelocity = 0f;
-        }
+            // Define the specific coordinates you want the player to move to
+            Vector3 newPosition = new Vector3(370f, 100f, 0f);  // Replace with your coordinates
 
-        // Spawn the shop prefab
-        if (shopPrefab != null && player != null)
-        {
-            Vector3 spawnPosition = player.position + new Vector3(50f, 0f, 0f); // Spawn shop 50 units away
-            Instantiate(shopPrefab, spawnPosition, Quaternion.identity);
-            Debug.Log("Shop spawned!");
-        }
+        // Move the player to the new position
+        player.transform.position = newPosition;
 
-        // Show shop tutorial message
+        // Log the player's new position
+        Debug.Log("Player moved to: " + player.transform.position);
+
+        // Show the shop tutorial message
         ShowSpeechBubble("This is a shop! Stand close and left-click to interact.");
 
-        // Wait until the player left-clicks
+        // Wait for the player to left-click to interact with the shop
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
+        // Hide the current message
         HideSpeechBubble();
-        Debug.Log("Shop tutorial completed!");
+
+        // Wait for a short delay (0.2 seconds)
+        yield return new WaitForSeconds(0.2f);
+
+        // Show the next message about powerups
+        ShowSpeechBubble("These are powerups you can purchase with currency!");
+
+        // Wait for the player to left-click again to dismiss the powerup message
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        // Hide the powerup message
+        HideSpeechBubble();
+
+        Debug.Log("Shop and powerup tutorial completed!");
+        // Wait for another 0.5 seconds before showing the next message
+        yield return new WaitForSeconds(0.5f);
+
+        // Show the final message about spending money
+        ShowSpeechBubble("Make sure you spend your money, as you lose it if you die!");
+
+        // Wait for the player to left-click to dismiss this message
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        // Hide the last message
+        HideSpeechBubble();
+
+        Debug.Log("Shop and powerup tutorial completed!");
     }
+
 
 
     public void ShowSpeechBubble(string message)
