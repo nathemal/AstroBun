@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: e9e2cd8baaee8304ca07e4e4ffed019e
+guid: f6740bfa0ba716e42a14551f64c30a18
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5759273272364721256
-    second: Astrobun_Background_0
+      213: 7464352127385529321
+    second: Astrobun_Title_0
+  - first:
+      213: -2041640637679053817
+    second: Astrobun_Title_1
+  - first:
+      213: -5424549375782876623
+    second: Astrobun_Title_2
+  - first:
+      213: -884981200341705306
+    second: Astrobun_Title_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Astrobun_Background_0
+      name: Astrobun_Title_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 5
+        y: 27
+        width: 166
+        height: 191
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86463bbf68c0def40800000000000000
-      internalID: 5759273272364721256
+      spriteID: 9ebee3746b4b69760800000000000000
+      internalID: 7464352127385529321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astrobun_Title_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 37
+        width: 140
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704532838a2aaa3e0800000000000000
+      internalID: -2041640637679053817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astrobun_Title_2
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 27
+        width: 650
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13a05ed451128b4b0800000000000000
+      internalID: -5424549375782876623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Astrobun_Title_3
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 34
+        width: 159
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6addbb0894ae7b3f0800000000000000
+      internalID: -884981200341705306
       vertices: []
       indices: 
       edges: []

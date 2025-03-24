@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e9e2cd8baaee8304ca07e4e4ffed019e
+guid: a4a157d7a242f8149bffd10ad301bc51
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5759273272364721256
-    second: Astrobun_Background_0
+      213: 8065122398200945502
+    second: Astrobun_OptionsButton_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Astrobun_Background_0
+      name: Astrobun_OptionsButton_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 8
+        y: 7
+        width: 411
+        height: 222
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86463bbf68c0def40800000000000000
-      internalID: 5759273272364721256
+      spriteID: e5b50de17121def60800000000000000
+      internalID: 8065122398200945502
       vertices: []
       indices: 
       edges: []

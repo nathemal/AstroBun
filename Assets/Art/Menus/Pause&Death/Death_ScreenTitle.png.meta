@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: e9e2cd8baaee8304ca07e4e4ffed019e
+guid: b0a81bdb9ddcc6e4a8fd0516a44a6760
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5759273272364721256
-    second: Astrobun_Background_0
+      213: -2567829912369602785
+    second: Death_ScreenTitle_0
+  - first:
+      213: 4013540463330588946
+    second: Death_ScreenTitle_1
+  - first:
+      213: 5863525487615681015
+    second: Death_ScreenTitle_2
+  - first:
+      213: -4007964638595755433
+    second: Death_ScreenTitle_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Astrobun_Background_0
+      name: Death_ScreenTitle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1080
+        x: 8
+        y: 18
+        width: 192
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 86463bbf68c0def40800000000000000
-      internalID: 5759273272364721256
+      spriteID: f1f5695bc4c3d5cd0800000000000000
+      internalID: -2567829912369602785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_ScreenTitle_1
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 18
+        width: 191
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 219f97869c5f2b730800000000000000
+      internalID: 4013540463330588946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_ScreenTitle_2
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 131
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f128cc5d5d6f5150800000000000000
+      internalID: 5863525487615681015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_ScreenTitle_3
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 18
+        width: 355
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7525c247569d068c0800000000000000
+      internalID: -4007964638595755433
       vertices: []
       indices: 
       edges: []
