@@ -147,60 +147,66 @@ public class TutorialSpeechBubble : MonoBehaviour
         Time.timeScale = 1f;  // Unfreeze the game
 
         // Start shield tutorial
-        StartCoroutine(ShieldTutorial());
+        StartCoroutine(ShowAimingAndShootingTutorial());
     }
 
-    // Shield Tutorial - Teach player about shield
-    IEnumerator ShieldTutorial()
+
+    IEnumerator ShowAimingAndShootingTutorial()
     {
-        yield return new WaitForSeconds(2f);
+        // Show shield tutorial message first (assuming this was shown before this part)
+        yield return new WaitForSeconds(1f);
+        ShowSpeechBubble("Press Right Click to activate your shield!");
 
-        Time.timeScale = 0f; // Freeze the game for the shield tutorial
+        // Wait until the player presses right click for the shield
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(1)); // 1 is the right-click button
 
-        ShowSpeechBubble("Right-click to activate your shield. It will block damage!");
-        shieldPromptActive = true;
-        yield return new WaitForSecondsRealtime(3f);
-
-        // Wait until the player interacts with the shield (right-click)
-        while (!shieldPromptActive)
-        {
-            yield return null;
-        }
-
-        // Once the player activates the shield
-        Time.timeScale = 1f; // Unfreeze the game
-        Debug.Log("Shield tutorial completed, game resumed!");
-    }
-
-    // Trigger Loot Tutorial
-    public void TriggerLootTutorial()
-    {
-        if (!lootTutorialTriggered)
-        {
-            lootTutorialTriggered = true;
-            StartCoroutine(LootTutorial());
-        }
-    }
-
-    private IEnumerator LootTutorial()
-    {
-        Time.timeScale = 0f; // Freeze the game
-        Debug.Log("Loot tutorial started and game is frozen!");
-
-        ShowSpeechBubble("Enemies drop loot! Some restore health & fuel.");
-        yield return new WaitForSecondsRealtime(3f);
-
-        ShowSpeechBubble("This is your currency! Spend it in the shop.");
-        yield return new WaitForSecondsRealtime(3f);
-
-        Time.timeScale = 1f; // Unfreeze the game
-        Debug.Log("Loot tutorial completed, game unpaused!");
-
+        // Hide the shield tutorial message
         HideSpeechBubble();
+
+        // Show aiming and shooting tutorial message
+        ShowSpeechBubble("Now, press Right Click to aim and Left Click to shoot!");
+
+        // Wait until the player presses the right mouse button to aim
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(1));  // Right click to aim
+
+        // Wait until the player presses the left mouse button to shoot
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));  // Left click to shoot
+
+        // Hide the shooting tutorial message
+        HideSpeechBubble();
+
+        // Optional: You can add a confirmation or proceed to the next part here
+        Debug.Log("Aiming and shooting tutorial completed!");
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(ShowLootAndProgressTutorial());
+
     }
 
-    // New Planet Tutorial
-    IEnumerator SpawnPlanetAndExplain()
+    IEnumerator ShowLootAndProgressTutorial()
+    {
+        // First message
+        ShowSpeechBubble("When you kill an enemy, you have a chance to loot Fuel and Health while always gaining Gems.");
+
+        // Wait for a moment before showing the next message
+        yield return new WaitForSeconds(1f);
+
+        // Second message
+        ShowSpeechBubble("You progress levels by clearing all enemies, here just press E once you are done.");
+
+        // Wait until the player presses E (to indicate they're ready)
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E)); // Wait for the player to press E
+        StartCoroutine(SpawnPlanetAndExplain());
+
+        // Hide the message
+        HideSpeechBubble();
+
+        Debug.Log("Loot and progress tutorial completed!");
+
+        // You can now transition to the next tutorial or game phase
+    }
+
+        // New Planet Tutorial
+        IEnumerator SpawnPlanetAndExplain()
     {
         yield return new WaitForSeconds(2f);
 
