@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TutorialSpeechBubble : MonoBehaviour
 {
@@ -274,18 +275,40 @@ public class TutorialSpeechBubble : MonoBehaviour
 
         Debug.Log("Shop and powerup tutorial completed!");
         // Wait for another 0.5 seconds before showing the next message
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         // Show the final message about spending money
         ShowSpeechBubble("Make sure you spend your money, as you lose it if you die!");
 
-        // Wait for the player to left-click to dismiss this message
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
         // Hide the last message
         HideSpeechBubble();
 
-        Debug.Log("Shop and powerup tutorial completed!");
+
+
+
+
+   
+        // Wait for any WASD key press
+        yield return new WaitUntil(() =>
+            Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D));
+
+        // Hide the ready-to-play message
+        HideSpeechBubble();
+
+        // Wait for the player to click anywhere to continue to level select
+        ShowSpeechBubble("You are now ready to play the game.. Click anywhere to go to the level select screen.");
+
+        // Wait for any mouse click
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        // Hide the final prompt
+        HideSpeechBubble();
+
+        // Here you would call the code to transition to the level select screen
+        SceneManager.LoadScene("LevelSelect");
+        Debug.Log("Player is ready, transitioning to level select screen...");
+
     }
 
 
