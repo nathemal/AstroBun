@@ -29,8 +29,8 @@
     width: 434px;
     height: 245px;
     color: rgb(213, 53, 118);
-    margin-bottom: 17px;
-    margin-left: 0;
+    margin-bottom: 35px;
+    margin-left: 20px;
     background-color: rgba(0, 0, 0, 0);
     font-size: 70px;
     -unity-text-outline-color: rgba(0, 0, 0, 0);
@@ -64,20 +64,10 @@
     border-top-width: -1px;
 }
 
-.button {
-    width: 434px;
-    height: 245px;
-    color: rgb(213, 53, 118);
-    margin-bottom: 35px;
-    margin-left: 0;
+.levelButton {
     background-color: rgba(0, 0, 0, 0);
-    font-size: 70px;
-    -unity-text-outline-color: rgba(0, 0, 0, 0);
-    display: flex;
-    visibility: visible;
-    overflow: visible;
-    border-left-width: -1px;
-    border-right-width: -1px;
     border-bottom-width: -1px;
+    border-left-width: -1px;
     border-top-width: -1px;
+    border-right-width: -1px;
 }
