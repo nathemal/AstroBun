@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Death_ScreenTitle_0: -2567829912369602785
+      Death_ScreenTitle_1: 4013540463330588946
+      Death_ScreenTitle_2: 5863525487615681015
+      Death_ScreenTitle_3: -4007964638595755433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

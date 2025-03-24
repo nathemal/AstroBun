@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 02667a0092a0980488f2697cae719fba
+guid: 978332cd90dd7ea469d8c40758edad61
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5667795424482619170
-    second: Astrobun_SpaceShip_0
+      213: 6163033599420343751
+    second: Level_SelectOrganicCreature_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Astrobun_SpaceShip_0
+      name: Level_SelectOrganicCreature_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 8
-        width: 390
-        height: 450
+        x: 9
+        y: 14
+        width: 123
+        height: 186
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed011283712f751b0800000000000000
-      internalID: -5667795424482619170
+      spriteID: 7c52f30d76e778550800000000000000
+      internalID: 6163033599420343751
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Astrobun_SpaceShip_0: -5667795424482619170
+      Level_SelectOrganicCreature_0: 6163033599420343751
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

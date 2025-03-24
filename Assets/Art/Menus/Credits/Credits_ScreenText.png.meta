@@ -271,7 +271,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -2097,7 +2097,86 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Credits_ScreenText_0: -3620392001643035251
+      Credits_ScreenText_1: 2880517239715488097
+      Credits_ScreenText_10: 6353355622050941517
+      Credits_ScreenText_11: 9146325704017329005
+      Credits_ScreenText_12: 1748687124759436648
+      Credits_ScreenText_13: -4243308877255438038
+      Credits_ScreenText_14: 8439619932643879841
+      Credits_ScreenText_15: 8587795386357430494
+      Credits_ScreenText_16: -5395122073363047340
+      Credits_ScreenText_17: 7978541250744691376
+      Credits_ScreenText_18: 3055759122504053259
+      Credits_ScreenText_19: 7116342150645307256
+      Credits_ScreenText_2: 2099407856936583203
+      Credits_ScreenText_20: 3400080500958036418
+      Credits_ScreenText_21: 1335410201509625280
+      Credits_ScreenText_22: 4081367327908374373
+      Credits_ScreenText_23: 5915424681167626649
+      Credits_ScreenText_24: 4714140420366905212
+      Credits_ScreenText_25: -6531246743693727782
+      Credits_ScreenText_26: 2610014137290619024
+      Credits_ScreenText_27: 1052694429772863287
+      Credits_ScreenText_28: -4739961093940587697
+      Credits_ScreenText_29: 1241618187919721570
+      Credits_ScreenText_3: -3713408135694009640
+      Credits_ScreenText_30: 9185467655350086789
+      Credits_ScreenText_31: -5464753364774058669
+      Credits_ScreenText_32: 6314459577429335663
+      Credits_ScreenText_33: -1624745058642446783
+      Credits_ScreenText_34: 1325129209862907381
+      Credits_ScreenText_35: 5980966212558177682
+      Credits_ScreenText_36: 5252938971688306849
+      Credits_ScreenText_37: -5449091755249019215
+      Credits_ScreenText_38: -1551174012709982355
+      Credits_ScreenText_39: -2412982510868439086
+      Credits_ScreenText_4: 6999512001289697132
+      Credits_ScreenText_40: -5819228329343111164
+      Credits_ScreenText_41: -8129934713864608896
+      Credits_ScreenText_42: 2199865522249983391
+      Credits_ScreenText_43: -4732875785706884046
+      Credits_ScreenText_44: 2595740455521845946
+      Credits_ScreenText_45: -7376914029267370517
+      Credits_ScreenText_46: -6309095275673355663
+      Credits_ScreenText_47: -6502479805543937223
+      Credits_ScreenText_48: 4772313128523646762
+      Credits_ScreenText_49: -3159696691442219492
+      Credits_ScreenText_5: -6757300744825507746
+      Credits_ScreenText_50: 8119582062657624580
+      Credits_ScreenText_51: -2347704124391450973
+      Credits_ScreenText_52: -2769277204208027141
+      Credits_ScreenText_53: 9021994387663309447
+      Credits_ScreenText_54: -6538388693070695476
+      Credits_ScreenText_55: -9115669323726456750
+      Credits_ScreenText_56: 4430770419911155096
+      Credits_ScreenText_57: 238990696460660207
+      Credits_ScreenText_58: -3268988633187808810
+      Credits_ScreenText_59: -2156958963668918471
+      Credits_ScreenText_6: 3467089315185893025
+      Credits_ScreenText_60: 3625949330834663740
+      Credits_ScreenText_61: -8961706792108321717
+      Credits_ScreenText_62: 6366573767292551847
+      Credits_ScreenText_63: -662257822431057033
+      Credits_ScreenText_64: -4791248834819246254
+      Credits_ScreenText_65: 1772395441522993877
+      Credits_ScreenText_66: -1799292969484915064
+      Credits_ScreenText_67: -4078712390046758291
+      Credits_ScreenText_68: 2203113001766584308
+      Credits_ScreenText_69: 4057517560457285143
+      Credits_ScreenText_7: 2776475415691090808
+      Credits_ScreenText_70: -8816230014336191310
+      Credits_ScreenText_71: 2769610947917106320
+      Credits_ScreenText_72: 597695162357520544
+      Credits_ScreenText_73: 8503279477156304836
+      Credits_ScreenText_74: 4278241576874695293
+      Credits_ScreenText_75: -5709045416052905503
+      Credits_ScreenText_76: -6609862407667011322
+      Credits_ScreenText_77: -4175069113720935815
+      Credits_ScreenText_78: -4091311246557138057
+      Credits_ScreenText_8: -6962493525833906069
+      Credits_ScreenText_9: -4571853976421511314
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
