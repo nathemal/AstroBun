@@ -8,10 +8,10 @@ public class TutorialSpeechBubble : MonoBehaviour
     public GameObject speechBubblePanel;
     public TMP_Text speechBubbleText;
     public GameObject fuelMeter;
-    public GameObject healthMeter;  // Reference for health meter
+    public GameObject healthMeter; 
     public GameObject enemyPrefab;
     public Transform player;
-    public GameObject planetPrefab; // Reference for planet prefab
+    public GameObject planetPrefab; 
     public GameObject shopPrefab;
 
     private bool tutorialActive = true;
@@ -20,15 +20,16 @@ public class TutorialSpeechBubble : MonoBehaviour
     private bool enemyPromptActive = false;
     private bool shootPromptActive = false;
     private bool lootTutorialTriggered = false;
-    private bool shieldPromptActive = false; // Flag for shield tutorial
-    private bool worldTutorialTriggered = false; // Flag to trigger world tutorial
+    private bool shieldPromptActive = false; 
+    private bool worldTutorialTriggered = false; 
 
     private Rigidbody2D playerRb;
 
     void Start()
     {
-        playerRb = player.GetComponent<Rigidbody2D>(); // Get player's Rigidbody
-        ShowSpeechBubble("Use WASD or Arrow Keys to Move!");
+        playerRb = player.GetComponent<Rigidbody2D>(); 
+        ShowSpeechBubble("Welcome to the Tutorial. Use WASD or Arrow Keys to Move!");
+
     }
 
     void Update()
@@ -80,27 +81,25 @@ public class TutorialSpeechBubble : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
 
-        Time.timeScale = 0f; // Pause the game
-        Debug.Log("Game is frozen!");
+        Time.timeScale = 0f; 
 
         HighlightFuelMeter(true);
-        ShowSpeechBubble("This is your fuel meter. Dashing and moving consume fuel!");
+        ShowSpeechBubble("This is your fuel meter. Keep an eye on it, movement costs Fuel!");
         yield return new WaitForSecondsRealtime(3f);
 
-        Time.timeScale = 1f; // Unpause the game
-        Debug.Log("Game unpaused!");
+        Time.timeScale = 1f;
 
         HighlightFuelMeter(false);
         HideSpeechBubble();
 
-        StartCoroutine(WaitBeforeDashTutorial());  // Move to dash tutorial after fuel
+        StartCoroutine(WaitBeforeDashTutorial()); 
     }
 
     IEnumerator WaitBeforeDashTutorial()
     {
         yield return new WaitForSeconds(2f);
 
-        ShowSpeechBubble("Hold Shift to Dash!");
+        ShowSpeechBubble("Press Left Shift to give yoursef a short burst of power!");
         dashPromptActive = true;
     }
 
@@ -108,10 +107,9 @@ public class TutorialSpeechBubble : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        // Stop player momentum
         if (playerRb != null)
         {
-            playerRb.linearVelocity = Vector2.zero; // Ensure player stops moving
+            playerRb.linearVelocity = Vector2.zero; 
             playerRb.angularVelocity = 0f;
         }
 
@@ -123,197 +121,133 @@ public class TutorialSpeechBubble : MonoBehaviour
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         }
 
-        // Show enemy tutorial
-        ShowSpeechBubble("This is an enemy! Avoid collisions and destroy them.");
+        ShowSpeechBubble("Watch out! There is an enemy ahead!");
         enemyPromptActive = true;
-        yield return new WaitForSeconds(3f);  // Wait before moving to health tutorial
+        yield return new WaitForSeconds(2f);  
 
-        // Trigger health tutorial
-        StartCoroutine(WaitBeforeHealthTutorial());  // Start health tutorial after the enemy tutorial
+
+        StartCoroutine(WaitBeforeHealthTutorial()); 
     }
 
     IEnumerator WaitBeforeHealthTutorial()
     {
-        yield return new WaitForSeconds(2f);  // Wait for a moment before showing health tutorial
+        yield return new WaitForSeconds(1f); 
 
-        Time.timeScale = 0f;  // Freeze the game for the health tutorial
-        HighlightHealthMeter(true);  // Highlight health meter
+        Time.timeScale = 0f;  
+        HighlightHealthMeter(true);
         ShowSpeechBubble("This is your health meter. If it reaches 0, you die!");
         yield return new WaitForSecondsRealtime(3f);
 
-        HighlightHealthMeter(false);  // Unhighlight health meter
+        HighlightHealthMeter(false); 
         HideSpeechBubble();
 
-        Time.timeScale = 1f;  // Unfreeze the game
+        Time.timeScale = 1f;  
 
-        // Start shield tutorial
+   
         StartCoroutine(ShowAimingAndShootingTutorial());
     }
 
 
     IEnumerator ShowAimingAndShootingTutorial()
     {
-        // Show shield tutorial message first (assuming this was shown before this part)
-        yield return new WaitForSeconds(1f);
-        ShowSpeechBubble("Press Right Click to activate your shield!");
-
-        // Wait until the player presses right click for the shield
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(1)); // 1 is the right-click button
-
-        // Hide the shield tutorial message
+ 
+        yield return new WaitForSeconds(0f);
+        ShowSpeechBubble("Your ship is equiped with a Shield, press Right-Click to activate it");
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(1)); 
         HideSpeechBubble();
 
-        // Show aiming and shooting tutorial message
-        ShowSpeechBubble("Now, press Right Click to aim and Left Click to shoot!");
-
-        // Wait until the player presses the right mouse button to aim
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(1));  // Right click to aim
-
-        // Wait until the player presses the left mouse button to shoot
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));  // Left click to shoot
-
-        // Hide the shooting tutorial message
+   
+        ShowSpeechBubble("Now, press Right Click again to switch to your cannon, Left Click to shoot!");
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(1));  
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));  
         HideSpeechBubble();
 
-        // Optional: You can add a confirmation or proceed to the next part here
-        Debug.Log("Aiming and shooting tutorial completed!");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         StartCoroutine(ShowLootAndProgressTutorial());
 
     }
 
     IEnumerator ShowLootAndProgressTutorial()
     {
-        // First message
+
         ShowSpeechBubble("When you kill an enemy, you have a chance to loot Fuel and Health while always gaining Gems.");
-
-        // Wait for a moment before showing the next message
-        yield return new WaitForSeconds(1f);
-
-        // Second message
+ 
+        yield return new WaitForSeconds(5f);
         ShowSpeechBubble("You progress levels by clearing all enemies, here just press E once you are done.");
 
-        // Wait until the player presses E (to indicate they're ready)
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E)); // Wait for the player to press E
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E)); 
         StartCoroutine(SpawnPlanetAndExplain());
 
-        // Hide the message
+     
         HideSpeechBubble();
-
-        Debug.Log("Loot and progress tutorial completed!");
-
-        // You can now transition to the next tutorial or game phase
     }
 
-        // New Planet Tutorial
-        IEnumerator SpawnPlanetAndExplain()
+    IEnumerator SpawnPlanetAndExplain()
     {
         yield return new WaitForSeconds(2f);
 
-        // Stop player momentum
         if (playerRb != null)
         {
-            playerRb.linearVelocity = Vector2.zero; // Ensure player stops moving
+            playerRb.linearVelocity = Vector2.zero; 
             playerRb.angularVelocity = 0f;
         }
 
-        // Spawn the planet 40 units from the player
         if (planetPrefab != null && player != null)
         {
             Vector3 spawnPosition = player.position + new Vector3(40f, 0f, 0f);
             Instantiate(planetPrefab, spawnPosition, Quaternion.identity);
-            Debug.Log("Player Position in orbit: " + player.position);
-            Debug.Log("Planet spawned!");
+
         }
 
-        // Show planet tutorial message
-        ShowSpeechBubble("This is a planet! The ring around it represents its gravitational pull.");
+        ShowSpeechBubble("That is a planet! The ring around it represents it's gravitational pull.");
         yield return new WaitForSeconds(4f);
 
         HideSpeechBubble();
-
-        // Show spacebar tutorial message
         ShowSpeechBubble("Once in orbit, hold Space to accelerate. Release to shoot out in the direction you're facing.");
        
 
-        // Wait until the player releases spacebar
         yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space));
-
         HideSpeechBubble();
-        Debug.Log("Space bar tutorial completed!");
 
-        // Wait 1 second, then start shop tutorial
+
         yield return new WaitForSeconds(1f);
         StartCoroutine(MovePlayerToSpecificPosition());
     }
 
-        IEnumerator MovePlayerToSpecificPosition()
-        {
-            // Define the specific coordinates you want the player to move to
-            Vector3 newPosition = new Vector3(370f, 100f, 0f);  // Replace with your coordinates
+    IEnumerator MovePlayerToSpecificPosition()
+    {
 
-        // Move the player to the new position
+        Vector3 newPosition = new Vector3(377f, 150f, 0f); 
+
         player.transform.position = newPosition;
 
-        // Log the player's new position
-        Debug.Log("Player moved to: " + player.transform.position);
-
-        // Show the shop tutorial message
         ShowSpeechBubble("This is a shop! Stand close and left-click to interact.");
-
-        // Wait for the player to left-click to interact with the shop
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-
-        // Hide the current message
         HideSpeechBubble();
 
-        // Wait for a short delay (0.2 seconds)
-        yield return new WaitForSeconds(0.2f);
 
-        // Show the next message about powerups
+        yield return new WaitForSeconds(0.3f);
         ShowSpeechBubble("These are powerups you can purchase with currency!");
-
-        // Wait for the player to left-click again to dismiss the powerup message
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-
-        // Hide the powerup message
         HideSpeechBubble();
 
-        Debug.Log("Shop and powerup tutorial completed!");
-        // Wait for another 0.5 seconds before showing the next message
-        yield return new WaitForSeconds(1f);
-
-        // Show the final message about spending money
+        yield return new WaitForSeconds(2f);
         ShowSpeechBubble("Make sure you spend your money, as you lose it if you die!");
-
-
-        // Hide the last message
         HideSpeechBubble();
 
-
-
-
-
-   
-        // Wait for any WASD key press
         yield return new WaitUntil(() =>
             Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D));
 
-        // Hide the ready-to-play message
         HideSpeechBubble();
 
-        // Wait for the player to click anywhere to continue to level select
+
         ShowSpeechBubble("You are now ready to play the game.. Click anywhere to go to the level select screen.");
-
-        // Wait for any mouse click
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
-
-        // Hide the final prompt
         HideSpeechBubble();
 
-        // Here you would call the code to transition to the level select screen
+
+
         SceneManager.LoadScene("LevelSelect");
-        Debug.Log("Player is ready, transitioning to level select screen...");
 
     }
 
@@ -322,14 +256,11 @@ public class TutorialSpeechBubble : MonoBehaviour
     public void ShowSpeechBubble(string message)
     {
         speechBubblePanel.SetActive(true);
-        speechBubbleText.text = message;
-        Debug.Log("Showing speech bubble: " + message); // Debug log to check if it's being shown
-    }
+        speechBubbleText.text = message;    }
 
     public void HideSpeechBubble()
     {
         speechBubblePanel.SetActive(false);
-        Debug.Log("Hiding speech bubble"); // Debug log to check if it's being hidden
     }
 
     void HighlightFuelMeter(bool highlight)
@@ -344,7 +275,6 @@ public class TutorialSpeechBubble : MonoBehaviour
         }
     }
 
-    // New function to highlight health meter
     void HighlightHealthMeter(bool highlight)
     {
         if (healthMeter != null)
@@ -352,7 +282,7 @@ public class TutorialSpeechBubble : MonoBehaviour
             var healthImage = healthMeter.GetComponentInChildren<UnityEngine.UI.Image>();
             if (healthImage != null)
             {
-                healthImage.color = highlight ? new Color(1f, 0.6f, 0.6f) : Color.white;  // Pale red color
+                healthImage.color = highlight ? new Color(1f, 0.6f, 0.6f) : Color.white; 
             }
         }
     }
