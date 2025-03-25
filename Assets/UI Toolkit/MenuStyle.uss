@@ -26,10 +26,10 @@
 }
 
 .button {
-    width: 434px;
-    height: 245px;
+    width: 425px;
+    height: 239px;
     color: rgb(213, 53, 118);
-    margin-bottom: 35px;
+    margin-bottom: -56px;
     margin-left: 20px;
     background-color: rgba(0, 0, 0, 0);
     font-size: 70px;

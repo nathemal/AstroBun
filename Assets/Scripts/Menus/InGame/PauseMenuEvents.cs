@@ -9,36 +9,31 @@ public class PauseMenuEvents : MonoBehaviour
 
     private Button mainMenuButton;
     private Button continueButton;
-    private Button restartButton;
-    private Button settingsButton;
+    private Button retryButton;
+    private Button exitGameButton;
     private List<Button> menuButtons = new List<Button>();
 
     public PlayerController player;
 
-    private string startMenuScene = "StartMenu";
+    private string levelSelectScene = "LevelSelect";
     [Header("Name of current scene. CASE SENSITIVE!!")]
     public string currentScene;
-
-    private void Awake()
-    {
-        
-    }
 
     private void Update()
     {
         document = GetComponent<UIDocument>();
 
-        mainMenuButton = document.rootVisualElement.Q("MainMenuButton") as Button;
-        mainMenuButton.RegisterCallback<ClickEvent>(OnMainMenuClick);
+        mainMenuButton = document.rootVisualElement.Q("LevelSelectButton") as Button;
+        mainMenuButton.RegisterCallback<ClickEvent>(OnLevelSelectClick);
 
         continueButton = document.rootVisualElement.Q("ContinueButton") as Button;
         continueButton.RegisterCallback<ClickEvent>(OnContinueClick);
         
-        restartButton = document.rootVisualElement.Q("RestartButton") as Button;
-        restartButton.RegisterCallback<ClickEvent>(OnRestartClick);
+        retryButton = document.rootVisualElement.Q("RetryButton") as Button;
+        retryButton.RegisterCallback<ClickEvent>(OnRestartClick);
 
-        settingsButton = document.rootVisualElement.Q("SettingsButton") as Button;
-        settingsButton.RegisterCallback<ClickEvent>(OnSettingsClick);
+        exitGameButton = document.rootVisualElement.Q("ExitGameButton") as Button;
+        exitGameButton.RegisterCallback<ClickEvent>(OnExitClick);
         
 
         menuButtons = document.rootVisualElement.Query<Button>().ToList();
@@ -48,9 +43,9 @@ public class PauseMenuEvents : MonoBehaviour
         }
     }
 
-    private void OnMainMenuClick(ClickEvent evt)
+    private void OnLevelSelectClick(ClickEvent evt)
     {
-        LoadScene(startMenuScene);
+        LoadScene(levelSelectScene);
     }
 
     private void OnContinueClick(ClickEvent evt)
@@ -65,9 +60,9 @@ public class PauseMenuEvents : MonoBehaviour
         LoadScene(currentScene);
     }
 
-    private void OnSettingsClick(ClickEvent evt)
+    private void OnExitClick(ClickEvent evt)
     {
-
+        Application.Quit();
     }
 
     private void OnAllButtonsClick(ClickEvent evt)

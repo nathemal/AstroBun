@@ -9,21 +9,28 @@ public class DeathMenuEvents : MonoBehaviour
 
     private Button mainMenuButton;
     private Button retryButton;
+    private Button exitGameButton;
     private List<Button> menuButtons = new List<Button>();
 
-    private string startMenuScene = "StartMenu";
+    public PlayerController player;
+
+    private string levelSelectScene = "LevelSelect";
     [Header("Name of current scene. CASE SENSITIVE!!")]
     public string currentScene;
 
-    private void Awake()
+    private void Update()
     {
         document = GetComponent<UIDocument>();
 
-        mainMenuButton = document.rootVisualElement.Q("MainMenuButton") as Button;
-        mainMenuButton.RegisterCallback<ClickEvent>(OnMainMenuClick);
+        mainMenuButton = document.rootVisualElement.Q("LevelSelectButton") as Button;
+        mainMenuButton.RegisterCallback<ClickEvent>(OnLevelSelectClick);
 
         retryButton = document.rootVisualElement.Q("RetryButton") as Button;
-        retryButton.RegisterCallback<ClickEvent>(OnRetryClick);
+        retryButton.RegisterCallback<ClickEvent>(OnRestartClick);
+
+        exitGameButton = document.rootVisualElement.Q("ExitGameButton") as Button;
+        exitGameButton.RegisterCallback<ClickEvent>(OnExitClick);
+
 
         menuButtons = document.rootVisualElement.Query<Button>().ToList();
         for (int i = 0; i < menuButtons.Count; i++)
@@ -32,14 +39,21 @@ public class DeathMenuEvents : MonoBehaviour
         }
     }
 
-    private void OnMainMenuClick(ClickEvent evt)
+    private void OnLevelSelectClick(ClickEvent evt)
     {
-        LoadScene(startMenuScene);
+        LoadScene(levelSelectScene);
     }
 
-    private void OnRetryClick(ClickEvent evt)
+    private void OnRestartClick(ClickEvent evt)
     {
+        Time.timeScale = 1;
+
         LoadScene(currentScene);
+    }
+
+    private void OnExitClick(ClickEvent evt)
+    {
+        Application.Quit();
     }
 
     private void OnAllButtonsClick(ClickEvent evt)
