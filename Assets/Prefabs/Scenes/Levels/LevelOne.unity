@@ -1180,7 +1180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &434907969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2793,7 +2793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7316138981861244605, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7348947610037627616, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: showLowHealthVolumePercentageThreshold
@@ -3519,7 +3519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1482103827
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites:
   - {fileID: 139423126394790347, guid: 938bb467b02fbd64bb1fd62b165a6cb7, type: 3}
-  - {fileID: -6897026403407140210, guid: 25efbbb110487dd43adf4310d5c47d75, type: 3}
   - {fileID: 2193959865959828557, guid: 5d4247f2fea590e448074143c66a995a, type: 3}
   - {fileID: 9100805224293307531, guid: fbc2cb2fc19d1404d91779c94a576c0a, type: 3}
+  - {fileID: 4243512161780507907, guid: 25efbbb110487dd43adf4310d5c47d75, type: 3}
   planetName: 
   size: 2
   color: {r: 1, g: 1, b: 1, a: 1}
