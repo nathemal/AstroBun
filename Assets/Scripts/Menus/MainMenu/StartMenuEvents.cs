@@ -12,6 +12,7 @@ public class StartMenuEvents : MonoBehaviour
     private Button startButton;
     private Button settingsButton;
     private Button creditsButton;
+    private Button exitGameButton;
     private List<Button> menuButtons = new List<Button>();
 
     private string levelSelectScene = "LevelSelect";
@@ -30,6 +31,9 @@ public class StartMenuEvents : MonoBehaviour
 
         creditsButton = document.rootVisualElement.Q("CreditsButton") as Button;
         creditsButton.RegisterCallback<ClickEvent>(OnCreditsClick);
+
+        exitGameButton = document.rootVisualElement.Q("QuitButton") as Button;
+        exitGameButton.RegisterCallback<ClickEvent>(OnExitGameClick);
 
         menuButtons = document.rootVisualElement.Query<Button>().ToList();
         for (int i = 0; i < menuButtons.Count; i++)
@@ -51,6 +55,11 @@ public class StartMenuEvents : MonoBehaviour
     private void OnCreditsClick(ClickEvent evt)
     {
         LoadScene(creditsScene);
+    }
+
+    private void OnExitGameClick(ClickEvent evt)
+    {
+        Application.Quit();
     }
 
     private void OnAllButtonsClick(ClickEvent evt)

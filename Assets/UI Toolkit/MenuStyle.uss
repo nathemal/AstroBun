@@ -83,5 +83,54 @@
 }
 
 .levelButton:hover {
+    background-image: url("project://database/Assets/Art/Menus/LevelSelect/Level_SelectMenuBlueHighlight.png?fileID=2800000&guid=e313c3958b590d94f91ff568efc1625e&type=3#Level_SelectMenuBlueHighlight");
+}
+
+.backButton {
+    width: 101px;
+    height: 101px;
+    color: rgb(213, 53, 118);
+    margin-bottom: 0;
+    margin-left: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 70px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    display: flex;
+    visibility: visible;
+    overflow: visible;
+    border-left-width: -1px;
+    border-right-width: -1px;
+    border-bottom-width: -1px;
+    border-top-width: -1px;
+    margin-top: 10px;
+    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.backButton:hover {
+    background-image: url("project://database/Assets/Art/Menus/LevelSelect/Level_SelectMenuHighlight.png?fileID=2800000&guid=4b1a3e9ec1a9a68428929210443cd074&type=3#Level_SelectMenuHighlight");
+}
+
+.menuButtonContainer {
+    width: 425px;
+    height: 239px;
+    color: rgb(213, 53, 118);
+    margin-bottom: -56px;
+    margin-left: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 70px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    display: flex;
+    visibility: visible;
+    overflow: visible;
+    border-left-width: -1px;
+    border-right-width: -1px;
+    border-bottom-width: -1px;
+    border-top-width: -1px;
+}
+
+.menuButtonContainer:hover {
     background-image: url("project://database/Assets/Art/Menus/LevelSelect/Level_SelectMenuHighlight.png?fileID=2800000&guid=4b1a3e9ec1a9a68428929210443cd074&type=3#Level_SelectMenuHighlight");
 }
