@@ -65,9 +65,23 @@
 }
 
 .levelButton {
+    width: 434px;
+    height: 245px;
+    color: rgb(213, 53, 118);
+    margin-bottom: 35px;
+    margin-left: 20px;
     background-color: rgba(0, 0, 0, 0);
-    border-bottom-width: -1px;
+    font-size: 70px;
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    display: flex;
+    visibility: visible;
+    overflow: visible;
     border-left-width: -1px;
-    border-top-width: -1px;
     border-right-width: -1px;
+    border-bottom-width: -1px;
+    border-top-width: -1px;
+}
+
+.levelButton:hover {
+    background-image: url("project://database/Assets/Art/Menus/LevelSelect/Level_SelectMenuHighlight.png?fileID=2800000&guid=4b1a3e9ec1a9a68428929210443cd074&type=3#Level_SelectMenuHighlight");
 }
