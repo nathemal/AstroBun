@@ -45,6 +45,7 @@ public class PauseMenuEvents : MonoBehaviour
 
     private void OnLevelSelectClick(ClickEvent evt)
     {
+        ResetGameData();
         LoadScene(levelSelectScene);
     }
 
@@ -56,12 +57,14 @@ public class PauseMenuEvents : MonoBehaviour
     private void OnRestartClick(ClickEvent evt)
     {
         Time.timeScale = 1;
-
+        
+        ResetGameData();
         LoadScene(currentScene);
     }
 
     private void OnExitClick(ClickEvent evt)
     {
+        ResetGameData();
         Application.Quit();
     }
 
@@ -73,5 +76,16 @@ public class PauseMenuEvents : MonoBehaviour
     private void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+   
+
+    private void ResetGameData()
+    {
+        if (AllEntityDataManager.Instance != null)
+        {
+            AllEntityDataManager.Instance.ResetPlayerData();
+            AllEntityDataManager.Instance.ResetAllEnemyData();
+        }
     }
 }

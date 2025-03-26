@@ -49,22 +49,21 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void OnLevelOneClick(ClickEvent evt)
     {
-        UpdateGameData();
+        ResetGameData();
         LoadScene(levelOneScene);
     }
 
     private void OnLevelTwoClick(ClickEvent evt)
     {
-        UpdateGameData();
-		
-		LoadScene(levelTwoScene);
+        ResetGameData();
+        LoadScene(levelTwoScene);
     }
 
     private void OnLevelThreeClick(ClickEvent evt)
     {
-        UpdateGameData();
-		
-		LoadScene(levelThreeScene);
+        //UpdateGameData();
+        ResetGameData();
+        LoadScene(levelThreeScene);
     }
 
     private void OnAllButtonsClick(ClickEvent evt)

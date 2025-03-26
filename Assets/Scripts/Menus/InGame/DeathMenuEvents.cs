@@ -42,9 +42,8 @@ public class DeathMenuEvents : MonoBehaviour
 
     private void OnLevelSelectClick(ClickEvent evt)
     {
-        LoadScene(levelSelectScene);
-
         ResetGameData();
+        LoadScene(levelSelectScene);
     }
 
     private void OnRestartClick(ClickEvent evt)

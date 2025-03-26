@@ -48,42 +48,42 @@ MonoBehaviour:
   - powerUpName: Fire Rate
     description: Increase  fire rate of the projectile by 10%
     upgradeStat: 10
-    cost: 50
+    cost: 300
     itemRef: {fileID: 0}
   - powerUpName: Fire Damage
     description: Increase  fire damage of the projectile by 10%
     upgradeStat: 10
-    cost: 60
+    cost: 250
     itemRef: {fileID: 0}
   - powerUpName: Speed
     description: Increase speed of the projectile by 10%
     upgradeStat: 10
-    cost: 40
+    cost: 300
     itemRef: {fileID: 0}
   - powerUpName: Range
     description: Increase  shooting range of the projectile by 25%
     upgradeStat: 25
-    cost: 80
+    cost: 340
     itemRef: {fileID: 0}
   - powerUpName: Fuel tank
     description: Increase the overall amount of fuel the player can carry by 15%
     upgradeStat: 15
-    cost: 35
+    cost: 400
     itemRef: {fileID: 0}
   - powerUpName: Fuel consumption
     description: Reduce the amount of fuel the player uses when moving by 10%
     upgradeStat: 10
-    cost: 25
+    cost: 300
     itemRef: {fileID: 0}
   - powerUpName: Currency drop
     description: 'Increase the amount of currency dropped by enemies by 5 '
     upgradeStat: 5
-    cost: 70
+    cost: 800
     itemRef: {fileID: 0}
   - powerUpName: Fuel loot drop
     description: Increases the chance of enemies dropping fuel by 5%
     upgradeStat: 5
-    cost: 50
+    cost: 800
     itemRef: {fileID: 0}
   totalCoinCount: {fileID: 0}
   shopUI: {fileID: 9018580226883190219, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}

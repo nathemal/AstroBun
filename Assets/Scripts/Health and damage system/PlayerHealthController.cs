@@ -18,7 +18,7 @@ public class PlayerHealthController: MonoBehaviour
     public GameObject deathMenu;
 
     [Header("For Saving Data")]
-    [SerializeField] private PlayerData data;
+    public PlayerData data;
 
     private PlayerPostProcessing postProcessing;
     public bool takeDamage;

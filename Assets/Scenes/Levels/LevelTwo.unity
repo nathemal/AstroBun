@@ -2640,6 +2640,59 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 51.868767, y: 10.344042}
   m_EdgeRadius: 0
+--- !u!1 &971304525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971304527}
+  - component: {fileID: 971304528}
+  m_Layer: 0
+  m_Name: Next Scene Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &971304527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971304525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 178.51338, y: 632.3229, z: -7.3930783}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &971304528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971304525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb2383416fc8e34da079bea26f29b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevelName: LevelThree
+  EnemiesDatasList:
+  - {fileID: 11400000, guid: 5b04e04dd94cb384498cb440922b1d5f, type: 2}
+  - {fileID: 11400000, guid: a8cfd52ceb6082f499c639827832d9e4, type: 2}
+  - {fileID: 11400000, guid: 782cea87d30dbe242b5f3758045429a7, type: 2}
+  - {fileID: 11400000, guid: 0068d683453bbe948b85ca5e7c78ef5e, type: 2}
+  playerData: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
+  playerHealth: {fileID: 1257853068}
+  currentSceneName: 
 --- !u!1 &973899914
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,7 +3187,7 @@ PrefabInstance:
     - target: {fileID: 7581807370788533872, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: sceneCamera
       value: 
-      objectReference: {fileID: 1363461399}
+      objectReference: {fileID: 0}
     - target: {fileID: 7581807370788533872, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: currentHealth
       value: 25
@@ -3289,7 +3342,6 @@ GameObject:
   - component: {fileID: 1363461396}
   - component: {fileID: 1363461395}
   - component: {fileID: 1363461398}
-  - component: {fileID: 1363461399}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3434,20 +3486,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &1363461399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1363461393}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f712526d301b5114c9ee085c46b099de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  durationOfShake: 0.0001
-  strenghtOfShake: 0.001
 --- !u!1 &1406585389
 GameObject:
   m_ObjectHideFlags: 0
@@ -5436,3 +5474,4 @@ SceneRoots:
   - {fileID: 1923414299}
   - {fileID: 1260648691}
   - {fileID: 1408567449}
+  - {fileID: 971304527}

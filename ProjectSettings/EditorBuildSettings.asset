@@ -29,8 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/LevelThree.unity
     guid: 991ced435b6b96c4c957d9163a640423
-  - enabled: 0
-    path: Assets/Prefabs/Scenes/Tests/LevelOne SPECIAL EFFECTS ART SPAWNERS TEST.unity
-    guid: 07e4b5de697039a46bd9d196656709cb
+  - enabled: 1
+    path: Assets/Scenes/Levels/WinScene.unity
+    guid: a6d34a4927a10b64aa8c9ecc5b289eff
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
