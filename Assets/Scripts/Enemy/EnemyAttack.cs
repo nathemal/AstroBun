@@ -10,6 +10,16 @@ public class EnemyAttack : MonoBehaviour
     private float firePointRadiusForVisualization = 0.08f;
     private float nextFireTime;
 
+    private GameObject audioManager;
+    private SoundManager sound;
+
+    private void Awake()
+    {
+        audioManager = GameObject.Find("AudioManager");
+
+        sound = audioManager.GetComponent<SoundManager>();
+    }
+
     private void Start()
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
@@ -38,6 +48,7 @@ public class EnemyAttack : MonoBehaviour
         if (nextFireTime < Time.time && this.gameObject != null)
         {
             CreateBullets(target);
+            sound.enemyShooting.Play();
             nextFireTime = Time.time + bulletScript.fireRate;
         }
     }

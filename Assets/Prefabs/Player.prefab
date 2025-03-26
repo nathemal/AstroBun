@@ -290,6 +290,7 @@ MonoBehaviour:
   gun: {fileID: 0}
   shield: {fileID: 0}
   fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
+  audioManager: {fileID: 579546080643185787, guid: 3ee93a7e35456294d8bda1f68a876f88, type: 3}
   pauseMenu: {fileID: 0}
   gamePaused: 0
   data: {fileID: 0}

@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4c0e7ef0cfca745adb693fde2287e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 579546080643185787, guid: 3ee93a7e35456294d8bda1f68a876f88, type: 3}
   maxHealth: 30
   currentHealth: 0
   worthMoney: 10

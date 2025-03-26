@@ -1,10 +1,21 @@
 <engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/MenuStyle.uss?fileID=7433441132597879392&amp;guid=815d2f71302b397458b4789c80d5b791&amp;type=3#MenuStyle" />
     <engine:VisualElement name="Container" style="flex-grow: 1; align-items: center;">
-        <engine:Label text="Astrobun&#10;" name="Title" class="title" />
-        <engine:Button text="Tutorial" name="TutorialButton" class="button" style="margin-top: 140px; margin-left: 0; margin-right: 0;" />
-        <engine:Button text="Level 1" name="LevelOneButton" class="button" style="margin-top: 0; margin-right: 0;" />
-        <engine:Button text="Level 2" name="LevelTwoButton" class="buttonNotAvailable" style="margin-top: 0; margin-right: 0;" />
-        <engine:Button text="Level 3" name="LevelThreeButton" class="buttonNotAvailable" style="margin-top: 0; margin-right: 0;" />
+        <engine:Button name="TutorialButton" class="levelButton" style="margin-top: 0; margin-left: 0; margin-right: 0; position: absolute; top: auto; bottom: 0; width: 600px; height: 480px; margin-bottom: 0; border-left-color: rgb(182, 3, 211); border-right-color: rgb(182, 3, 211); border-top-color: rgb(182, 3, 211); border-bottom-color: rgb(182, 3, 211); border-bottom-width: -1px;">
+            <engine:VisualElement name="AstrobunSpaceship" style="flex-grow: 1; width: 411px; height: 476px; position: absolute; right: 2px; bottom: 0; padding-bottom: 10px; background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_SpaceShip.png?fileID=2800000&amp;guid=02667a0092a0980488f2697cae719fba&amp;type=3#Astrobun_SpaceShip&quot;);" />
+            <engine:VisualElement name="AstrobunCharacter" style="flex-grow: 1; position: absolute; right: 288px; width: 291px; height: 419px; bottom: 6px; padding-bottom: 10px; background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_MainCharacter.png?fileID=2800000&amp;guid=58c58060fcb64ee47aecd3e46a0f68c2&amp;type=3#Astrobun_MainCharacter&quot;);" />
+        </engine:Button>
+        <engine:Button name="LevelOneButton" class="levelButton" style="margin-top: 0; margin-right: 0; margin-left: 0; margin-bottom: 0; position: absolute; bottom: 200px; left: 156px; width: 420px; height: 420px;">
+            <engine:VisualElement name="OrganicPlanet" style="flex-grow: 1; position: absolute; width: 389px; height: 427px; background-image: url(&quot;project://database/Assets/Art/Menus/LevelSelect/Level_SelectOrganicPlanet.png?fileID=2800000&amp;guid=ce1bd55ffc808634e88974587ac4ca6b&amp;type=3#Level_SelectOrganicPlanet&quot;); bottom: 0; left: 14px;" />
+            <engine:VisualElement name="OrganicEnemy" style="flex-grow: 1; width: 166px; height: 201px; position: absolute; background-image: url(&quot;project://database/Assets/Art/Menus/LevelSelect/Level_SelectOrganicCreature.png?fileID=2800000&amp;guid=8bbf9b173aaf4ac4cb07cd3b5f87a72a&amp;type=3#Level_SelectOrganicCreature&quot;); top: 199px; left: 206px;" />
+        </engine:Button>
+        <engine:Button name="LevelTwoButton" class="levelButton" style="margin-top: 0; margin-right: 0; right: 155px; left: auto; position: absolute; bottom: 200px; width: 350px; height: 350px;">
+            <engine:VisualElement name="industrialPlanet" style="flex-grow: 1; width: 288px; height: 437px; position: absolute; background-image: url(&quot;project://database/Assets/Art/Menus/LevelSelect/Level_SelectIndustrialPlanet.png?fileID=2800000&amp;guid=03b7b07db4697184fa895f2d258dc88c&amp;type=3#Level_SelectIndustrialPlanet&quot;); top: -86px; left: 2px;" />
+            <engine:VisualElement name="industrialEnemy" style="flex-grow: 1; width: 158px; height: 157px; background-image: url(&quot;project://database/Assets/Art/Menus/LevelSelect/Level_SelectIndustrialCreature.png?fileID=2800000&amp;guid=57d8768d6860b8140aa3f8c794f16f54&amp;type=3#Level_SelectIndustrialCreature&quot;); position: absolute; top: 211px; left: 136px;" />
+        </engine:Button>
+        <engine:Button name="LevelThreeButton" class="levelButton" style="margin-top: 0; margin-right: 0; position: absolute; top: 120px; margin-bottom: 0; left: auto; width: 370px; height: 380px;">
+            <engine:VisualElement name="BlackHolePlanet" style="flex-grow: 1; width: 368px; height: 362px; position: absolute; background-image: url(&quot;project://database/Assets/Art/Menus/LevelSelect/Level_SelectBlackHolePlanet.png?fileID=2800000&amp;guid=c0852f92dbf5c52428daf278a99d563c&amp;type=3#Level_SelectBlackHolePlanet&quot;); top: -3px; left: -1px;" />
+            <engine:VisualElement name="BlackHoleEnemy" style="flex-grow: 1; position: absolute; width: 140px; height: 212px; background-image: url(&quot;project://database/Assets/Art/Menus/LevelSelect/Level_SelectBlackHoleCreature.png?fileID=2800000&amp;guid=978332cd90dd7ea469d8c40758edad61&amp;type=3#Level_SelectBlackHoleCreature&quot;); top: 160px; left: 212px;" />
+        </engine:Button>
     </engine:VisualElement>
 </engine:UXML>
