@@ -822,6 +822,77 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f39191ffb76fa5b438e409c4178c0664, type: 3}
+--- !u!1 &204269790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204269793}
+  - component: {fileID: 204269792}
+  - component: {fileID: 204269791}
+  m_Layer: 0
+  m_Name: Spawner black hole level
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &204269791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204269790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cead56b6da12f174c968b71497c54cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpacing: 50
+  regionSize: {x: 454.1, y: 217.2}
+  rejectionSamples: 35
+  enemyPrefab:
+  - {fileID: 5293202144255024865, guid: d864d9c40a47a224582ae4f3cd507184, type: 3}
+  - {fileID: 5293202144255024865, guid: 25066b034aead584fa1b23f444aa79b0, type: 3}
+  - {fileID: 5293202144255024865, guid: be717b756d263d94cb7a8b3e699194e5, type: 3}
+  - {fileID: 5293202144255024865, guid: 765ae4fc4d9d2bc4ebde662f7459813c, type: 3}
+--- !u!114 &204269792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204269790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943b92901411b17449d628481e51905d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 60
+  regionSize: {x: 469.5, y: 230.43}
+  rejectionSamples: 40
+  planetPrefab: {fileID: 8803790218443994470, guid: 0e66fe4b1e4cbd749a0b6d86673d4bc4, type: 3}
+  planetTypes:
+  - {fileID: 11400000, guid: d44307f790483f645a114c8d458bf051, type: 2}
+--- !u!4 &204269793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204269790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110.99068, y: 79.12493, z: -0.014116665}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &318581237 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 247809006953872449, guid: 63088e20653508e43bef9b08a98064a1, type: 3}
@@ -1854,6 +1925,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7316138981861244605, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7581807370788533872, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: Healthbar
       value: 
@@ -2290,7 +2365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1482103827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3262,3 +3337,4 @@ SceneRoots:
   - {fileID: 1910981897}
   - {fileID: 2142339442}
   - {fileID: 135419094}
+  - {fileID: 204269793}

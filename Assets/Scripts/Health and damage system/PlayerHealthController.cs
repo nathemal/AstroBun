@@ -24,15 +24,12 @@ public class PlayerHealthController: MonoBehaviour
     public bool takeDamage;
     private float lastDamageTime;
     private int activeHitsByBullets = 0;
-    //public CameraShake sceneCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         postProcessing = GetComponent<PlayerPostProcessing>();
-
-        //sceneCamera = Camera.main.GetComponent<CameraShake>();
 
         //Load data
         //if (data.isNewGame)
@@ -73,7 +70,6 @@ public class PlayerHealthController: MonoBehaviour
         lastDamageTime = Time.time;
         postProcessing.ChangeVolumeWhenTakingDamage();
 
-        //StartCoroutine(sceneCamera.ShakeCamera(sceneCamera.durationOfShake, sceneCamera.strenghtOfShake));
         StartCoroutine(CheckIfStillBeingHit());
     }
 

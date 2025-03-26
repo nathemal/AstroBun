@@ -76,34 +76,34 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void UpdateFuelDataInFirstScene()
-    {
-        fuel = data.FuelAmountValue;
-        fuelConsumptionRate = data.FueConsumptionValue;
+  //  private void UpdateFuelDataInFirstScene()
+  //  {
+  //      fuel = data.FuelAmountValue;
+  //      fuelConsumptionRate = data.FueConsumptionValue;
 
-        fuelTank.UpdateFuelTank(data.FuelTankCapValue, fuel);
-    }
+  //      fuelTank.UpdateFuelTank(data.FuelTankCapValue, fuel);
+  //  }
 
-    private void UpdateFuelDataInNextScene()
-    {
-        fuelTank.UpdateFuelTank(fuel, fuel);
-        data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
-        data.FueConsumptionValue = fuelConsumptionRate;
-        data.FuelAmountValue = fuel;
+  //  private void UpdateFuelDataInNextScene()
+  //  {
+  //      fuelTank.UpdateFuelTank(fuel, fuel);
+  //      data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
+  //      data.FueConsumptionValue = fuelConsumptionRate;
+  //      data.FuelAmountValue = fuel;
 		
-        string currentSceneName = SceneManager.GetActiveScene().name;
+  //      string currentSceneName = SceneManager.GetActiveScene().name;
 
-        //if (data.isNewGame)
-        //{
-        //    data.UpdateFuelDataInFirstScene(this);
-        //}
-        //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        //{
-        //    data.UpdateFuelDataInNextScene(this);
-        //}
+  //      //if (data.isNewGame)
+  //      //{
+  //      //    data.UpdateFuelDataInFirstScene(this);
+  //      //}
+  //      //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+  //      //{
+  //      //    data.UpdateFuelDataInNextScene(this);
+  //      //}
 		
-		// TODO: Git did something weird here with the merge conflict, make sure it looks and works correctly, ENDING HERE
-    }
+		//// TODO: Git did something weird here with the merge conflict, make sure it looks and works correctly, ENDING HERE
+  //  }
 
     void Update()
     {

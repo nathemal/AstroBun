@@ -9,8 +9,6 @@ public class EnemyHealthController : MonoBehaviour
     private GameObject audioManager;
     private SoundManager sound;
 
-    //public EnemyTypeChoices enemyType;
-   
     public float maxHealth;
     public float currentHealth;
     private ChangeEnemyColor enemyColor;

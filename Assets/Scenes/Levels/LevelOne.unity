@@ -2778,6 +2778,10 @@ PrefabInstance:
       propertyPath: bulletScript
       value: 
       objectReference: {fileID: 5332551000509181047, guid: 03b37c413915c4747b7176c4ef4f4cfd, type: 3}
+    - target: {fileID: 1223535905647082393, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2179046134199163382, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2905,6 +2909,10 @@ PrefabInstance:
     - target: {fileID: 6769203205638144219, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7316138981861244605, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7581807370788533872, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
       propertyPath: Healthbar
