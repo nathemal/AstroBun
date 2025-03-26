@@ -49,7 +49,7 @@ public class StartMenuEvents : MonoBehaviour
 
     private void OnSettingsClick(ClickEvent evt)
     {
-        LoadScene(settingsScene);
+        //LoadScene(settingsScene);
     }
 
     private void OnCreditsClick(ClickEvent evt)

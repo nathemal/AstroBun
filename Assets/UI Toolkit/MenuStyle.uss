@@ -43,9 +43,6 @@
     border-top-width: -1px;
 }
 
-.button:hover {
-}
-
 .buttonNotAvailable {
     width: 400px;
     height: 100px;
