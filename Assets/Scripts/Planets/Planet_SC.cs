@@ -21,7 +21,7 @@ public class Planet : MonoBehaviour
     {
         planetData = data;
         gameObject.name = planetData.planetName;
-        Debug.Log($"Planet Set: {planetData.planetName}, Gravity: {planetData.gravityStrength}");
+        //Debug.Log($"Planet Set: {planetData.planetName}, Gravity: {planetData.gravityStrength}");
 
         transform.localScale = Vector3.one * planetData.size;  
 

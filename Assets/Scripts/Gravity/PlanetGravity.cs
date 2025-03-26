@@ -18,7 +18,7 @@ public class PlanetGravity : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log($"Ignoring collision with {other.name} (Enemy)");
+            //Debug.Log($"Ignoring collision with {other.name} (Enemy)");
             return;
         }
 

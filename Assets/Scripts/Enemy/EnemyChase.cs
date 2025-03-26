@@ -4,11 +4,11 @@ public class EnemyChase : MonoBehaviour
 {
     private GameObject player;
     private float distance;
-    
+
     public EnemyAttack enemyAttackScript;
     public float distanceToNoticePlayer;
     public float speed;
-    
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -16,7 +16,7 @@ public class EnemyChase : MonoBehaviour
 
     void Update()
     {
-        if( player != null )
+        if (player != null)
         {
             ChasePlayer();
         }
@@ -43,6 +43,5 @@ public class EnemyChase : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distanceToNoticePlayer);
     }
-    
-    // TODO: when the player movement is fixed, the movement of the enemies needs to be fixed, because there are instances when they collide overlap each other
 }
+    

@@ -1,5 +1,10 @@
+using Unity.Mathematics;
+using UnityEditor.Rendering.LookDev;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealthController: MonoBehaviour
@@ -7,65 +12,69 @@ public class PlayerHealthController: MonoBehaviour
     public float maxHealth;
     public float currentHealth;
     public Healthbar Healthbar;
-    public UnityEvent onDeath;
+    //public UnityEvent onDeath;
+    private bool isDead = false;
 
     public GameObject deathMenu;
 
     [Header("For Saving Data")]
     [SerializeField] private PlayerData data;
 
+    private PlayerPostProcessing postProcessing;
+    public bool takeDamage;
+    private float lastDamageTime;
+    private int activeHitsByBullets = 0;
+    //public CameraShake sceneCamera;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
+        postProcessing = GetComponent<PlayerPostProcessing>();
+
+        //sceneCamera = Camera.main.GetComponent<CameraShake>();
 
         //Load data
+        //if (data.isNewGame)
+        //{
+        //    data.UpdateHealthInFirstScene(this);
+        //}
+        //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        //{
+        //    data.UpdateHealthInNextScene(this);
+        //}
 
-
-        if (data.isNewGame)
-        {
-            UpdateHealthInFirstScene();
-        }
-        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        {
-            UpdateHealthInNextScene();
-        }
-        
     }
-
-    private void UpdateHealthInNextScene()
-    {
-        currentHealth = data.HealthValue;
-        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
-    }
-
-    private void UpdateHealthInFirstScene()
-    {
-        currentHealth = maxHealth;
-        Healthbar.UpdateHealthBar(maxHealth, currentHealth);
-        data.HealthValue = currentHealth;
-    }
-
 
     public void TakeDamage(float damage) 
     {
+        if (isDead) return;
+
+        currentHealth -= damage;
+        
+        data.HealthValue = currentHealth;
+
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
+            isDead = true;
+
+            Healthbar.UpdateHealthBar(maxHealth, currentHealth);
+
             deathMenu.SetActive(true);
+            Destroy(gameObject);
             return;
         }
 
-        currentHealth -= damage;
-        data.HealthValue = currentHealth;
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
 
-        if (currentHealth <= 0)
-        {
-            deathMenu.SetActive(true);
+        activeHitsByBullets++;
+        takeDamage = true;
+        lastDamageTime = Time.time;
+        postProcessing.ChangeVolumeWhenTakingDamage();
 
-            onDeath.Invoke();
-            Destroy(gameObject);
-        }
+        //StartCoroutine(sceneCamera.ShakeCamera(sceneCamera.durationOfShake, sceneCamera.strenghtOfShake));
+        StartCoroutine(CheckIfStillBeingHit());
     }
 
     public void AddHealth(float healAmount)
@@ -75,8 +84,25 @@ public class PlayerHealthController: MonoBehaviour
 
         currentHealth += healAmount;
         currentHealth = Mathf.Min(currentHealth, Healthbar.healthSlider.maxValue); //cap heal according the heal bar capacity
-      
-        //data.HealthValue = currentHealth;//
+        
+		postProcessing.ChangeVolumeBasedOnHeal(currentHealth);
+
+        data.HealthValue = currentHealth;
+		
         Healthbar.UpdateHealthBar(maxHealth, currentHealth);
+    }
+
+
+    private IEnumerator CheckIfStillBeingHit()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        activeHitsByBullets--;
+
+        if (activeHitsByBullets <= 0)
+        {
+            takeDamage = false;
+            postProcessing.ChangeVolumeWhenPlayerIsNotBeingHit();
+        }
     }
 }

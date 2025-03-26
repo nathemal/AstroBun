@@ -9,6 +9,10 @@ public class EnemyAttack : MonoBehaviour
     private BulletSettings bulletScript;
     private float firePointRadiusForVisualization = 0.08f;
     private float nextFireTime;
+    private bool canEnemyShoot;
+
+    [Header("Attack Particle settings")]
+    public ParticleBurst attackParticles;
 
     private GameObject audioManager;
     private SoundManager sound;
@@ -23,6 +27,8 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
+
+        canEnemyShoot = true;
     }
 
     public void CreateBullets(GameObject target)
@@ -37,6 +43,8 @@ public class EnemyAttack : MonoBehaviour
         {
             Vector2 directionToTarget = (target.transform.position - firePoint.position).normalized;
             bulletInfo.SetDirection(directionToTarget);
+
+            attackParticles.Burst(bulletInfo.attackParticlesAmount);
         }
     }
     
@@ -45,7 +53,7 @@ public class EnemyAttack : MonoBehaviour
         if (target == null || this.gameObject == null) { return; }
 
         //fire according the fire rate
-        if (nextFireTime < Time.time && this.gameObject != null)
+        if (nextFireTime < Time.time && this.gameObject != null && canEnemyShoot)
         {
             CreateBullets(target);
             sound.enemyShooting.Play();
@@ -57,5 +65,16 @@ public class EnemyAttack : MonoBehaviour
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(firePoint.transform.position, firePointRadiusForVisualization);
+    }
+
+
+    public void DisableShooting()
+    {
+        canEnemyShoot = false;
+    }
+
+    public void EnableShooting()
+    {
+        canEnemyShoot = true;
     }
 }

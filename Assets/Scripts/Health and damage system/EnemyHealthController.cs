@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -7,11 +9,14 @@ public class EnemyHealthController : MonoBehaviour
     private GameObject audioManager;
     private SoundManager sound;
 
+    //public EnemyTypeChoices enemyType;
+   
     public float maxHealth;
     public float currentHealth;
     private ChangeEnemyColor enemyColor;
 
     public int worthMoney;
+    private ActivateEnemyDeath enemySoul;
 
     [Header("To destroy enemy")]
     public UnityEvent<int> onDeath;
@@ -38,6 +43,7 @@ public class EnemyHealthController : MonoBehaviour
     {   
         string currentSceneName = SceneManager.GetActiveScene().name;
 
+
        /* if(data.isNewGame)
         {
             data.WorthMoneyValue = worthMoney;
@@ -52,8 +58,14 @@ public class EnemyHealthController : MonoBehaviour
             //Debug.Log("drop chance " + dropChance + " enemyData: " + data.FuelDropChanceValue);
         }*/
 
+        //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+        //{
+        //    data.SetStatsNextLevel(this);
+        //}
+
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
+        enemySoul = GetComponent<ActivateEnemyDeath>();
 
         EarnMoney currencyManager = FindAnyObjectByType<EarnMoney>();
         if (currencyManager != null)
@@ -84,8 +96,23 @@ public class EnemyHealthController : MonoBehaviour
            
             sound.enemyDying.Play();
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            StartCoroutine(HandleEnemyDeath());
         }
+    }
+
+    private IEnumerator HandleEnemyDeath()
+    {
+        enemySoul.SetSoulActive();
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<EnemyAttack>().enabled = false;
+        GetComponent<EnemyChase>().enabled = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        onDeath.Invoke(worthMoney);
+        Destroy(gameObject);
     }
 
     public float CalculatehealthProcentage()
@@ -105,11 +132,9 @@ public class EnemyHealthController : MonoBehaviour
         HealPickUp heal = healLootInstance.GetComponent<HealPickUp>();
         heal.DropLoot(enemyPosition);
 
-
         //drop fuel loot
         if (CanLootbeDroped())
         {
-            //Drop Fuel Loot
             GameObject fuelLootInstance = Instantiate(fuelLootPrefab, enemyPosition, Quaternion.identity);
 
             FuelPickUp loot = fuelLootInstance.GetComponent<FuelPickUp>();
@@ -119,14 +144,14 @@ public class EnemyHealthController : MonoBehaviour
 
     private bool CanLootbeDroped()
     {
-        Debug.Log("Chance right now: " + dropChance);
+        //Debug.Log("Chance right now: " + dropChance);
 
         float roll = Random.Range(0f, 100f);
-        Debug.Log("Roll was " + roll);
+        //Debug.Log("Roll was " + roll);
 
         if (roll < dropChance)
         {
-            Debug.Log("Loot was dropped");
+            //Debug.Log("Loot was dropped");
             return true;
         }
 

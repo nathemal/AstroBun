@@ -17,6 +17,7 @@ public class DeathMenuEvents : MonoBehaviour
     private string levelSelectScene = "LevelSelect";
     [Header("Name of current scene. CASE SENSITIVE!!")]
     public string currentScene;
+   
 
     private void Update()
     {
@@ -42,12 +43,16 @@ public class DeathMenuEvents : MonoBehaviour
     private void OnLevelSelectClick(ClickEvent evt)
     {
         LoadScene(levelSelectScene);
+
+        ResetGameData();
     }
 
     private void OnRestartClick(ClickEvent evt)
     {
         Time.timeScale = 1;
 
+        ResetGameData();
+		
         LoadScene(currentScene);
     }
 
@@ -64,5 +69,14 @@ public class DeathMenuEvents : MonoBehaviour
     private void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    private void ResetGameData()
+    {
+        if (AllEntityDataManager.Instance != null)
+        {
+            AllEntityDataManager.Instance.ResetPlayerData();
+            AllEntityDataManager.Instance.ResetAllEnemyData();
+        }
     }
 }

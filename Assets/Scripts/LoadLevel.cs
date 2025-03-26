@@ -1,29 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 
 public class LoadLevel : MonoBehaviour
 {
     public string levelName;
-    [SerializeField] public EnemyData enemyData;
+    [SerializeField] public List<EnemyData> EnemiesDatasList;
     [SerializeField] public PlayerData playerData;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void LoadScene()
     {
         playerData.lastSceneName = SceneManager.GetActiveScene().name;
-        enemyData.lastSceneName = SceneManager.GetActiveScene().name;
+
+        foreach(EnemyData enemyData in EnemiesDatasList)
+        {
+            enemyData.lastSceneName = SceneManager.GetActiveScene().name;
+        }
+        
         SceneManager.LoadScene(levelName);
     }
 }
