@@ -114,7 +114,7 @@ public class OrbitController : MonoBehaviour
         if (other.CompareTag("Planet"))
         {
             isOrbiting = false;
-            Debug.Log($"Player left orbit around {currentPlanet.name}");
+           
             currentPlanet = null;
         }
     }

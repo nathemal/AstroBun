@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class EnemyHealthController : MonoBehaviour
+public class TutorialEnemyHealthController : MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
@@ -16,32 +16,14 @@ public class EnemyHealthController : MonoBehaviour
     [Header("For Fuel Loot")]
     public GameObject fuelLootPrefab;
     public float dropChance;
-    public static float dropChanceMultiplier = 1.0f; //no effect
 
     [Header("For Heal Loot")]
     public GameObject healLootPrefab;
 
-    [Header("To save data")]
-    public EnemyData data; 
+
 
     private void Start()
     {
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-       /* if(data.isNewGame)
-        {
-            data.WorthMoneyValue = worthMoney;
-            data.FuelDropChanceValue = dropChance;
-        }
-        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        {
-            worthMoney = data.WorthMoneyValue;
-            dropChance = data.FuelDropChanceValue;
-            //Debug.Log("inside in the if statement");
-            //Debug.Log("worth money " + worthMoney + " enemyData: " + data.WorthMoneyValue);
-            //Debug.Log("drop chance " + dropChance + " enemyData: " + data.FuelDropChanceValue);
-        }*/
-
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
 
@@ -54,34 +36,27 @@ public class EnemyHealthController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (currentHealth <= 0) 
+        if (currentHealth <= 0)
             return;
 
         currentHealth -= damage;
 
-        if(enemyColor != null)
+        if (enemyColor != null)
         {
             enemyColor.ChangeSpriteColor();
         }
 
         if (currentHealth <= 0)
         {
-            DropTheLoot();
+            DropLoot();
 
             onDeath.Invoke(worthMoney);
-           
+
             Destroy(gameObject);
         }
     }
 
-    public float CalculatehealthProcentage()
-    {
-        float procentage =  (currentHealth /  maxHealth) * 100.0f;
-        
-        return procentage;
-    }
-
-    private void DropTheLoot()
+    private void DropLoot()
     {
         Vector3 enemyPosition = transform.position;
 
@@ -102,7 +77,6 @@ public class EnemyHealthController : MonoBehaviour
             loot.DropLoot(enemyPosition);
         }
     }
-
     private bool CanLootbeDroped()
     {
         Debug.Log("Chance right now: " + dropChance);
@@ -118,5 +92,5 @@ public class EnemyHealthController : MonoBehaviour
 
         return false;
     }
-  
+
 }

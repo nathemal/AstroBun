@@ -449,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2038280542842676870, guid: 63088e20653508e43bef9b08a98064a1, type: 3}
       propertyPath: currentScene
-      value: LevelOne
+      value: LevelTwo
       objectReference: {fileID: 0}
     - target: {fileID: 2540814896093848126, guid: 63088e20653508e43bef9b08a98064a1, type: 3}
       propertyPath: m_IsActive
@@ -541,7 +541,7 @@ PrefabInstance:
       objectReference: {fileID: 1549084831}
     - target: {fileID: 6325076840299946070, guid: 63088e20653508e43bef9b08a98064a1, type: 3}
       propertyPath: currentScene
-      value: LevelOne
+      value: LevelTwo
       objectReference: {fileID: 0}
     - target: {fileID: 7755746128182405063, guid: 63088e20653508e43bef9b08a98064a1, type: 3}
       propertyPath: m_Name
