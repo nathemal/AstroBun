@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class EnemyHealthController : MonoBehaviour
 {
+    private GameObject audioManager;
+    private SoundManager sound;
+
     public float maxHealth;
     public float currentHealth;
     private ChangeEnemyColor enemyColor;
@@ -22,10 +25,17 @@ public class EnemyHealthController : MonoBehaviour
     public GameObject healLootPrefab;
 
     [Header("To save data")]
-    public EnemyData data; 
+    public EnemyData data;
+
+    private void Awake()
+    {
+        audioManager = GameObject.Find("AudioManager");
+
+        sound = audioManager.GetComponent<SoundManager>();
+    }
 
     private void Start()
-    {
+    {   
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         if(data.isNewGame)
@@ -59,7 +69,9 @@ public class EnemyHealthController : MonoBehaviour
 
         currentHealth -= damage;
 
-        if(enemyColor != null)
+        sound.enemyTakingDamage.Play();
+
+        if (enemyColor != null)
         {
             enemyColor.ChangeSpriteColor();
         }
@@ -70,6 +82,8 @@ public class EnemyHealthController : MonoBehaviour
 
             onDeath.Invoke(worthMoney);
            
+            sound.enemyDying.Play();
+
             Destroy(gameObject);
         }
     }
@@ -118,5 +132,4 @@ public class EnemyHealthController : MonoBehaviour
 
         return false;
     }
-  
 }

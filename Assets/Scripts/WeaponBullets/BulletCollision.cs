@@ -4,6 +4,16 @@ public class BulletCollision : MonoBehaviour
 {
     private BulletSettings bullet;
 
+    private GameObject audioManager;
+    private SoundManager sound;
+    
+    private void Awake()
+    {
+        audioManager = GameObject.Find("AudioManager");
+
+        sound = audioManager.GetComponent<SoundManager>();
+    }
+
     private void Start()
     {
         bullet = GetComponentInParent<BulletSettings>();
@@ -54,6 +64,8 @@ public class BulletCollision : MonoBehaviour
 
     private void handleShieldCollision()
     {
+        sound.shieldDeflect.Play();
+
         Destroy(gameObject);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -32,34 +33,44 @@ public class PlayerController : MonoBehaviour
     Vector2 movementInput;
     Vector2 mousePosition;
 
+    private GameObject audioManager;
+    private SoundManager sound;
+
     public GameObject pauseMenu;
     public bool gamePaused = false;
 
     [Header("Saving Player Data")]
     public PlayerData data;
 
+    private void Awake()
+    {
+        audioManager = GameObject.Find("AudioManager");
+
+        sound = audioManager.GetComponent<SoundManager>();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         orbitController = GetComponent<OrbitController>();
 
-       /* string currentSceneName = SceneManager.GetActiveScene().name;
+        /* string currentSceneName = SceneManager.GetActiveScene().name;
 
-        
-        if (data.isNewGame)//if (data.lastSceneName == currentSceneName || (data.lastSceneName == ""))
-        {
-            UpdateFuelDataInNextScene();
-        }
-        else if(data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        {
-            UpdateFuelDataInFirstScene();
 
-            //Debug.Log("inside in the if statement");
-            //Debug.Log("current fuel amount " + fuel + " enemyData: " + data.FuelAmountValue);
-            //Debug.Log("consumption rate " + fuelConsumptionRate + " enemyData: " + data.FueConsumptionValue);
-            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " enemyData: " + data.FuelTankCapValue);
-            //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " current fuel amount: " + fuel);
-        }*/
+         if (data.isNewGame)//if (data.lastSceneName == currentSceneName || (data.lastSceneName == ""))
+         {
+             UpdateFuelDataInNextScene();
+         }
+         else if(data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
+         {
+             UpdateFuelDataInFirstScene();
+
+             //Debug.Log("inside in the if statement");
+             //Debug.Log("current fuel amount " + fuel + " enemyData: " + data.FuelAmountValue);
+             //Debug.Log("consumption rate " + fuelConsumptionRate + " enemyData: " + data.FueConsumptionValue);
+             //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " enemyData: " + data.FuelTankCapValue);
+             //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " current fuel amount: " + fuel);
+         }*/
 
     }
 
@@ -109,6 +120,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && canPlayerShoot) // left click
         {
             weapon.Fire();
+            
+            sound.playerShooting.Play();
         }
 
         if (Input.GetMouseButtonDown(1)) // right click
@@ -235,7 +248,4 @@ public class PlayerController : MonoBehaviour
 
         isDashing = false;
     }
-
-
-
 }
