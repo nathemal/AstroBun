@@ -43,7 +43,7 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void OnTutorialClick(ClickEvent evt)
     {
-        //ResetGameData();
+        ResetGameData();
         LoadScene(tutorialScene);
     }
 
