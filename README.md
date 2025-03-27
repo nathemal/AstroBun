@@ -1,9 +1,14 @@
-# Unity Template Project
+# AstroBun
 
-Unity template project. Includes, ignore files, lfs setup files (attributes).
+This is a Shot 'em Up game developed by team Shell Smashers as a project in the Game Design 2 - Game Development course at Uppsala University Campus Gotland. It was made using unity and all art & sound assets as well as code was made by us.
 
-To start with this Unity template, you can start a new repository in the course you want and under 'Template' use the 'unity_template' repository. Then select 'Git Content', give a name to your repository and then click 'Create'.
+You can play the finished game over on itch (https://angelikajuhasz.itch.io/astrobun)
 
-Alternative, you can go the the unity_template repository (Go to Explore, and under repositories type 'unity_template' without the quotes) and on the right top side you will see 'Fork'. Click it, as owner select the course (organization) you want, rename your repository, and fork. If you go now to the course, you should see your new repo. 
+Credits:
 
-When your repository is ready, you can rewrite your 'README.md' to reflect your project, or if you don't need one you can delete it.
+- Angelika Juhász               - Product Owner
+- Lara Laitinen                 - SCRUM Master
+- Martin Carlsten               - Lead Programmer
+- Kamile Smataviciute           - Programmer
+- Anya Je (Agnija Jemeljanova)  - Art Lead
+- Marcus Wilson                 - Graphic & Sound Designer
