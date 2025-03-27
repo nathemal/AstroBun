@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MenuStyle.uss?fileID=7433441132597879392&amp;guid=815d2f71302b397458b4789c80d5b791&amp;type=3#MenuStyle" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; justify-content: space-around; flex-direction: column; width: 100%; align-self: center; align-items: center;">
+        <engine:Label name="Title" class="title" style="margin-bottom: 0; margin-top: 50px; background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_Title.png?fileID=2800000&amp;guid=f6740bfa0ba716e42a14551f64c30a18&amp;type=3#Astrobun_Title&quot;); width: 1089px; height: 244px; align-items: flex-start; align-self: flex-start; margin-left: 70px;" />
+        <engine:Label style="width: 966px; height: 632px; background-image: url(&quot;project://database/Assets/Art/Menus/Credits/Credits_ScreenText.png?fileID=2800000&amp;guid=6802a96961eb48745a47fc99b4c31a4a&amp;type=3#Credits_ScreenText&quot;);" />
+    </engine:VisualElement>
+</engine:UXML>

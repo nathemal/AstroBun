@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8220362923779318919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7789245452782485839}
+  - component: {fileID: 1147065835596604266}
+  m_Layer: 0
+  m_Name: All Enemy Data Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7789245452782485839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220362923779318919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.116744, y: 2.5754375, z: -0.16454728}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1147065835596604266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220362923779318919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7007ba8a1edfe104eaaafa89136e3c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
+  playerHealth: {fileID: 7581807370788533872, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+  playerFuel: {fileID: 4562679898632507081, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+  playerAttack: {fileID: 117549714485997888, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+  AllEnemyData:
+  - {fileID: 11400000, guid: 5b04e04dd94cb384498cb440922b1d5f, type: 2}
+  - {fileID: 11400000, guid: a8cfd52ceb6082f499c639827832d9e4, type: 2}
+  - {fileID: 11400000, guid: 782cea87d30dbe242b5f3758045429a7, type: 2}
+  - {fileID: 11400000, guid: 0068d683453bbe948b85ca5e7c78ef5e, type: 2}
+  AllEnemiesList:
+  - {fileID: -2407957162718211872, guid: d864d9c40a47a224582ae4f3cd507184, type: 3}
+  - {fileID: -2407957162718211872, guid: 25066b034aead584fa1b23f444aa79b0, type: 3}
+  - {fileID: -2407957162718211872, guid: be717b756d263d94cb7a8b3e699194e5, type: 3}
+  - {fileID: -2407957162718211872, guid: 765ae4fc4d9d2bc4ebde662f7459813c, type: 3}
+  - {fileID: -2407957162718211872, guid: cfde7c5f5ef11f2429d6e562b105e340, type: 3}
+  - {fileID: -2407957162718211872, guid: cb891c3c09fee9d4796c9971d2ce40d4, type: 3}
+  - {fileID: -2407957162718211872, guid: d9d4c8e113b835247b68f9f39f173928, type: 3}
+  - {fileID: -2407957162718211872, guid: bb52024ee5d29fe4a9600e0dc84b7524, type: 3}
+  - {fileID: -2407957162718211872, guid: 9206f42ecd6a9204abdff26723ae774f, type: 3}
+  - {fileID: -2407957162718211872, guid: c7f61912c97e56045845bd8d57de137d, type: 3}
+  - {fileID: -2407957162718211872, guid: e928d591d77b87446b580079fe1e14ef, type: 3}
+  - {fileID: -2407957162718211872, guid: 92b587176daf7db4d967244330de918c, type: 3}

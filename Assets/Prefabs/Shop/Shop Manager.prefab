@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3910391469204283566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4244087428441676109}
+  - component: {fileID: 4405605591640091435}
+  m_Layer: 0
+  m_Name: Shop Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4244087428441676109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910391469204283566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.0514357, y: -0.5095914, z: 607.46954}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4405605591640091435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910391469204283566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a0a163e0eb5bb4fbec48d8c02b86f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PoweUpList:
+  - powerUpName: Fire Rate
+    description: Increase  fire rate of the projectile by 10%
+    upgradeStat: 10
+    cost: 300
+    itemRef: {fileID: 0}
+  - powerUpName: Fire Damage
+    description: Increase  fire damage of the projectile by 10%
+    upgradeStat: 10
+    cost: 250
+    itemRef: {fileID: 0}
+  - powerUpName: Speed
+    description: Increase speed of the projectile by 10%
+    upgradeStat: 10
+    cost: 300
+    itemRef: {fileID: 0}
+  - powerUpName: Range
+    description: Increase  shooting range of the projectile by 25%
+    upgradeStat: 25
+    cost: 340
+    itemRef: {fileID: 0}
+  - powerUpName: Fuel tank
+    description: Increase the overall amount of fuel the player can carry by 15%
+    upgradeStat: 15
+    cost: 400
+    itemRef: {fileID: 0}
+  - powerUpName: Fuel consumption
+    description: Reduce the amount of fuel the player uses when moving by 10%
+    upgradeStat: 10
+    cost: 300
+    itemRef: {fileID: 0}
+  - powerUpName: Currency drop
+    description: 'Increase the amount of currency dropped by enemies by 5 '
+    upgradeStat: 5
+    cost: 800
+    itemRef: {fileID: 0}
+  - powerUpName: Fuel loot drop
+    description: Increases the chance of enemies dropping fuel by 5%
+    upgradeStat: 5
+    cost: 800
+    itemRef: {fileID: 0}
+  totalCoinCount: {fileID: 0}
+  shopUI: {fileID: 9018580226883190219, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
+  shopContent: {fileID: 7717480429886871454, guid: 5e5f170316d31bd4ab9d3b37b38ce39f, type: 3}
+  shopItemPefab: {fileID: 8023984699695924902, guid: bf79bebeb4cf838439b981eac7cee566, type: 3}
+  EnemiesList:
+  - {fileID: -2407957162718211872, guid: 9206f42ecd6a9204abdff26723ae774f, type: 3}
+  - {fileID: -2407957162718211872, guid: c7f61912c97e56045845bd8d57de137d, type: 3}
+  - {fileID: -2407957162718211872, guid: e928d591d77b87446b580079fe1e14ef, type: 3}
+  - {fileID: -2407957162718211872, guid: 92b587176daf7db4d967244330de918c, type: 3}
+  - {fileID: -2407957162718211872, guid: cfde7c5f5ef11f2429d6e562b105e340, type: 3}
+  - {fileID: -2407957162718211872, guid: cb891c3c09fee9d4796c9971d2ce40d4, type: 3}
+  - {fileID: -2407957162718211872, guid: d9d4c8e113b835247b68f9f39f173928, type: 3}
+  - {fileID: -2407957162718211872, guid: bb52024ee5d29fe4a9600e0dc84b7524, type: 3}
+  - {fileID: -2407957162718211872, guid: d864d9c40a47a224582ae4f3cd507184, type: 3}
+  - {fileID: -2407957162718211872, guid: 25066b034aead584fa1b23f444aa79b0, type: 3}
+  - {fileID: -2407957162718211872, guid: be717b756d263d94cb7a8b3e699194e5, type: 3}
+  - {fileID: -2407957162718211872, guid: 765ae4fc4d9d2bc4ebde662f7459813c, type: 3}
+  fuelTankBar: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
+  playerFuel: {fileID: 4562679898632507081, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}
+  playerGun: {fileID: 117549714485997888, guid: 48e81ef89939b224aa85c2305dbd5c3f, type: 3}

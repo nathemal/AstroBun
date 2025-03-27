@@ -1,0 +1,18 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/MenuStyle.uss?fileID=7433441132597879392&amp;guid=815d2f71302b397458b4789c80d5b791&amp;type=3#MenuStyle" />
+    <engine:VisualElement name="Container" style="flex-grow: 1; margin-right: 0; background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_BackgroundShading.png?fileID=2800000&amp;guid=4a5d2c29696183444bff91c34150f48a&amp;type=3#Astrobun_BackgroundShading&quot;);">
+        <engine:Label text="&#10;" name="Title" class="title" style="background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_Title.png?fileID=2800000&amp;guid=f6740bfa0ba716e42a14551f64c30a18&amp;type=3#Astrobun_Title&quot;); width: 1089px; height: 244px; margin-top: 5px;" />
+        <engine:Button class="menuButtonContainer" style="margin-left: 20px; margin-bottom: -54px; margin-top: 0;">
+            <engine:Button name="StartGameButton" class="button" style="background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_StartButton.png?fileID=2800000&amp;guid=0f10552bce876b342a18055f82076a53&amp;type=3#Astrobun_StartButton&quot;); background-color: rgba(0, 0, 0, 0); margin-bottom: 0; margin-top: 0; padding-top: 10px; padding-bottom: 10px; margin-left: 0;" />
+        </engine:Button>
+        <engine:Button class="button" style="margin-left: 20px; margin-bottom: -48px; margin-top: 0; margin-right: 0;">
+            <engine:Button name="SettingsButton" class="button" style="background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_OptionsButton.png?fileID=2800000&amp;guid=a4a157d7a242f8149bffd10ad301bc51&amp;type=3#Astrobun_OptionsButton&quot;); margin-bottom: 0; margin-top: 0; margin-left: 0; margin-right: 0;" />
+        </engine:Button>
+        <engine:Button class="menuButtonContainer" style="margin-left: 20px; margin-bottom: -48px; margin-top: 0; margin-right: 0;">
+            <engine:Button name="CreditsButton" class="button" style="background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_CreditsButton.png?fileID=2800000&amp;guid=0c999a3db44194947b6a7ce2b6b2e7e7&amp;type=3#Astrobun_CreditsButton&quot;); margin-top: 0; margin-bottom: 0; margin-left: 0; margin-right: 0;" />
+        </engine:Button>
+        <engine:Button class="menuButtonContainer" style="margin-left: 20px; margin-bottom: 0; margin-top: 0; margin-right: 0;">
+            <engine:Button name="QuitButton" class="button" style="background-image: url(&quot;project://database/Assets/Art/Menus/MainMenu/Astrobun_ExitButton.png?fileID=2800000&amp;guid=8e168b6a71034144eba0b89eda7f2e9d&amp;type=3#Astrobun_ExitButton&quot;); margin-right: 0; margin-bottom: 0; margin-left: 0; margin-top: 0;" />
+        </engine:Button>
+    </engine:VisualElement>
+</engine:UXML>

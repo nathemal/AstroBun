@@ -2,8 +2,14 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - Enemy
+  - Boundary
+  - Planet
+  - FuelPickup
+  - Shield
+  - HealthPickup
   layers:
   - Default
   - TransparentFX
@@ -11,11 +17,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - EnemyBullet
+  - PlayerBullet
+  - Boundary
   - 
   - 
   - 
@@ -41,3 +47,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1179157215
+    locked: 0
+  - name: Bullets
+    uniqueID: 1177668319
+    locked: 0
+  - name: Enemy
+    uniqueID: 4257556765
+    locked: 0
+  - name: Player
+    uniqueID: 1265431743
+    locked: 0
+  - name: UI
+    uniqueID: 2533602823
+    locked: 0
+  m_RenderingLayers:
+  - Default
