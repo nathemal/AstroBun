@@ -29,17 +29,6 @@ public class PlayerHealthController: MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         postProcessing = GetComponent<PlayerPostProcessing>();
-
-        //Load data
-        //if (data.isNewGame)
-        //{
-        //    data.UpdateHealthInFirstScene(this);
-        //}
-        //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        //{
-        //    data.UpdateHealthInNextScene(this);
-        //}
-
     }
 
     public void TakeDamage(float damage) 

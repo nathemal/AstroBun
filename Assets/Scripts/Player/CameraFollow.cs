@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player; 
+    private Transform player; 
     public float followSpeed = 5f; 
     public Vector3 offset = new Vector3(0, 2, -10); 
     public bool smoothZoom = true; 
@@ -14,6 +15,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        StartCoroutine(FindPlayerAfterDelay());
     }
 
     void LateUpdate()
@@ -31,4 +33,19 @@ public class CameraFollow : MonoBehaviour
             cam.orthographicSize = targetZoom;
         }
     }
+
+   private IEnumerator FindPlayerAfterDelay()
+    {
+        while (player == null)
+        {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+                transform.position = player.position + offset;
+            }
+            yield return null;
+        }
+    }
+
 }

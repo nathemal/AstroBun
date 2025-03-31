@@ -39,28 +39,6 @@ public class EnemyHealthController : MonoBehaviour
 
     private void Start()
     {   
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-
-       /* if(data.isNewGame)
-        {
-            data.WorthMoneyValue = worthMoney;
-            data.FuelDropChanceValue = dropChance;
-        }
-        else if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        {
-            worthMoney = data.WorthMoneyValue;
-            dropChance = data.FuelDropChanceValue;
-            //Debug.Log("inside in the if statement");
-            //Debug.Log("worth money " + worthMoney + " enemyData: " + data.WorthMoneyValue);
-            //Debug.Log("drop chance " + dropChance + " enemyData: " + data.FuelDropChanceValue);
-        }*/
-
-        //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-        //{
-        //    data.SetStatsNextLevel(this);
-        //}
-
         currentHealth = maxHealth;
         enemyColor = GetComponent<ChangeEnemyColor>();
         enemySoul = GetComponent<ActivateEnemyDeath>();
@@ -89,12 +67,9 @@ public class EnemyHealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             DropTheLoot();
-
-            onDeath.Invoke(worthMoney);
            
             sound.enemyDying.Play();
 
-            //Destroy(gameObject);
             StartCoroutine(HandleEnemyDeath());
         }
     }
@@ -109,7 +84,7 @@ public class EnemyHealthController : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        onDeath.Invoke(worthMoney);
+        onDeath.Invoke(data.WorthMoneyValue);
         Destroy(gameObject);
     }
 
@@ -142,14 +117,13 @@ public class EnemyHealthController : MonoBehaviour
 
     private bool CanLootbeDroped()
     {
-        //Debug.Log("Chance right now: " + dropChance);
+        //Debug.Log("Chance right now: " + data.FuelDropChanceValue);
 
         float roll = Random.Range(0f, 100f);
         //Debug.Log("Roll was " + roll);
 
-        if (roll < dropChance)
+        if (roll < data.FuelDropChanceValue)
         {
-            //Debug.Log("Loot was dropped");
             return true;
         }
 

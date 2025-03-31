@@ -23,7 +23,6 @@ public class PlayerData : ScriptableObject
     [SerializeField] private float fireRate;
 
     [SerializeField] public string lastSceneName = "";
-    [HideInInspector] public bool isNewGame = true;
     [HideInInspector] public bool hasStoredDefaults = false;
     public float HealthValue
 	{
@@ -109,8 +108,6 @@ public class PlayerData : ScriptableObject
 
     public void UpdateFuelDataInNextScene(PlayerController player)
     {
-        //if (player == null) { return; }
-
         player.fuel = FuelAmountValue;
         player.fuelConsumptionRate = FueConsumptionValue;
 
@@ -118,8 +115,6 @@ public class PlayerData : ScriptableObject
     }
     public void UpdateFuelDataInFirstScene(PlayerController player)
     {
-        //if (player == null) { return; }
-
         player.fuelTank.UpdateFuelTank(player.fuel, player.fuel);
         FuelTankCapValue = player.fuelTank.fuelBar.maxValue;
         FueConsumptionValue = player.fuelConsumptionRate;
@@ -128,30 +123,22 @@ public class PlayerData : ScriptableObject
 
     public void UpdateHealthInNextScene(PlayerHealthController player)
     {
-        //if(player == null) { return; }
-
         player.currentHealth = HealthValue;
         player.Healthbar.UpdateHealthBar(player.maxHealth, player.currentHealth);
     }
 
     public void UpdateHealthInFirstScene(PlayerHealthController player)
     {
-        //if (player == null) { return; }
-
-        //Debug.Log("Updating health in first scene. MaxHealth: " + player.maxHealth);
-
         player.currentHealth = player.maxHealth;
         player.Healthbar.UpdateHealthBar(player.maxHealth, player.maxHealth);
         HealthValue = player.maxHealth;
-
-       // Debug.Log("After update: CurrentHealth = " + player.currentHealth);
     }
 
 
 
     private void OnEnable()
     {
-        isNewGame = true;
+        hasStoredDefaults = false;
     }
 
 }

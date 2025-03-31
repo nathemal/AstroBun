@@ -18,7 +18,6 @@ public class EnemyData : ScriptableObject
     [SerializeField] private int worthMoney;
 
     [SerializeField] public string lastSceneName = "";
-    [HideInInspector] public bool isNewGame = true;
     [HideInInspector] public bool hasStoredDefaults = false;
 
     public float DefaultFuelDropChanceValue
@@ -73,7 +72,6 @@ public class EnemyData : ScriptableObject
 
     private void OnEnable()
     {
-        isNewGame = true;
         hasStoredDefaults = false;
     }
 

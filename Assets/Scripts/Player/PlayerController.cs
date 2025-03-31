@@ -53,57 +53,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         orbitController = GetComponent<OrbitController>();
-
-		// TODO: Git did something weird here with the merge conflict, make sure it looks and works correctly, STARTING HERE
-		
-        /* string currentSceneName = SceneManager.GetActiveScene().name;
-
-
-         if (data.isNewGame)//if (data.lastSceneName == currentSceneName || (data.lastSceneName == ""))
-         {
-             UpdateFuelDataInNextScene();
-         }
-         else if(data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-         {
-             UpdateFuelDataInFirstScene();
-
-             //Debug.Log("inside in the if statement");
-             //Debug.Log("current fuel amount " + fuel + " enemyData: " + data.FuelAmountValue);
-             //Debug.Log("consumption rate " + fuelConsumptionRate + " enemyData: " + data.FueConsumptionValue);
-             //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " enemyData: " + data.FuelTankCapValue);
-             //Debug.Log("max fuel amount " + fuelTank.fuelBar.maxValue + " current fuel amount: " + fuel);
-         }*/
-
     }
-
-  //  private void UpdateFuelDataInFirstScene()
-  //  {
-  //      fuel = data.FuelAmountValue;
-  //      fuelConsumptionRate = data.FueConsumptionValue;
-
-  //      fuelTank.UpdateFuelTank(data.FuelTankCapValue, fuel);
-  //  }
-
-  //  private void UpdateFuelDataInNextScene()
-  //  {
-  //      fuelTank.UpdateFuelTank(fuel, fuel);
-  //      data.FuelTankCapValue = fuelTank.fuelBar.maxValue;
-  //      data.FueConsumptionValue = fuelConsumptionRate;
-  //      data.FuelAmountValue = fuel;
-		
-  //      string currentSceneName = SceneManager.GetActiveScene().name;
-
-  //      //if (data.isNewGame)
-  //      //{
-  //      //    data.UpdateFuelDataInFirstScene(this);
-  //      //}
-  //      //if (data != null && data.lastSceneName != currentSceneName && !(data.lastSceneName == ""))
-  //      //{
-  //      //    data.UpdateFuelDataInNextScene(this);
-  //      //}
-		
-		//// TODO: Git did something weird here with the merge conflict, make sure it looks and works correctly, ENDING HERE
-  //  }
 
     void Update()
     {

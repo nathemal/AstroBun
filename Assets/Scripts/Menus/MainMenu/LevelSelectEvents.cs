@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -61,7 +62,6 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void OnLevelThreeClick(ClickEvent evt)
     {
-        //UpdateGameData();
         ResetGameData();
         LoadScene(levelThreeScene);
     }
@@ -73,16 +73,8 @@ public class LevelSelectEvents : MonoBehaviour
 
     private void LoadScene(string scene)
     {
+        Time.timeScale = 1f; //unfreeze everything
         SceneManager.LoadScene(scene);
-    }
-
-    private void UpdateGameData()
-    {
-        if (AllEntityDataManager.Instance != null)
-        {
-            AllEntityDataManager.Instance.UpdateEnemyStats();
-            AllEntityDataManager.Instance.UpdatePlayerStats();
-        }
     }
 
     private void ResetGameData()

@@ -27,7 +27,7 @@ public class AllEntityDataManager : MonoBehaviour
     private void Start()
     {
         FindPlayerComponents();
-        ResetAllEnemyData(); //letter to comment out when the game will be playable from the start
+        ResetAllEnemyData();
         ResetPlayerData();
     }
 
@@ -40,55 +40,24 @@ public class AllEntityDataManager : MonoBehaviour
 
     public void ResetPlayerData()
     {
-        //if (playerData.isNewGame)
-        //{
-        //    playerData.UpdateHealthInFirstScene(playerHealth);
-        //    Debug.Log("Max health: " + playerHealth.maxHealth);
-        //    Debug.Log("Current health: " + playerHealth.currentHealth);
-
-        //    playerData.UpdateFuelDataInFirstScene(playerFuel);
-
-        //    playerData.SetBulletDefaultStats(playerAttack.bulletScript);
-        //    playerData.ResetBulletDefaultStats();
-
-        //    playerData.isNewGame = false;
-        //}
-
-        //for first scene or replaying same scene - powerups stats are not saved
         playerData.UpdateHealthInFirstScene(playerHealth);
 
         playerData.UpdateFuelDataInFirstScene(playerFuel);
 
         playerData.SetBulletDefaultStats(playerAttack.bulletScript);
         playerData.ResetBulletDefaultStats();
-
-        playerData.isNewGame = false;
     }
 
     public void ResetAllEnemyData()
     {
         foreach (EnemyData data in AllEnemyData)
         {
-            if (data.isNewGame)
-            {
-                EnemyHealthController enemy = FindEnemyByType(data.enemyType);
+            EnemyHealthController enemy = FindEnemyByType(data.enemyType);
 
-                data.SetDefaultStats(enemy);
+            data.SetDefaultStats(enemy);
 
-                data.ResetStats();
-                data.isNewGame = false;
-            }
+            data.ResetStats();
         }
-
-        //foreach (EnemyData data in AllEnemyData)
-        //{
-        //    EnemyHealthController enemy = FindEnemyByType(data.enemyType);
-
-        //    data.SetDefaultStats(enemy);
-
-        //    data.ResetStats();
-        //    data.isNewGame = false;
-        //}
     }
 
     private EnemyHealthController FindEnemyByType(EnemyTypeChoices type)
@@ -107,8 +76,6 @@ public class AllEntityDataManager : MonoBehaviour
 
     public void UpdatePlayerStats()
     {
-        //if(playerFuel == null && playerHealth == null) { return; }
-
         playerData.UpdateHealthInNextScene(playerHealth);
         playerData.UpdateFuelDataInNextScene(playerFuel);
     }

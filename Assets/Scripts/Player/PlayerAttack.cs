@@ -15,16 +15,6 @@ public class PlayerAttack : MonoBehaviour
     private void Start()
     {
         bulletScript = projectilePrefab.GetComponent<BulletSettings>();
-
-        string currentSceneName = SceneManager.GetActiveScene().name;
-
-        ////Load data
-        //if (data.isNewGame)
-        //{
-        //    data.SetBulletDefaultStats(bulletScript);
-        //    data.ResetBulletDefaultStats();
-        //    data.isNewGame = false;
-        //}
     }
 
     public void CreateBullets()

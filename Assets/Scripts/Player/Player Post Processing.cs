@@ -88,8 +88,6 @@ public class PlayerPostProcessing : MonoBehaviour
         startWeight = takeDamageVolume.weight;
         player.takeDamage = false;
 
-        //StartCoroutine(FadeOutVolume(takeDamageVolume, takeDamageFadeOutTime));
-
         if(healthAfterHeal >= showLowHealthVolumePercentageThreshold)
         {
             StartCoroutine(FadeOutVolume(lowHealthVolume, takeDamageFadeOutTime));

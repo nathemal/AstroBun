@@ -294,7 +294,6 @@ MonoBehaviour:
   gun: {fileID: 4588143520461653735}
   shield: {fileID: 0}
   fuelTank: {fileID: 8902769676971021436, guid: 501792d856b190c498583edb6d4b5055, type: 3}
-  audioManager: {fileID: 579546080643185787, guid: 3ee93a7e35456294d8bda1f68a876f88, type: 3}
   pauseMenu: {fileID: 0}
   gamePaused: 0
   data: {fileID: 11400000, guid: 8583ae2a47f3c7f4ba44f8c17ef0d1ed, type: 2}
@@ -593,6 +592,7 @@ MonoBehaviour:
   takeDamageVolume: {fileID: 8999128679634005636}
   takeDamageFadeInTime: 0.1
   takeDamageFadeOutTime: 0.5
+  durationOfFlashing: 0
   lowHealthVolume: {fileID: 5956010199581481808}
   showLowHealthVolumePercentageThreshold: 0.4
 --- !u!70 &1223535905647082393

@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
-public class LoadLevel : MonoBehaviour
+public class LoadNextLevel : MonoBehaviour
 {
     public string nextLevelName;
-    [SerializeField] public List<EnemyData> EnemiesDatasList;
-    [SerializeField] public PlayerData playerData;
+    public PlayerData playerData;
     public PlayerHealthController playerHealth;
 
     public string currentSceneName;
@@ -24,35 +24,32 @@ public class LoadLevel : MonoBehaviour
     private void LoadSceneWhenAllEnemiesAreDead()
     {
         int enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        Debug.Log("Enemy count: " + enemyCount);
-
-        playerData.lastSceneName = currentSceneName;
-        foreach (EnemyData enemyData in EnemiesDatasList)
-        {
-            enemyData.lastSceneName = currentSceneName;
-        }
 
         if (playerHealth.currentHealth > 0 && enemyCount <= 0)
         {
-            LoadNextScene();
+            StartCoroutine(LoadNextScene());
         }
     }
 
-    private void LoadNextScene()
+    private IEnumerator LoadNextScene()
     {
         nextLevelName = GetNextLevel();
 
         if (!string.IsNullOrEmpty(nextLevelName))
         {
             SceneManager.LoadScene(nextLevelName);
+            yield return new WaitForSeconds(0.5f);
+
             UpdateGameData();
         }
         else
         {
-            Debug.Log("Player Wins!");
             ResetGameData();
+            yield return new WaitForSeconds(0.5f);
             SceneManager.LoadScene("WinScene");
         }
+
+        yield return null;
     }
 
     private string GetNextLevel()
@@ -85,8 +82,4 @@ public class LoadLevel : MonoBehaviour
             AllEntityDataManager.Instance.ResetAllEnemyData();
         }
     }
-
-
-
-
 }

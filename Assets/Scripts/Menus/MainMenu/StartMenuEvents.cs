@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -44,6 +45,7 @@ public class StartMenuEvents : MonoBehaviour
 
     private void OnStartGameClick(ClickEvent evt)
     {
+        ResetGameData();
         LoadScene(levelSelectScene);
     }
 
@@ -70,5 +72,14 @@ public class StartMenuEvents : MonoBehaviour
     private void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    private void ResetGameData()
+    {
+        if (AllEntityDataManager.Instance != null)
+        {
+            AllEntityDataManager.Instance.ResetPlayerData();
+            AllEntityDataManager.Instance.ResetAllEnemyData();
+        }
     }
 }
