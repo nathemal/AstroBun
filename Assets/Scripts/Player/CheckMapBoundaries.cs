@@ -8,9 +8,15 @@ public class CheckMapBoundaries : MonoBehaviour
     private CapsuleCollider2D capsuleCollider2D; //for colliding with walls
     private PolygonCollider2D polygonCollider2D; //for the taking damage
     public float radiusOfRayCast;
-    public LayerMask playerLayer;
-    public LayerMask obsticleLayer;
-    
+    private LayerMask playerLayer;
+    private LayerMask obsticleLayer;
+
+    private void Awake()
+    {
+        playerLayer = LayerMask.GetMask("Player");
+        obsticleLayer = LayerMask.GetMask("Boundary");
+    }
+
     private void Start()
     {
         polygonCollider2D = GetComponent<PolygonCollider2D>();

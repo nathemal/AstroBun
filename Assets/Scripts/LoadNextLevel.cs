@@ -57,7 +57,7 @@ public class LoadNextLevel : MonoBehaviour
         int currentIndex = levelSequence.IndexOf(currentSceneName);
         if (currentIndex == -1)
         {
-            Debug.LogError("Current scene is not in the level sequence!");
+            Debug.LogError("Current scene is not in the level sequence");
             return null;
         }
 
