@@ -15,19 +15,18 @@ public class EarnMoney : MonoBehaviour
         ShopManager shopManager = FindAnyObjectByType<ShopManager>();
         if (shopManager != null)
         {
-            OnBuy.AddListener(AddMoney);
+            OnBuy.AddListener(SubtractMoney);
         }
     }
 
     public void AddMoney(int amount)
     {
         moneyCount += amount;
-        UpdateText();
-    }
-
-    private void UpdateText()
-    {
         coinText.text = " : " + moneyCount.ToString();
     }
 
+    public void SubtractMoney(int amount)
+    {
+        coinText.text = " : " + amount.ToString();
+    }
 }
